@@ -1,4 +1,4 @@
-# 5520-Final-Project-MovieYelp
+# 🎬5520-Final-Project-MovieYelp
 
 Final Project for NEU 21Fall Course CS5520.
 
