@@ -14,11 +14,8 @@
    TouchableOpacity,
  } from 'react-native';
  
-//  import styled from "styled-components";
-//  import Message from "./Message";
  import { PanResponder, Animated } from "react-native";
-//  import Cardview from 'react-native-cardview-wayne';
-//  import TabNavigator from 'react-native-tab-navigator';
+
  
  
  class HomePage extends React.Component {

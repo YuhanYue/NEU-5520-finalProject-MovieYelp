@@ -9,15 +9,13 @@ import {
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import { defineAnimation } from 'react-native-reanimated';
 
-import Profile from '../screen/Profile';
-import SignUp from '../screen/SignUp';
+import Profile from '../screens/Profile';
+import SignUp from '../screens/SignUp';
 import { NavigationContainer } from '@react-navigation/native';
-import Login from '../screen/Login';
-import ImageSelect from '../screen/ImageSelect'
-import Monitor from '../screen/Monitor'
+import Login from '../screens/Login';
 import { createStackNavigator } from '@react-navigation/stack';
-import DehazeResult from '../screen/DehazeResult'
-
+import MapScreen from '../screens/MapScreen';
+import SearchScreen from '../screens/SearchScreen'
 
 const Tab = createBottomTabNavigator();
 const TabNavigator = () =>{
@@ -36,8 +34,8 @@ const TabNavigator = () =>{
                     ...styles.shadow,
                 }
             }}
-            initialRouteName = "Monitor">
-                <Tab.Screen name="Monitor" component={Monitor} options={{
+            initialRouteName = "">
+                <Tab.Screen name="Map" component={MapScreen} options={{
                     tabBarIcon: ({focused}) => (
                         <View style={{alignContent: 'center', justifyContent:'center', top: 10,}}> 
                            <Image 
@@ -50,24 +48,26 @@ const TabNavigator = () =>{
                            />
                             <Text 
                             // style={{color: focused ?'#e32f45' : '#748c94',}}
-                            >Home</Text>
+                            >Map</Text>
                         </View>
                     )
                 }}/> 
-               <Tab.Screen name="Dehaze" component={ImageSelect} options={{
+                 <Tab.Screen name="Search" component={SearchScreen} options={{
                     tabBarIcon: ({focused}) => (
                         <View style={{alignContent: 'center', justifyContent:'center', top: 10,}}> 
                            <Image 
-                           source = {require('../assets/edit.png')}
+                           source = {require('../assets/search.png')}
                            resizeMode = 'contain'
                            style = {{
-                               width: 40,
-                               height: 40,
+                               marginTop:3,
+                               width: 30,
+                               height: 30,
+                               marginBottom:8
                            }}
                            />
                             <Text 
                             // style={{color: focused ?'#e32f45' : '#748c94',}}
-                            >Dehaze</Text>
+                            >Search</Text>
                         </View>
                     )
                 }}/> 
