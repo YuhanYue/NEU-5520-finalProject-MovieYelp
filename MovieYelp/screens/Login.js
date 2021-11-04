@@ -10,7 +10,9 @@ import {
 
 import Inputs from '../components/Inputs'
 import Submit from '../components/Submit'
-// import Axios from "axios";
+import HomePage from './HomePage';
+
+
 export default class Login extends React.Component{
 
     constructor(props){
@@ -48,22 +50,7 @@ export default class Login extends React.Component{
       }
       
     login = () => {
-        this.props.navigation.replace('MainPage')
-        // var url = 'http://192.168.1.100:3000/login';
-        // Axios.post(url ,{
-        //   username: this.username, 
-        //   passwd: this.password,
-        // }).then((response) => {
-        //   if(response.data.message){
-        //     ToastAndroid.show('wrong username/password combination!',ToastAndroid.SHORT);
-        //   } else{
-        //     this.storeUsername(this.username)
-        //     //console.log(this.username)
-        //     this.props.navigation.replace("MainPage");
-        //     this.retrieveUsername();
-        //   }
-        //   //console.log(response);
-        // });
+        this.props.navigation.replace('HomePageNavigation')
     }
     
     render(){
@@ -96,35 +83,6 @@ export default class Login extends React.Component{
     }
 }
 
-// const Login = props =>{
-//     return(
-//        <ScrollView style = {{backgroundColor:'whilte'}}>
-//            <View style={styles.container}>
-//                <Image source={require('../assets/login.png')}
-//                 style={styles.image} />
-//                 <Text style={styles.textTitle}>Welcome Back</Text>
-//                 <Text style={styles.textBody}>Log in to your existant account</Text>
-//                 <View style ={{marginTop: 20}} />
-//                 <Inputs name="Email" icon="user"/> 
-//                 <Inputs name="Password" icon="lock" pas  s={true}/>
-//                 <View style = {{width: '90%'}}>
-//                     <Text style={[styles.textBody], {alignSelf: 'flex-end'}}>Forgot Password?</Text>
-//                 </View>
-//                 <TouchableOpacity style={[styles.submitContainer, {backgroundColor: '#0251ce'}]}
-//                    onPress = {() => props.navigation.navigate('MainPage')}>
-//                     <Text style = {styles.submitText}>LOG IN</Text>
-//                 </TouchableOpacity>
-//                 <View style={{flexDirection: 'row', marginVertical: 5}}>
-//                     <Text style={styles.textBody}>Don't have an account</Text>
-//                     <Text style={[styles.textBody, {color:'blue'}]} 
-//                     onPress = {() => props.navigation.navigate('SignUp')}> Sign Up</Text>
-//                     </View>
-                
-//            </View>
-//         </ScrollView>
-//     )
-// }
-// export default Login;
 
 const styles = StyleSheet.create({
     container:{
