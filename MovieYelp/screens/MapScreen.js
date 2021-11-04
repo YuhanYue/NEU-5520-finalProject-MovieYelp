@@ -20,7 +20,7 @@ export default class MapScreen extends React.Component{
     render(){
         return(
                 <View>
-                    <Text>This is a map</Text>         
+                    <Text>This is a map screen</Text>         
                 </View>
 
          );
