@@ -9,8 +9,6 @@ import {
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import { defineAnimation } from 'react-native-reanimated';
 import Profile from '../screen/Profile';
-import SignUp from '../screen/SignUp';
-import Login from '../screen/Login';
 import Monitor from '../screen/Monitor'
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -32,16 +30,6 @@ function MainNavigation(){
             </MainStack.Navigator>
     );
 }
-// const MainNavigation = props => {
-//     return(
-//         <NavigationContainer independent={true}>
-//             <MainStack.Navigator initialRouteName="Tab">
-//                 <MainStack.Screen name="DehazeResult" component={DehazeResult} options={{headerShown:true}} />
-//                 <MainStack.Screen name="Tab" component={TabNavigator} options={{headerShown:false}} />
-//             </MainStack.Navigator>
-//         </NavigationContainer>
-//     );
-// };
 
 function TabNavigator (){
      return(

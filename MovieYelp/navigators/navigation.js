@@ -5,25 +5,24 @@ import {createStackNavigator} from '@react-navigation/stack'
 // import {createAppContainer } from "react-navigation";
 // import {createStackNavigator} from 'react-navigation-stack'//how many screens you wanna have in a stack
 
-import SignUp from '../screen/SignUp'
-import Login from '../screen/Login'
-import TabNavigator from './tabNavigator'
-import DehazeResult from '../screen/DehazeResult'
-import MainNavigation from './MainNavigator'
-import test from '../screen/test'
+import SignUp from '../screens/SignUp';
+import Login from "../screens/Login"
+import HomePage from '../screens/HomePage';
 
-const Stack = createStackNavigator();
 
-const Navigation = props => {
+const Stack = createStackNavigator();//main stack for login/signUp/User's Homepage
+
+function Navigation() {
     return(
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Home">
-                <Stack.Screen name="Home" component={Login} options={{headerShown:false}} />
+            <Stack.Navigator initialRouteName = "Login">
+                <Stack.Screen name="Login" component={Login} options={{headerShown:false}} />
                 <Stack.Screen name="SignUp" component={SignUp} options={{headerShown:false}} />
-                <Stack.Screen name="MainPage" component={MainNavigation} options={{headerShown:false}}/>
+                <Stack.Screen name="HomePageNavigation" component = {HomePage} options={{headerShown:false}}/>
+                {/* <Stack.Screen name="HomePage" component={MainNavigation} options={{headerShown:false}}/> */}
             </Stack.Navigator>
         </NavigationContainer>
     );
-};
+}
 
 export default Navigation;

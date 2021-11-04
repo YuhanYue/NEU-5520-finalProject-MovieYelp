@@ -27,7 +27,7 @@ const SignUp = props =>{
                  <View style={{flexDirection: 'row'}}>
                      <Text style={styles.textBody}>Already have an account</Text>
                      <Text style={[styles.textBody, {color:'blue'}]} onPress={(  /*括号后面不能加空格 unexpected token*/
-                     ) => props.navigation.navigate('Home')}> Login Here</Text>
+                     ) => props.navigation.navigate('Login')}> Login Here</Text>
                  </View>
             </View>
            

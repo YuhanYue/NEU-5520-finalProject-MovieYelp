@@ -4,6 +4,7 @@
  * @flow
  */
 
+
  import React, { Component } from 'react';
  import {
    Text,
@@ -21,7 +22,6 @@
  
  
  class HomePage extends React.Component {
-   // 顶部Header的隐藏
    static navigationOptions = {
        header: null
    };
