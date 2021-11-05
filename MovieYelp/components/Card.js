@@ -1,21 +1,35 @@
-import React from "react";
-// import styled from "styled-components";
+import React, { Component } from 'react'
+import { TouchableNativeFeedback, Animated, Dimensions, StatusBar, View, Text} from 'react-native'
 
+import CardView from 'react-native-cardview'
 
-const Card = props => (
-  <Container style={{ elevation: 10 }}>
-    <Cover>
-      <Image source={props.image} />
-      <Title>{props.title}</Title>
-    </Cover>
-    <Content>
-      <Wrapper>
-        <Caption>{props.caption}</Caption>
-        <Subtitle>{props.subtitle}</Subtitle>
-      </Wrapper>
-    </Content>
-  </Container>
-);
+const screenWidth = Dimensions.get('window').width
+const screenHeight = Dimensions.get('window').height + 50
+class Card extends Component {
+  render() {
+    return (
+      <View>
+        <CardView
+          cardElevation={10}
+          cardMaxElevation={2}
+          cornerRadius={5}>
+          <Text>
+            Elevation 0
+          </Text>
+        </CardView>
+      </View>
+    );
+  }
+}
 
 export default Card;
+
+
+
+
+
+
+
+
+
 

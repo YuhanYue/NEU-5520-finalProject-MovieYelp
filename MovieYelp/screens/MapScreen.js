@@ -8,6 +8,8 @@ import {
     TouchableOpacity,
 } from 'react-native'
 
+import Card from '../components/Card';
+
 
 
 export default class MapScreen extends React.Component{
@@ -20,6 +22,7 @@ export default class MapScreen extends React.Component{
     render(){
         return(
                 <View>
+                    <Card/>
                     <Text>This is a map screen</Text>         
                 </View>
 

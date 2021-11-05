@@ -64,23 +64,6 @@ function TabNavigator (){
                         </View>
                     )
                 }}/> 
-               <Tab.Screen name="Dehaze" component={ImageSelect} options={{
-                    tabBarIcon: ({focused}) => (
-                        <View style={{alignContent: 'center', justifyContent:'center', top: 10,}}> 
-                           <Image 
-                           source = {require('../assets/edit.png')}
-                           resizeMode = 'contain'
-                           style = {{
-                               width: 40,
-                               height: 40,
-                           }}
-                           />
-                            <Text 
-                            // style={{color: focused ?'#e32f45' : '#748c94',}}
-                            >Dehaze</Text>
-                        </View>
-                    )
-                }}/> 
                 <Tab.Screen name="Profile" component={Profile} options={{
                     tabBarIcon: ({focused}) => (
                         <View style={{alignContent: 'center', justifyContent:'center', top: 10,}}> 
