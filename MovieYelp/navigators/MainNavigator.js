@@ -9,8 +9,6 @@ import {
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import { defineAnimation } from 'react-native-reanimated';
 import Profile from '../screen/Profile';
-import SignUp from '../screen/SignUp';
-import Login from '../screen/Login';
 import Monitor from '../screen/Monitor'
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -32,16 +30,6 @@ function MainNavigation(){
             </MainStack.Navigator>
     );
 }
-// const MainNavigation = props => {
-//     return(
-//         <NavigationContainer independent={true}>
-//             <MainStack.Navigator initialRouteName="Tab">
-//                 <MainStack.Screen name="DehazeResult" component={DehazeResult} options={{headerShown:true}} />
-//                 <MainStack.Screen name="Tab" component={TabNavigator} options={{headerShown:false}} />
-//             </MainStack.Navigator>
-//         </NavigationContainer>
-//     );
-// };
 
 function TabNavigator (){
      return(
@@ -73,23 +61,6 @@ function TabNavigator (){
                             <Text 
                             // style={{color: focused ?'#e32f45' : '#748c94',}}
                             >Home</Text>
-                        </View>
-                    )
-                }}/> 
-               <Tab.Screen name="Dehaze" component={ImageSelect} options={{
-                    tabBarIcon: ({focused}) => (
-                        <View style={{alignContent: 'center', justifyContent:'center', top: 10,}}> 
-                           <Image 
-                           source = {require('../assets/edit.png')}
-                           resizeMode = 'contain'
-                           style = {{
-                               width: 40,
-                               height: 40,
-                           }}
-                           />
-                            <Text 
-                            // style={{color: focused ?'#e32f45' : '#748c94',}}
-                            >Dehaze</Text>
                         </View>
                     )
                 }}/> 

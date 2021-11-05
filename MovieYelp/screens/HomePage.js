@@ -4,6 +4,7 @@
  * @flow
  */
 
+
  import React, { Component } from 'react';
  import {
    Text,
@@ -13,15 +14,11 @@
    TouchableOpacity,
  } from 'react-native';
  
-//  import styled from "styled-components";
-//  import Message from "./Message";
  import { PanResponder, Animated } from "react-native";
-//  import Cardview from 'react-native-cardview-wayne';
-//  import TabNavigator from 'react-native-tab-navigator';
+
  
  
  class HomePage extends React.Component {
-   // 顶部Header的隐藏
    static navigationOptions = {
        header: null
    };
