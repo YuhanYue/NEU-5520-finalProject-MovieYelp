@@ -38,11 +38,12 @@ export default class MapScreen extends React.Component {
             <View>
                 {/* TODO:flatlist to fetch and display data */}
                 <Subtitle style ={{paddingTop: 10}}>Starting your journey from...</Subtitle>
-                <TouchableOpacity  style={styles.infoBox}>
+                <TouchableOpacity  style={styles.infoBox}
+                onPress = {() => this.props.navigation.navigate("movie")}>
                 <Card
                     image={require("../assets/NEU.png")}
                     caption={'NEU Vancouver Campus'}
-                    onPress
+                    
                 />
                 </TouchableOpacity>
 

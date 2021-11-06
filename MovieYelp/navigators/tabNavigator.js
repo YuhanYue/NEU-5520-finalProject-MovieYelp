@@ -6,92 +6,105 @@ import {
     Image,
     TouchableOpacity
 } from 'react-native'
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { defineAnimation } from 'react-native-reanimated';
 
 import Profile from '../screens/Profile';
 import SignUp from '../screens/SignUp';
 import { NavigationContainer } from '@react-navigation/native';
-import Login from '../screens/Login';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MapScreen from '../screens/MapScreen';
 import SearchScreen from '../screens/SearchScreen'
+import MoviePage from '../screens/MoviePage';
+
+
+const MapForMovieStack = createNativeStackNavigator();
+
+function MapForMovieStackScreen() {
+    return (
+        <MapForMovieStack.Navigator>
+            <MapForMovieStack.Screen name="map" component={MapScreen} />
+            <MapForMovieStack.Screen name="movie" component={MoviePage} />
+        </MapForMovieStack.Navigator>
+    )
+}
 
 const Tab = createBottomTabNavigator();
-const TabNavigator = () =>{
-     return(
+const TabNavigator = () => {
+    return (
         <NavigationContainer independent={true}>
-            <Tab.Navigator tabBarOptions={ {
+            <Tab.Navigator tabBarOptions={{
                 showLabel: false,
-                style:{
+                style: {
                     position: 'absolute',
                     bottom: 25,
                     left: 20,
-                    right:20,
+                    right: 20,
                     elevation: 0,
                     borderRadius: 50,
                     height: 90,
                     ...styles.shadow,
                 }
             }}
-            initialRouteName = "">
-                <Tab.Screen name="Map" component={MapScreen} options={{
-                    tabBarIcon: ({focused}) => (
-                        <View style={{alignContent: 'center', justifyContent:'center', top: 10,}}> 
-                           <Image 
-                           source = {require('../assets/dehaze.png')}
-                           resizeMode = 'contain'
-                           style = {{
-                               width: 40,
-                               height: 40,
-                           }}
-                           />
-                            <Text 
+                initialRouteName="">
+                <Tab.Screen name="Map" component={MapForMovieStackScreen} options={{
+                    tabBarIcon: ({ focused }) => (
+                        <View style={{ alignContent: 'center', justifyContent: 'center', top: 10, }}>
+                            <Image
+                                source={require('../assets/dehaze.png')}
+                                resizeMode='contain'
+                                style={{
+                                    width: 40,
+                                    height: 40,
+                                }}
+                            />
+                            <Text
                             // style={{color: focused ?'#e32f45' : '#748c94',}}
                             >Map</Text>
                         </View>
                     )
-                }}/> 
-                 <Tab.Screen name="Search" component={SearchScreen} options={{
-                    tabBarIcon: ({focused}) => (
-                        <View style={{alignContent: 'center', justifyContent:'center', top: 10,}}> 
-                           <Image 
-                           source = {require('../assets/search.png')}
-                           resizeMode = 'contain'
-                           style = {{
-                               marginTop:3,
-                               width: 30,
-                               height: 30,
-                               marginBottom:8
-                           }}
-                           />
-                            <Text 
+                }} />
+                <Tab.Screen name="Search" component={SearchScreen} options={{
+                    tabBarIcon: ({ focused }) => (
+                        <View style={{ alignContent: 'center', justifyContent: 'center', top: 10, }}>
+                            <Image
+                                source={require('../assets/search.png')}
+                                resizeMode='contain'
+                                style={{
+                                    marginTop: 3,
+                                    width: 30,
+                                    height: 30,
+                                    marginBottom: 8
+                                }}
+                            />
+                            <Text
                             // style={{color: focused ?'#e32f45' : '#748c94',}}
                             >Search</Text>
                         </View>
                     )
-                }}/> 
+                }} />
                 <Tab.Screen name="Profile" component={Profile} options={{
-                    tabBarIcon: ({focused}) => (
-                        <View style={{alignContent: 'center', justifyContent:'center', top: 10,}}> 
-                           <Image 
-                           source = {require('../assets/Profile.png')}
-                           resizeMode = 'contain'
-                           style = {{
-                               width: 40,
-                               height: 40,
-                           }}
-                           />
-                            <Text 
+                    tabBarIcon: ({ focused }) => (
+                        <View style={{ alignContent: 'center', justifyContent: 'center', top: 10, }}>
+                            <Image
+                                source={require('../assets/Profile.png')}
+                                resizeMode='contain'
+                                style={{
+                                    width: 40,
+                                    height: 40,
+                                }}
+                            />
+                            <Text
                             // style={{color: focused ?'#e32f45' : '#748c94',}}
                             >Profile</Text>
                         </View>
                     )
-                }}/> 
-               
+                }} />
+
             </Tab.Navigator>
         </NavigationContainer>
-     );
+    );
 };
 
 
