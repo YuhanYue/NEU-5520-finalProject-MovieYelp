@@ -1,5 +1,12 @@
 import React from 'react';
 import {View, SafeAreaView, StyleSheet, FlatList, Text} from 'react-native';
+import {
+  Avatar,
+  Title,
+  Caption,
+  TouchableRipple,
+} from 'react-native-paper';
+import Icon from 'react-native-vector-icons/FontAwesome';
 // import {
 //   Avatar,
 //   Title,
@@ -27,22 +34,44 @@ export default class Profile extends React.Component {
     }
   }
 
-
-
   render(){
-    //this.fetchData();
-    return (
-      // user info part
-     <View>
-       <Text> This is a profile page</Text>
-     </View>
-
-    );
-  }
+    return(
+          <SafeAreaView style={styles.container}>
+          <View style={styles.userInfoSection}>
+            <View style={{flexDirection: 'row', marginTop: 15}}>
+              <Avatar.Image 
+                source={require('../assets/avatar.jpg')}
+                size={80}
+              />
+              <View style={{marginLeft: 20}}>
+                <Title style={[styles.title, {
+                  marginTop:15,
+                  marginBottom: 5,
+                }]}>Full Name</Title>
+                <Caption style={styles.caption}>@username</Caption>
+              </View>
+            </View>
+          </View>
+         
+          <View style={styles.userInfoSection}>
+            <View style={styles.row}>
+              <Icon name="phone" color="#777777" size={20}/>
+              <Text style={{color:"#777777", marginLeft: 20}}>+91-900000009 phone</Text>
+            </View>
+            <View style={styles.row}>
+              <Icon name="email" color="#777777" size={20}/>
+              <Text style={{color:"#777777", marginLeft: 20}}>user@email.com</Text>
+            </View>
+          </View>
   
-};
-
-
+          {/* scrollView Starts here! */}
+      
+        </SafeAreaView>
+      );
+    }
+  }
+    
+  
 const styles = StyleSheet.create({
   container: {
     flex: 1,
