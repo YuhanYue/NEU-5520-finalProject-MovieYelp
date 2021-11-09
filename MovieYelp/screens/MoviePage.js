@@ -74,8 +74,8 @@ export default class MoviePage extends React.Component {
         second: Reviews,
     });
 
+    
     render() {
-
         return (
             
                 <TabView

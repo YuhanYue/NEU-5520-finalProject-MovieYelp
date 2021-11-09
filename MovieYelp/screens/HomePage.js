@@ -49,15 +49,6 @@
        return (
          <ScrollView contentContainerStyle={styles.contentContainer}>
 <View>
-               {/* Animated.View标签是使该View具备可以设置动画的能力 */}
-               
-                   {/* <Message
-                       title="Chengdu - Nanjing"
-                       // 如下的jpg可以设置自己喜欢的图片
-                       image={require("./image/IMG_3867.jpeg")}
-                       author="123"
-                       text="piggy zjd"
-                   /> */}
                    <TouchableOpacity style={styles.btnStyle}
  >
                      <Text> 👆查看更多 </Text>

@@ -14,9 +14,10 @@ import SignUp from '../screens/SignUp';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import MapScreen from '../screens/MapScreen';
+import CardViewScreen from '../screens/CardViewScreen';
 import SearchScreen from '../screens/SearchScreen'
 import MoviePage from '../screens/MoviePage';
+import MapViewScreen from '../screens/MapViewScreen'
 
 
 const MapForMovieStack = createNativeStackNavigator();
@@ -24,7 +25,7 @@ const MapForMovieStack = createNativeStackNavigator();
 function MapForMovieStackScreen() {
     return (
         <MapForMovieStack.Navigator>
-            <MapForMovieStack.Screen name="map" component={MapScreen} />
+            <MapForMovieStack.Screen name="card" component={CardViewScreen} />
             <MapForMovieStack.Screen name="movie" component={MoviePage} />
         </MapForMovieStack.Navigator>
     )
@@ -34,7 +35,7 @@ const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
     return (
         <NavigationContainer independent={true}>
-            <Tab.Navigator tabBarOptions={{
+            <Tab.Navigator screenOptions={{
                 showLabel: false,
                 style: {
                     position: 'absolute',
@@ -47,8 +48,25 @@ const TabNavigator = () => {
                     ...styles.shadow,
                 }
             }}
-                initialRouteName="">
-                <Tab.Screen name="Map" component={MapForMovieStackScreen} options={{
+                initialRouteName="CardView">
+                <Tab.Screen name="CardView" component={MapForMovieStackScreen} options={{
+                    tabBarIcon: ({ focused }) => (
+                        <View style={{ alignContent: 'center', justifyContent: 'center', top: 10, }}>
+                            <Image
+                                source={require('../assets/dehaze.png')}
+                                resizeMode='contain'
+                                style={{
+                                    width: 40,
+                                    height: 40,
+                                }}
+                            />
+                            <Text
+                            // style={{color: focused ?'#e32f45' : '#748c94',}}
+                            >Map</Text>
+                        </View>
+                    )
+                }} />
+                 <Tab.Screen name="Map" component={MapViewScreen} options={{
                     tabBarIcon: ({ focused }) => (
                         <View style={{ alignContent: 'center', justifyContent: 'center', top: 10, }}>
                             <Image
@@ -106,7 +124,6 @@ const TabNavigator = () => {
         </NavigationContainer>
     );
 };
-
 
 export default TabNavigator;
 

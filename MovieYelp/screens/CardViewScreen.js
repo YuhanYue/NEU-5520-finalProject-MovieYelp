@@ -6,6 +6,7 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
+  Dimensions,
 } from 'react-native'
 
 import {
@@ -16,10 +17,11 @@ import {
 import Card from '../components/Card';
 import styled from 'styled-components';
 import Login from './Login';
+import { SwitchRouter } from 'react-navigation';
 
 
-
-export default class MapScreen extends React.Component {
+const width = Dimensions.get("window").width;
+export default class CardViewScreen extends React.Component {
 
   constructor(props) {
     super(props);
@@ -39,7 +41,8 @@ export default class MapScreen extends React.Component {
           {/* TODO:flatlist to fetch and display data */}
           <Subtitle style={{ paddingTop: 10 }}>Starting your journey from...</Subtitle>
           <TouchableOpacity style={styles.infoBox}
-            onPress={() => this.props.navigation.navigate("movie")}>
+            onPress={() => this.props.navigation.navigate("movie")}
+            >
             <Card
               image={require("../assets/NEU.png")}
               caption={'NEU Vancouver Campus'}
@@ -54,9 +57,7 @@ export default class MapScreen extends React.Component {
               onPress
             />
           </TouchableOpacity>
-          <Text>
-            This is the introduction of movie
-          </Text>
+
       </ScrollView>
 
     );
@@ -75,17 +76,18 @@ const Subtitle = styled.Text`
 const TitleBar = styled.View`
   width: 100%;
   margin-top: 50px;
-  padding-left: 80px;
+  margin-left: 150px;
 `;
 
 const Avatar = styled.Image`
-  width: 44px;
-  height: 44px;
+  width: 100px;
+  height: 100px;
   background-color: black;
-  border-radius: 22px;
+  border-radius: 100px;
   margin-left: 20px;
   top: 0;
   left: 0;
+
 `;
 
 const Title = styled.Text`
@@ -98,6 +100,7 @@ const Name = styled.Text`
   font-size: 20px;
   color: #3c4560;
   font-weight: bold;
+  margin-left: 20px;
 `;
 
 
@@ -143,6 +146,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-
-
 })
