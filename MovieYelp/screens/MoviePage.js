@@ -17,6 +17,9 @@ import {
     Title,
 } from 'react-native-paper';
 import { TabView, SceneMap } from 'react-native-tab-view';
+import Login from './Login';
+import Overview from './Overveiw';
+import Reviews from './Reviews';
 
 
 const FirstRoute = () => (
@@ -35,8 +38,8 @@ export default class MoviePage extends React.Component {
     state = {
         index: 0,
         routes: [
-            { key: 'first', title: 'First' },
-            { key: 'second', title: 'Second' },
+            { key: 'first', title: 'Overview' },
+            { key: 'second', title: 'Reviews' },
         ],
     };
 
@@ -67,36 +70,20 @@ export default class MoviePage extends React.Component {
     };
 
     _renderScene = SceneMap({
-        first: FirstRoute,
-        second: SecondRoute,
+        first:  Overview,
+        second: Reviews,
     });
 
     render() {
 
         return (
-            <View>
-                <Text>This is a movie page</Text>
-                <ScrollView
-                    style={{
-                        flexDirection: 'row',
-                        height: '40%'
-                    }}
-                    horizontal={true}
-                    showsHorizontalScrollIndicator={false}>
-                    <Image source={require('../assets/NEU.png')}
-                        style={styles.image} />
-                    <Image source={require('../assets/Scene1.jpeg')}
-                        style={styles.image} />
-                    <Image source={require('../assets/avatar.jpg')}
-                        style={styles.image} />
-                </ScrollView>
+            
                 <TabView
-                    navigationState={this.state}
-                    renderScene={this._renderScene}
-                    renderTabBar={this._renderTabBar}
-                    onIndexChange={this._handleIndexChange} />
-            </View>
-
+                navigationState={this.state}
+                renderScene={this._renderScene}
+                renderTabBar={this._renderTabBar}
+                onIndexChange={this._handleIndexChange}
+              />
         );
     }
 }

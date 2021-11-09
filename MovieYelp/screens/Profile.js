@@ -28,10 +28,7 @@ import Card from '../components/Card'
 export default class Profile extends React.Component {
   constructor(props){
     super(props);
-    this.state = {
-      pairedImageData: null,
-      dehazeCount: 0,
-    }
+
   }
 
   render(){
@@ -71,7 +68,7 @@ export default class Profile extends React.Component {
     }
   }
     
-  
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

@@ -1,64 +1,66 @@
 import React from 'react';
 import {
-    View,
-    StyleSheet,
-    Text,
-    ScrollView,
-    Image,
-    TouchableOpacity,
+  View,
+  StyleSheet,
+  Text,
+  ScrollView,
+  Image,
+  TouchableOpacity,
 } from 'react-native'
+
+import {
+  TouchableRipple,
+
+} from 'react-native-paper';
 
 import Card from '../components/Card';
 import styled from 'styled-components';
+import Login from './Login';
 
 
 
 export default class MapScreen extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
+  constructor(props) {
+    super(props);
+  }
 
 
-    render() {
-        return (
-            <ScrollView>
-                 <TitleBar>
-            
-            <Avatar source={require('../assets/avatar.jpg')} />
-      
-
+  render() {
+    return (
+      <ScrollView>
+        <TitleBar>
+          <Avatar source={require('../assets/avatar.jpg')} />
           <Title>Welcome back,</Title>
           {/* this.username */}
           <Name>Yuhan</Name>
-        
+
         </TitleBar>
+          {/* TODO:flatlist to fetch and display data */}
+          <Subtitle style={{ paddingTop: 10 }}>Starting your journey from...</Subtitle>
+          <TouchableOpacity style={styles.infoBox}
+            onPress={() => this.props.navigation.navigate("movie")}>
+            <Card
+              image={require("../assets/NEU.png")}
+              caption={'NEU Vancouver Campus'}
 
-        {/*Start your journey from... */}
-            <View>
-                {/* TODO:flatlist to fetch and display data */}
-                <Subtitle style ={{paddingTop: 10}}>Starting your journey from...</Subtitle>
-                <TouchableOpacity  style={styles.infoBox}
-                onPress = {() => this.props.navigation.navigate("movie")}>
-                <Card
-                    image={require("../assets/NEU.png")}
-                    caption={'NEU Vancouver Campus'}
-                    
-                />
-                </TouchableOpacity>
+            />
+          </TouchableOpacity>
 
-                <TouchableOpacity style={styles.infoBox}>
-                <Card
-                    image={require("../assets/Scene1.jpeg")}
-                    caption={'NEU Vancouver Campus'}
-                    onPress
-                />
-                </TouchableOpacity>
-            </View>
-            </ScrollView>
+          <TouchableOpacity style={styles.infoBox}>
+            <Card
+              image={require("../assets/Scene1.jpeg")}
+              caption={'NEU Vancouver Campus'}
+              onPress
+            />
+          </TouchableOpacity>
+          <Text>
+            This is the introduction of movie
+          </Text>
+      </ScrollView>
 
-        );
-    }
+    );
+  }
 }
 
 const Subtitle = styled.Text`
@@ -103,44 +105,44 @@ const Name = styled.Text`
 
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    userInfoSection: {
-        paddingHorizontal: 30,
-        marginBottom: 25,
-      },
-      title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-      },
-      caption: {
-        fontSize: 14,
-        lineHeight: 14,
-        fontWeight: '500',
-      },
-      row: {
-        flexDirection: 'row',
-        marginBottom: 10,
-      },
-      infoBoxWrapper: {
-        borderBottomColor: '#dddddd',
-        borderBottomWidth: 1,
-        borderTopColor: '#dddddd',
-        borderTopWidth: 1,
-        flexDirection: 'row',
-    
-        justifyContent: 'center',
-        alignItems: 'center',
-      },
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  userInfoSection: {
+    paddingHorizontal: 30,
+    marginBottom: 25,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  caption: {
+    fontSize: 14,
+    lineHeight: 14,
+    fontWeight: '500',
+  },
+  row: {
+    flexDirection: 'row',
+    marginBottom: 10,
+  },
+  infoBoxWrapper: {
+    borderBottomColor: '#dddddd',
+    borderBottomWidth: 1,
+    borderTopColor: '#dddddd',
+    borderTopWidth: 1,
+    flexDirection: 'row',
 
-      infoBox: {
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-      },
-    
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  infoBox: {
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
 
 })
