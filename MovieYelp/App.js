@@ -9,9 +9,8 @@ import MapViewScreen from './screens/MapViewScreen';
 export default function App() {
   return (
     <View style={{flex:1}}>{/*set flex:1 or it would display children component */}
-     <Navigation/>
-{/*      
-      <MapViewScreen/> */}
+      <Navigation/>
+      {/* <MapViewScreen/> */}
     </View>
   );
 }
