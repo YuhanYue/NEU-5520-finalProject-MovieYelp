@@ -5,6 +5,7 @@ import HomePage from './screens/HomePage';
 import Login from './screens/Login';
 import Navigation from './navigators/navigation';
 import MapViewScreen from './screens/MapViewScreen';
+import Reviews from './screens/Reviews';
 
 export default function App() {
   return (

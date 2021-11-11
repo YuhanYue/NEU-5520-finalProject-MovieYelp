@@ -16,7 +16,9 @@ import CameraButton from '../components/CameraButton';
 import { Button } from 'react-native-paper';
 import * as ImagePicker from 'expo-image-picker';
 
-
+function addReview(){
+    
+}
 
 export default class Reviews extends React.Component {
 
@@ -25,45 +27,74 @@ export default class Reviews extends React.Component {
         this.state = {
             username: "Username",
             modalVisible: false,
+            selectImage: "",
         }
     }
 
 
-    choosePhotoFromLibary = () =>{
+    openImagePickerAsync = async () => {
+        let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    
+        if (permissionResult.granted === false) {
+          alert("Permission to access camera roll is required!");
+          return;
+        }
+        let pickerResult = await ImagePicker.launchImageLibraryAsync();
+        this.setState({
+            selectImage: pickerResult.uri,
+        })
+        console.log(this.state.selectImage);
 
-    }
+        
+      }
 
 
     render() {
+
         return (
             <ScrollView>
                 <TouchableOpacity
+                    style={[styles.submitContainer, { backgroundColor: '#0251ce' }]}
                     onPress={() => {
                         this.setState({
                             modalVisible: true
                         })
                     }}>
-                    {/* MODAL */}
-                    <Text>
-                        Write your own review!
-                    </Text></TouchableOpacity>
+                    <Text style={styles.submitText}>Wirte your own Review</Text>
+                </TouchableOpacity>
+
+                {/* Review MODAL */}
                 <Modal
                     animationType="slide"
                     transparent={false}
                     visible={this.state.modalVisible}
                 >
+                    
                     <View style={styles.reviewContainer}>
                         <Text>Please input your review about this shooting place:</Text>
                         <TextInput
-                         style={{ height: 100, borderColor: 'gray', borderWidth: 2 }}
+                            style={{ height: 100, borderColor: 'gray', borderWidth: 2 }}
                             maxLength={200}
                             multiline
                             numberOfLines={4}
                         />
-                        <Button
-                        onPress = {this.choosePhotoFromLibary}>
-                            <Text>Upload Image</Text>
-                            </Button>
+                        <TouchableOpacity
+                            style={[styles.submitContainer, { backgroundColor: '#0251ce' }]}
+                            onPress={() => {
+
+                            }}>
+                            <Text style={styles.submitText}>Submit</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            style={[styles.submitContainer, { backgroundColor: '#0251ce' }]}
+                            onPress={() => {
+                                this.openImagePickerAsync();
+                            }}>
+                            <Text style={styles.submitText}>Upload Images</Text>
+
+
+                        </TouchableOpacity>
                         <TouchableOpacity style={styles.button}
                             onPress={() =>
                                 this.setState({
@@ -195,6 +226,27 @@ const styles = StyleSheet.create({
     },
     reviewPart: {
         flexDirection: 'column',
-    }
+    },
+    submitContainer: {
+        width: '90%',
+        height: 50,
+        borderColor: 'blue',
+        borderRadius: 10,
+        marginVertical: 10,
+        borderWidth: 0,
+        justifyContent:'center',
+    },
+    submitText: {
+        fontSize: 22,
+        fontWeight: 'bold',
+        color: 'white',
+        alignSelf: 'center',
+        marginVertical: 10,
+    },
+    thumbnail: {
+        width: 300,
+        height: 300,
+        resizeMode: 'contain',
+      },
 
 })
