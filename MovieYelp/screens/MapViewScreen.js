@@ -1,51 +1,15 @@
-// import React from 'react';
-// import {
-//   View,
-//   StyleSheet,
-//   Text,
-//   ScrollView,
-//   Image,
-//   TouchableOpacity,
-//   Dimensions,
-// } from 'react-native'
-
-// import {
-//   TouchableRipple,
-
-// } from 'react-native-paper';
-
-// import Card from '../components/Card';
-// import styled from 'styled-components';
-// import Login from './Login';
-
-// import MapView from 'react-native-maps';
-
-
-
-// const width = Dimensions.get("window").width;
-// export default class MapViewScreen extends React.Component {
-
-
-//   render() {
-//     return (
-//          <MapView
-//     initialRegion={{
-//       latitude: 37.78825,
-//       longitude: -122.4324,
-//       latitudeDelta: 0.0922,
-//       longitudeDelta: 0.0421,
-//     }}
-//   />
-
-//     );
-//   }
-// }
-
 
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import MapView from 'react-native-maps';
-import { Marker } from 'react-native-maps'
+import { StyleSheet, Text, TouchableOpacityComponent, View } from 'react-native';
+import { TouchableHighlight } from 'react-native-gesture-handler';
+import MapView, {
+  Marker,
+  Callout,
+  CalloutSubview,
+  ProviderPropType,
+} from 'react-native-maps';
+import MoviePage from './MoviePage';
+import CustomCallout from './CustomCallout';
 
 export default class MapViewScreen extends React.Component {
   constructor(props) {
@@ -79,9 +43,19 @@ export default class MapViewScreen extends React.Component {
         region={this.state.region}
       >
         <Marker
-          coordinate={{ latitude: this.state.region.latitude, longitude: this.state.region.longitude }}
-          
-        />
+          coordinate={{ latitude: this.state.region.latitude, longitude: this.state.region.longitude }}>
+
+<Callout
+              style={styles.customView}
+            >
+                <CalloutSubview
+                   onPress={() => this.props.navigation.navigate("movie")}
+                  style={[styles.calloutButton]}
+                >
+                  <Text>Click me to see more info about this place</Text>
+                  </CalloutSubview>
+            </Callout>
+          </Marker>
       </MapView>
     );
   }

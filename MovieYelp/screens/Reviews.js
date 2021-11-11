@@ -9,31 +9,84 @@ import {
     TouchableOpacity,
     Dimensions,
     Animated,
+    Modal,
+    TextInput
 } from 'react-native'
+import CameraButton from '../components/CameraButton';
+import { Button } from 'react-native-paper';
+import * as ImagePicker from 'expo-image-picker';
+
+
+
 export default class Reviews extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            username: "Username"
+            username: "Username",
+            modalVisible: false,
         }
+    }
+
+
+    choosePhotoFromLibary = () =>{
+
     }
 
 
     render() {
         return (
             <ScrollView>
+                <TouchableOpacity
+                    onPress={() => {
+                        this.setState({
+                            modalVisible: true
+                        })
+                    }}>
+                    {/* MODAL */}
+                    <Text>
+                        Write your own review!
+                    </Text></TouchableOpacity>
+                <Modal
+                    animationType="slide"
+                    transparent={false}
+                    visible={this.state.modalVisible}
+                >
+                    <View style={styles.reviewContainer}>
+                        <Text>Please input your review about this shooting place:</Text>
+                        <TextInput
+                         style={{ height: 100, borderColor: 'gray', borderWidth: 2 }}
+                            maxLength={200}
+                            multiline
+                            numberOfLines={4}
+                        />
+                        <Button
+                        onPress = {this.choosePhotoFromLibary}>
+                            <Text>Upload Image</Text>
+                            </Button>
+                        <TouchableOpacity style={styles.button}
+                            onPress={() =>
+                                this.setState({
+                                    modalVisible: this.state.modalVisible == true ? false : true
+                                })
+                            }
+                        >
+                            <Text>Cancel</Text>
+                        </TouchableOpacity>
+                    </View>
+                </Modal >
+
 
                 <View style={styles.infoBoxWrapper}>
                     <Image style={styles.thumbnail}
                         source={require("../assets/DCPdehaze(1).jpg")} />
                     {/* fetch from Firebase and use flatlist t display all reviews */}
                     <View style={styles.reviewPart}>
-                    <Text style={styles.userInfo}>
-                        {this.state.username}
-                        {"\n"}
-                        {"\n"}</Text>
-                    <Text style={styles.reviewBody}>This is the first view</Text>
+                        <Text style={styles.userInfo}>
+                            {this.state.username}
+                            {"\n"}
+                            {"\n"}</Text>
+                        <Text style={styles.reviewBody}>This is the first view</Text>
                     </View>
                 </View>
                 <View style={styles.infoBoxWrapper}>
@@ -41,11 +94,11 @@ export default class Reviews extends React.Component {
                         source={require("../assets/DCPdehaze(1).jpg")} />
                     {/* fetch from Firebase and use flatlist t display all reviews */}
                     <View style={styles.reviewPart}>
-                    <Text style={styles.userInfo}>
-                        {this.state.username}
-                        {"\n"}
-                        {"\n"}</Text>
-                    <Text style={styles.reviewBody}>This is the first view</Text>
+                        <Text style={styles.userInfo}>
+                            {this.state.username}
+                            {"\n"}
+                            {"\n"}</Text>
+                        <Text style={styles.reviewBody}>This is the first view</Text>
                     </View>
                 </View>
 
@@ -54,11 +107,11 @@ export default class Reviews extends React.Component {
                         source={require("../assets/DCPdehaze(1).jpg")} />
                     {/* fetch from Firebase and use flatlist t display all reviews */}
                     <View style={styles.reviewPart}>
-                    <Text style={styles.userInfo}>
-                        {this.state.username}
-                        {"\n"}
-                        {"\n"}</Text>
-                    <Text style={styles.reviewBody}>This is the first view</Text>
+                        <Text style={styles.userInfo}>
+                            {this.state.username}
+                            {"\n"}
+                            {"\n"}</Text>
+                        <Text style={styles.reviewBody}>This is the first view</Text>
                     </View>
                 </View>
                 <View style={styles.infoBoxWrapper}>
@@ -66,11 +119,11 @@ export default class Reviews extends React.Component {
                         source={require("../assets/DCPdehaze(1).jpg")} />
                     {/* fetch from Firebase and use flatlist t display all reviews */}
                     <View style={styles.reviewPart}>
-                    <Text style={styles.userInfo}>
-                        {this.state.username}
-                        {"\n"}
-                        {"\n"}</Text>
-                    <Text style={styles.reviewBody}>This is the first view</Text>
+                        <Text style={styles.userInfo}>
+                            {this.state.username}
+                            {"\n"}
+                            {"\n"}</Text>
+                        <Text style={styles.reviewBody}>This is the first view</Text>
                     </View>
                 </View>
                 <View style={styles.infoBoxWrapper}>
@@ -78,15 +131,15 @@ export default class Reviews extends React.Component {
                         source={require("../assets/DCPdehaze(1).jpg")} />
                     {/* fetch from Firebase and use flatlist t display all reviews */}
                     <View style={styles.reviewPart}>
-                    <Text style={styles.userInfo}>
-                        {this.state.username}
-                        {"\n"}
-                        {"\n"}</Text>
-                    <Text style={styles.reviewBody}>This is the first view</Text>
+                        <Text style={styles.userInfo}>
+                            {this.state.username}
+                            {"\n"}
+                            {"\n"}</Text>
+                        <Text style={styles.reviewBody}>This is the first view</Text>
                     </View>
                 </View>
 
-                </ScrollView>
+            </ScrollView>
         );
     }
 }
@@ -94,9 +147,9 @@ export default class Reviews extends React.Component {
 
 
 const styles = StyleSheet.create({
-    container: {
+    reviewContainer: {
         flex: 1,
-
+        justifyContent: 'center',
     },
     thumbnail: {
         width: 150,
@@ -140,7 +193,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
 
     },
-    reviewPart:{
+    reviewPart: {
         flexDirection: 'column',
     }
 

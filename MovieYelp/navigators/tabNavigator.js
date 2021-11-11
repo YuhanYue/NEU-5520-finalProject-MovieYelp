@@ -31,6 +31,17 @@ function MapForMovieStackScreen() {
     )
 }
 
+const CallOutForMovieStack = createNativeStackNavigator();
+
+function CallOutForMovieStackScreen() {
+    return (
+        <CallOutForMovieStack.Navigator>
+            <CallOutForMovieStack.Screen name="map" component={MapViewScreen} />
+            <CallOutForMovieStack.Screen name="movie" component={MoviePage} />
+        </CallOutForMovieStack.Navigator>
+    )
+}
+
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
     return (
@@ -66,7 +77,7 @@ const TabNavigator = () => {
                         </View>
                     )
                 }} />
-                 <Tab.Screen name="Map" component={MapViewScreen} options={{
+                 <Tab.Screen name="Map" component={CallOutForMovieStackScreen} options={{
                     tabBarIcon: ({ focused }) => (
                         <View style={{ alignContent: 'center', justifyContent: 'center', top: 10, }}>
                             <Image
