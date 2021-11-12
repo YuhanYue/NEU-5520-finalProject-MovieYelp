@@ -16,8 +16,8 @@ import CameraButton from '../components/CameraButton';
 import { Button } from 'react-native-paper';
 import * as ImagePicker from 'expo-image-picker';
 
-function addReview(){
-    
+function addReview() {
+
 }
 
 export default class Reviews extends React.Component {
@@ -34,10 +34,10 @@ export default class Reviews extends React.Component {
 
     openImagePickerAsync = async () => {
         let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
-    
+
         if (permissionResult.granted === false) {
-          alert("Permission to access camera roll is required!");
-          return;
+            alert("Permission to access camera roll is required!");
+            return;
         }
         let pickerResult = await ImagePicker.launchImageLibraryAsync();
         this.setState({
@@ -45,10 +45,10 @@ export default class Reviews extends React.Component {
         })
         console.log(this.state.selectImage);
 
-        
-      }
 
+    }
 
+    
     render() {
 
         return (
@@ -69,7 +69,7 @@ export default class Reviews extends React.Component {
                     transparent={false}
                     visible={this.state.modalVisible}
                 >
-                    
+
                     <View style={styles.reviewContainer}>
                         <Text>Please input your review about this shooting place:</Text>
                         <TextInput
@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginVertical: 10,
         borderWidth: 0,
-        justifyContent:'center',
+        justifyContent: 'center',
     },
     submitText: {
         fontSize: 22,
@@ -247,6 +247,6 @@ const styles = StyleSheet.create({
         width: 300,
         height: 300,
         resizeMode: 'contain',
-      },
+    },
 
 })

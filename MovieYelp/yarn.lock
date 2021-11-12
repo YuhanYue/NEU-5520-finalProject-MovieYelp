@@ -2669,6 +2669,13 @@ expo-keep-awake@~10.0.0:
   resolved "https://registry.npmmirror.com/expo-keep-awake/download/expo-keep-awake-10.0.0.tgz#275a3e02f99bc0429790047add126c1dcce60d63"
   integrity sha1-J1o+AvmbwEKXkAR63RJsHczmDWM=
 
+expo-linear-gradient@~10.0.3:
+  version "10.0.3"
+  resolved "https://registry.npmmirror.com/expo-linear-gradient/download/expo-linear-gradient-10.0.3.tgz#06ad72e164f5bf36c4afcfc8ccd31138a3a78d6e"
+  integrity sha1-Bq1y4WT1vzbEr8/IzNMROKOnjW4=
+  dependencies:
+    expo-modules-core "~0.4.4"
+
 expo-modules-autolinking@~0.3.3:
   version "0.3.3"
   resolved "https://registry.npmmirror.com/expo-modules-autolinking/download/expo-modules-autolinking-0.3.3.tgz#95795f2292bd187b388413e36936bfd6fa7a46a9"
