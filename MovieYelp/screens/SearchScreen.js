@@ -10,6 +10,7 @@ import {
 import { SearchBar } from "react-native-elements";
 import MoviePage from "./MoviePage";
 import Profile from "./Profile";
+import _ from 'lodash';
 
 import CardViewScreen from "./CardViewScreen";
 import Overview from "./Overveiw";
@@ -45,6 +46,7 @@ export default class SearchScreen extends React.Component {
     imagePath: null,
     text: null,
     DATA: this.props.DATA,
+
   };
 
   renderItem = ({ item }) => (
@@ -67,6 +69,8 @@ export default class SearchScreen extends React.Component {
     return uri;
   }
 
+
+
   searchFilterFunction = (text) => {
     this.setState({ search: text });
     // Check if searched text is not blank
@@ -79,8 +83,9 @@ export default class SearchScreen extends React.Component {
           ? item.movieName.toUpperCase()
           : "".toUpperCase();
         const textData = text.toUpperCase();
-        return item.movieName === textData;
+        return item.movieName.includes(textData);
       });
+
       this.setState({ DATA: newData });
     } else {
       // Inserted text is blank
@@ -89,6 +94,7 @@ export default class SearchScreen extends React.Component {
       // setFilteredDataSource(masterDataSource);
     }
   };
+
 
   render() {
     const { search } = this.state;
