@@ -79,7 +79,7 @@ export default class SearchScreen extends React.Component {
           ? item.movieName.toUpperCase()
           : "".toUpperCase();
         const textData = text.toUpperCase();
-        return item.movieName === textData;
+        return itemData.includes(textData);
       });
       this.setState({ DATA: newData });
     } else {

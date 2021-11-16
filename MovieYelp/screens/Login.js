@@ -1,4 +1,4 @@
-import React from 'react';
+import React { useContext }from 'react';
 import {
     View,
     StyleSheet,
@@ -11,6 +11,10 @@ import {
 import Inputs from '../components/Inputs'
 import Submit from '../components/Submit'
 import HomePage from './HomePage';
+
+import { StatusBar } from 'expo-status-bar';
+import React,  from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
 
 export default class Login extends React.Component {
