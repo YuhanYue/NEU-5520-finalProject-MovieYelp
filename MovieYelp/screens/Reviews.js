@@ -54,13 +54,13 @@ export default class Reviews extends React.Component {
         return (
             <ScrollView>
                 <TouchableOpacity
-                    style={[styles.submitContainer, { backgroundColor: '#0251ce' }]}
+                    style={styles.submitContainer}
                     onPress={() => {
                         this.setState({
                             modalVisible: true
                         })
                     }}>
-                    <Text style={styles.submitText}>Wirte your own Review</Text>
+                    <Text style={styles.submit}>Wirte your own Review</Text>
                 </TouchableOpacity>
 
                 {/* Review MODAL */}
@@ -191,10 +191,6 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         marginTop: 5,
     },
-    locationIntroductionSection: {
-        paddingHorizontal: 30,
-        marginBottom: 25,
-    },
     infoBoxWrapper: {
         borderBottomColor: '#dddddd',
         borderBottomWidth: 1,
@@ -235,18 +231,15 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         borderWidth: 0,
         justifyContent: 'center',
+        alignSelf:"center",
+        backgroundColor: "#C3E2DD"
     },
-    submitText: {
+    submit: {
         fontSize: 22,
         fontWeight: 'bold',
         color: 'white',
         alignSelf: 'center',
         marginVertical: 10,
-    },
-    thumbnail: {
-        width: 300,
-        height: 300,
-        resizeMode: 'contain',
     },
 
 })

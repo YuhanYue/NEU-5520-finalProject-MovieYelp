@@ -25,19 +25,20 @@ export default class CardViewScreen extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      username:"Yuhan"
+    }
   }
-
 
   render() {
     return (
-      <ScrollView>
-        <TitleBar>
-          <Avatar source={require('../assets/avatar.jpg')} />
-          <Title>Welcome back,</Title>
+      <ScrollView style={styles.container}>
+        <View style={styles.titleBar}>
+          <Image style={styles.avatar} source={require('../assets/avatar.jpg')} />
+          <Text style={styles.userTitle}>Welcome back,</Text>
           {/* this.username */}
-          <Name>Yuhan</Name>
-
-        </TitleBar>
+          <Text style={styles.username}>{this.state.username}</Text>
+        </View>
           {/* TODO:flatlist to fetch and display data */}
           <Subtitle style={{ paddingTop: 10 }}>Starting your journey from...</Subtitle>
           <TouchableOpacity style={styles.infoBox}
@@ -57,9 +58,7 @@ export default class CardViewScreen extends React.Component {
               onPress
             />
           </TouchableOpacity>
-
       </ScrollView>
-
     );
   }
 }
@@ -77,30 +76,7 @@ const TitleBar = styled.View`
   width: 100%;
   margin-top: 50px;
   margin-left: 150px;
-`;
-
-const Avatar = styled.Image`
-  width: 100px;
-  height: 100px;
-  background-color: black;
-  border-radius: 100px;
-  margin-left: 20px;
-  top: 0;
-  left: 0;
-
-`;
-
-const Title = styled.Text`
-  font-size: 16px;
-  color: #b8bece;
-  font-weight: 500;
-`;
-
-const Name = styled.Text`
-  font-size: 20px;
-  color: #3c4560;
-  font-weight: bold;
-  margin-left: 20px;
+  color: #f2eee5;
 `;
 
 
@@ -110,12 +86,37 @@ const Name = styled.Text`
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+    backgroundColor: 'white',
+  },
+  titleBar:{
+    width: "100%",
+    flexDirection: 'column',
+    alignItems:'center',
+    justifyContent: "center",
+    marginLeft: 10//center
+    // backgroundColor: "#6ECEDA",
+  },
+  avatar:{
+    width: 100,
+    height:100,
+    borderRadius: 100,
+  },
+  userTitle:{
+    fontSize: 16,
+    color:"#b8bece",
+    fontWeight:"500",
+    justifyContent: 'center',
   },
   userInfoSection: {
     paddingHorizontal: 30,
     marginBottom: 25,
+  },
+  username:{
+    fontSize:20,
+    color:"#3c4560",
+    fontWeight: 'bold',
+    marginLeft: 0,
+    
   },
   title: {
     fontSize: 24,

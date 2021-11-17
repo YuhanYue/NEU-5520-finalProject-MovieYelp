@@ -1,24 +1,29 @@
 import React from "react";
 import styled from "styled-components";
+import { Image, Text, StyleSheet ,View} from "react-native";
 
 
 const Card = props => (
   <Container style={{ elevation: 100}}>
     <Cover>
-      <Image source={props.image} />
+      <Image style={styles.coverImage} source={props.image} />
       <Title>{props.title}</Title>
     </Cover>
     <Content>
       <Wrapper>
         <Caption>{props.caption}</Caption>
-        <Subtitle>{props.subtitle}</Subtitle>
+        {/* <Subtitle>{props.subtitle}</Subtitle> */}
+        <View realtedMoviesWrapper>
+        {/* Fetch related movies as a flatList */}
+        <Text style={styles.realtedMovies}>Related Movies: Harry Potter, Never Have I ever,...</Text>
+        {/* <Text style={styles.realtedMovies}>Harry Potter</Text> */}
+        </View>
       </Wrapper>
     </Content>
   </Container>
 );
 
 export default Card;
-
 
 
 const Content = styled.View`
@@ -32,8 +37,8 @@ const Content = styled.View`
 const Caption = styled.Text`
   color: #3c4560;
   font-size: 20px;
-  font-weight: 600;
-  left: 0;
+  font-weight: 400;
+  left: 30;
 `;
 
 const Subtitle = styled.Text`
@@ -45,17 +50,18 @@ const Subtitle = styled.Text`
 `;
 
 const Wrapper = styled.View`
-  margin-left: 10px;
+  flex-direction: column;
 `;
 
 const Container = styled.View`
   text-align: center
   background: white;
-  width: 380px;
+  width: 350px;
   height: 280px;
   border-radius: 14px;
   margin: 5px 5px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  margin-bottom: 20;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 `;
 
 const Cover = styled.View`
@@ -65,15 +71,6 @@ const Cover = styled.View`
   border-top-right-radius: 14px;
   overflow: hidden;
 `;
-
-const Image = styled.Image`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-`;
-
 const Title = styled.Text`
   color: black;
   font-size: 24px;
@@ -82,3 +79,25 @@ const Title = styled.Text`
   margin-left: 20px;
   width: 170px;
 `;
+
+const styles = StyleSheet.create({
+  movieTitle:{
+
+  },
+  coverImage:{
+    width: "100%",
+    height: "100%",
+    position: "absolute",
+
+  },
+  realtedMovies:{
+    marginTop:10,
+    fontSize: 15,
+    color: "#b8bece",
+    textAlign:"left",
+  },
+  realtedMoviesWrapper:{
+    flexDirection:"row",
+    flex:1,
+  }
+});

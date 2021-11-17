@@ -23,7 +23,7 @@ const userName = "Dog Lover";
 const userEmail = "myemail@email.com";
 const profilePic = 'https://picsum.photos/id/200/200/200';
 const userBio = '"Hello, I am a student from Northeastern University and I like movies, hit me up if you like movies too! "';
-const displayPics = ['https://picsum.photos/id/500/200/200', 'https://picsum.photos/id/600/200/200', 'https://picsum.photos/id/700/200/200', 'https://picsum.photos/id/800/200/200', 'https://picsum.photos/id/900/200/200','https://picsum.photos/id/377/200/200']
+const displayPics = ['https://picsum.photos/id/500/200/200', 'https://picsum.photos/id/600/200/200', 'https://picsum.photos/id/700/200/200', 'https://picsum.photos/id/800/200/200', 'https://picsum.photos/id/900/200/200', 'https://picsum.photos/id/377/200/200']
 
 export default class Profile extends React.Component {
   constructor(props) {
@@ -89,7 +89,7 @@ export default class Profile extends React.Component {
         var table = [];
         if (i + 1 < res.length) {
           table.push(
-            <View key={i.toString()} style={{ flexDirection: 'row',alignItems:'center' }}>
+            <View key={i.toString()} style={{ flexDirection: 'row', alignItems: 'center' }}>
               {<Image source={{
                 uri: res[i]
               }} style={{ width: 175, height: 175, borderRadius: 10, margin: 10 }} />}
@@ -98,18 +98,18 @@ export default class Profile extends React.Component {
               }} style={{ width: 175, height: 175, borderRadius: 10, margin: 10 }} />}
             </View>
           )
-        }else{
+        } else {
           table.push(
-            <View key={i.toString()} style={{ flexDirection: 'row',alignItems:'center'}}>
+            <View key={i.toString()} style={{ flexDirection: 'row', alignItems: 'center' }}>
               {<Image source={{
                 uri: res[i]
               }} style={{ width: 175, height: 175, borderRadius: 10, margin: 10 }} />}
             </View>
           )
         }
-        ans.push(<View key={(i*100).toString()} style={{ flexDirection: 'row',alignContent:'center' }}>{table}</View>)
+        ans.push(<View key={(i * 100).toString()} style={{ flexDirection: 'row', alignContent: 'center' }}>{table}</View>)
       }
-      
+
     }
     return ans;
 
@@ -118,14 +118,14 @@ export default class Profile extends React.Component {
   render() {
     var displayView;
     var height = 0;
-    if(this.state.postPress){
+    if (this.state.postPress) {
       displayView = this.postPics();
       height = displayPics.length * 450;
-    }else{
+    } else {
       displayView = this.galleryPics();
       height = displayPics.length * 275;
     }
-    
+
     // this.fetchData();
     return (
 
@@ -180,7 +180,7 @@ export default class Profile extends React.Component {
           </View>
 
           {/*This is the display/post view: */}
-          <View style={{margin:2,borderColor:"grey"}}>
+          <View style={{ margin: 2, borderColor: "grey" }}>
             <ScrollView>
               <View style={{ height: height }}>
                 {displayView}
