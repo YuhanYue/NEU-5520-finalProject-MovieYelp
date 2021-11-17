@@ -15,6 +15,7 @@ import {
 import CameraButton from '../components/CameraButton';
 import { Button } from 'react-native-paper';
 import * as ImagePicker from 'expo-image-picker';
+import { block } from 'react-native-reanimated';
 
 function addReview() {
 
@@ -48,7 +49,7 @@ export default class Reviews extends React.Component {
 
     }
 
-    
+
     render() {
 
         return (
@@ -68,33 +69,48 @@ export default class Reviews extends React.Component {
                     animationType="slide"
                     transparent={false}
                     visible={this.state.modalVisible}
-                >
 
-                    <View style={styles.reviewContainer}>
-                        <Text>Please input your review about this shooting place:</Text>
+                >
+                    <View style={[styles.reviewContainer, { backgroundColor: 'F2EEE5' }]}>
+                        <Image source={require('../assets/review.jpg')}
+                            style={{
+                                width: 200,
+                                height: 200,
+                                alignSelf: 'center'
+                            }} />
+                        <Text style={
+                            {
+                                fontSize:18,
+                                color:"#b8bece",
+                                fontWeight: 'bold',
+                                marginTop: 20,
+                            }
+                        }>Please input your review about this shooting place:</Text>
                         <TextInput
                             style={{ height: 100, borderColor: 'gray', borderWidth: 2 }}
                             maxLength={200}
                             multiline
                             numberOfLines={4}
                         />
-                        <TouchableOpacity
-                            style={[styles.submitContainer, { backgroundColor: '#0251ce' }]}
-                            onPress={() => {
+                        <View style={styles.buttomWrapper}>
+                            <TouchableOpacity
+                                style={[styles.submitContainer, { backgroundColor: '#0251ce' }]}
+                                onPress={() => {
 
-                            }}>
-                            <Text style={styles.submitText}>Submit</Text>
-                        </TouchableOpacity>
+                                }}>
+                                <Text style={styles.submit}>Submit</Text>
+                            </TouchableOpacity>
 
-                        <TouchableOpacity
-                            style={[styles.submitContainer, { backgroundColor: '#0251ce' }]}
-                            onPress={() => {
-                                this.openImagePickerAsync();
-                            }}>
-                            <Text style={styles.submitText}>Upload Images</Text>
+                            <TouchableOpacity
+                                style={[styles.submitContainer, { backgroundColor: '#0251ce' }]}
+                                onPress={() => {
+                                    this.openImagePickerAsync();
+                                }}>
+                                <Text style={styles.submit}>Upload Images</Text>
 
 
-                        </TouchableOpacity>
+                            </TouchableOpacity></View>
+
                         <TouchableOpacity style={styles.button}
                             onPress={() =>
                                 this.setState({
@@ -106,6 +122,8 @@ export default class Reviews extends React.Component {
                         </TouchableOpacity>
                     </View>
                 </Modal >
+
+
 
 
                 <View style={styles.infoBoxWrapper}>
@@ -224,14 +242,15 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
     },
     submitContainer: {
-        width: '90%',
+        borderRadius: 100,
+        width: '60%',
         height: 50,
         borderColor: 'blue',
         borderRadius: 10,
         marginVertical: 10,
         borderWidth: 0,
         justifyContent: 'center',
-        alignSelf:"center",
+        alignSelf: "center",
         backgroundColor: "#C3E2DD"
     },
     submit: {
@@ -241,5 +260,8 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginVertical: 10,
     },
+    bottomWrapper:{
+        flexDirection:'row',
+    }
 
 })
