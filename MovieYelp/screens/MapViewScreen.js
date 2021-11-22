@@ -45,18 +45,68 @@ export default class MapViewScreen extends React.Component {
         <Marker
           coordinate={{ latitude: this.state.region.latitude, longitude: this.state.region.longitude }}>
 
-<Callout
-              style={styles.customView}
+          <Callout
+            style={styles.customView}
+          >
+            <CalloutSubview
+              onPress={() => this.props.navigation.navigate("movie")}
+              style={[styles.calloutButton]}
             >
-                <CalloutSubview
-                   onPress={() => this.props.navigation.navigate("movie")}
-                  style={[styles.calloutButton]}
-                >
-                  <Text>Click me to see more info about this place</Text>
-                  </CalloutSubview>
-            </Callout>
-          </Marker>
+              <Text>Click me to see more info about this place</Text>
+            </CalloutSubview>
+          </Callout>
+        </Marker>
+
+        <Marker
+          coordinate={{ latitude: 49.282961, longitude: -123.120472 }}>
+
+          <Callout
+            style={styles.customView}
+          >
+            <CalloutSubview
+              onPress={() => this.props.navigation.navigate("movie")}
+              style={[styles.calloutButton]}
+            >
+              <Text>Click me to see more info about this place</Text>
+            </CalloutSubview>
+          </Callout>
+        </Marker>
+
+
+        <Marker
+          coordinate={{ latitude: 49.287340, longitude: -123.117107 }}>
+
+          <Callout
+            style={styles.customView}
+          >
+            <CalloutSubview
+              onPress={() => this.props.navigation.navigate("movie")}
+              style={[styles.calloutButton]}
+            >
+              <Text>Click me to see more info about this place</Text>
+            </CalloutSubview>
+          </Callout>
+        </Marker>
+
+        <Marker
+          coordinate={{ latitude: 49.246292, longitude: -123.116226 }}>
+          <Callout
+            style={styles.customView}
+          >
+            <CalloutSubview
+              onPress={() => this.props.navigation.navigate("movie")}
+              style={[styles.calloutButton]}
+            >
+              <Text>Click me to see more info about this place</Text>
+            </CalloutSubview>
+          </Callout>
+        </Marker>
       </MapView>
+
+
+
+
+
     );
   }
 

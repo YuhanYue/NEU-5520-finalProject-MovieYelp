@@ -133,18 +133,18 @@ export default class Profile extends React.Component {
       <View>
         {/*This is the header: */}
         <View>
-          <LinearGradient colors={['#61698E', '#F97878']} start={[0.5, 0.5]} end={[0.5, 0.5]}>
+          {/* <LinearGradient colors={['#61698E', '#F97878']} start={[0.5, 0.5]} end={[0.5, 0.5]}> */}
             <View style={{ marginHorizontal: 60, paddingVertical: 20, alignItems: 'center' }}>
               {/* <Text> This is a profile page</Text> */}
               <TouchableOpacity>
                 <Image
                   source={{ uri: profilePic }}
-                  style={{ width: 100, height: 100, borderRadius: 10 }} />
+                  style={styles.avatar} />
               </TouchableOpacity>
-              <Text style={{ color: "#ea3372", fontFamily: "Cochin", fontSize: 30, fontWeight: "bold", textAlign: 'center' }}>{userName}</Text>
+              <Text style={styles.userName}>{userName}</Text>
               <Text style={{ color: "white", textAlign: 'center' }}>{userEmail}</Text>
             </View>
-          </LinearGradient>
+          {/* </LinearGradient> */}
           <View style={{ marginHorizontal: 10, paddingVertical: 10 }}>
             <Text style={{ fontWeight: "600", textAlign: "left" }}>
               ABOUT ME
@@ -235,6 +235,24 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  avatar:{
+    width: 100,
+    height:100,
+    borderRadius: 100,
+  },
+  userTitle:{
+    fontSize: 16,
+    color:"#b8bece",
+    fontWeight:"500",
+    justifyContent: 'center',
+  },
+  userName:{
+    fontSize:20,
+    color:"#3c4560",
+    fontWeight: 'bold',
+    marginLeft: 0,
+    
   },
 
 });

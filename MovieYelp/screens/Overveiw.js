@@ -9,9 +9,15 @@ import {
     TouchableOpacity,
     Dimensions,
     Animated,
+    StatusBar,
+    Pressable,
+    
 } from 'react-native'
+import Swiper from 'react-native-swiper';
+import { SafeAreaView } from 'react-native-safe-area-context';
 export default class Overview extends React.Component {
 
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -21,44 +27,118 @@ export default class Overview extends React.Component {
     }
 
 
+    COLORS = {
+        white: '#FFF',
+        dark: '#000',
+        light: '#f6f6f6',
+        grey: '#A9A9A9',
+        blue: '#5f82e6',
+        red: 'red',
+        tranparent: 'rgba(0,0,0,0)',
+      };
+
+
     render() {
         return (
-            <ScrollView>
-                <Title>{this.state.locationName}</Title>
-                <ScrollView
-                    style={{
-                        flexDirection: 'row',
-                        height: '40%',
-                        marginBottom: 10,
-                    }}
-                    horizontal={true}
-                    showsHorizontalScrollIndicator={false}>
-                    {/*TODO: use FlatList to display images */}
-                    <Image source={require('../assets/NEU.png')}
-                        style={styles.image} />
-                    <Image source={require('../assets/Scene1.jpeg')}
+            <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
+      <StatusBar translucent backgroundColor="rgba(0,0,0,0)"/>
+
+      {/* Onboarding Image */}
+      {/* <ScrollView
+    >
+      <Image
+        source={require('../assets/SFU.png')}
+        style={styles.image}
+      />
+       <Image source={require('../assets/Scene1.jpeg')}
                         style={styles.image} />
                     <Image source={require('../assets/avatar.jpg')}
                         style={styles.image} />
-                </ScrollView>
-                <View style = {styles.locationIntroductionSection}>
-                <Text>
-                  {this.state.locationIntroduction}
-                </Text>
+      </ScrollView>
+       */}
+       <View>
+ <Swiper  style = {{flex: 1, }}showsButtons={true}>
+                <View style={styles.slide1}>
+                <Image source={require('../assets/Scene1.jpeg')}
+                        style={styles.image} />
+                    {/* <Image source={require('../assets/avatar.jpg')}
+                        style={styles.image} /> */}
                 </View>
-                <Text>Related Movies:</Text>
-                {/* FlatList */}
-                <View style={styles.relatedMoviesSection}>
-                    <Text>The Mars</Text>
-                    <Image></Image>
+                <View style={styles.slide2}>
+                    <Text style={styles.text}>Beautiful</Text>
                 </View>
+                <View style={styles.slide3}>
+                    <Text style={styles.text}>And simple</Text>
+                </View>
+            </Swiper>
+            </View>
 
-                <View style={styles.relatedMoviesSection}>
-                    <Text>IntelliJ</Text>
-                    <Image></Image>
-                </View>
-            </ScrollView>
-        );
+
+      {/* Title and text container */}
+      <View style={{paddingHorizontal: 20, paddingTop: 20}}>
+        {/* Title container */}
+        <View>
+          <Text style={styles.title}>Find your</Text>
+          <Text style={styles.title}>sweet home</Text>
+        </View>
+
+        {/* Text container */}
+        <View style={{marginTop: 10}}>
+          <Text style={styles.textStyle}>
+            Schedule visits in just a few clicks
+          </Text>
+          <Text style={styles.textStyle}>visit in just a few clicks</Text>
+        </View>
+      </View>
+
+      {/* Button container */}
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'flex-end',
+          paddingBottom: 40,
+        }}>
+        {/* button */}
+      </View>
+    </SafeAreaView>
+  );
+            
+            // <ScrollView>
+            //     <Title>{this.state.locationName}</Title>
+            //     <ScrollView
+            //         style={{
+            //             flexDirection: 'row',
+            //             height: '40%',
+            //             marginBottom: 10,
+            //         }}
+            //         horizontal={true}
+            //         showsHorizontalScrollIndicator={false}>
+            //         {/*TODO: use FlatList to display images */}
+            //         <Image source={require('../assets/NEU.png')}
+            //             style={styles.image} />
+            //         <Image source={require('../assets/Scene1.jpeg')}
+            //             style={styles.image} />
+            //         <Image source={require('../assets/avatar.jpg')}
+            //             style={styles.image} />
+            //     </ScrollView>
+            //     <View style = {styles.locationIntroductionSection}>
+            //     <Text style ={styles.movieIntro}>
+            //       {this.state.locationIntroduction}
+            //     </Text>
+            //     </View>
+            //     <Text>Related Movies:</Text>
+            //     {/* FlatList */}
+            //     <View style={styles.relatedMoviesSection}>
+            //         <Text>The Mars</Text>
+            //         <Image></Image>
+            //     </View>
+
+            //     <View style={styles.relatedMoviesSection}>
+            //         <Text>IntelliJ</Text>
+            //         <Image></Image>
+            //     </View>
+            // </ScrollView>
+    
     }
 }
 
@@ -73,37 +153,60 @@ const Title = styled.Text`
 
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-
-    },
     image: {
-        width: 200,
-        height: 200,
-        marginLeft: 5,
-        marginRight: 5,
-        borderRadius: 20,
-        marginBottom: 0
-    },
-    locationIntroductionSection: {
-        paddingHorizontal: 30,
-        marginBottom: 25,
-    },
-    infoBoxWrapper: {
-        borderBottomColor: '#dddddd',
-        borderBottomWidth: 1,
-        borderTopColor: '#dddddd',
-        borderTopWidth: 1,
-        flexDirection: 'row',
-
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    relatedMoviesSection: {
+        height: 420,
         width: '100%',
-        alignItems: 'center',
+        borderBottomLeftRadius: 100,
+      },
+      indicatorContainer: {
+        height: 20,
         justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row',
+      },
+      indicator: {
+        height: 3,
+        width: 30,
+        backgroundColor: '#A9A9A9',
+        borderRadius: 5,
+        marginHorizontal: 5,
+      },
+      indicatorActive: {
+        backgroundColor: '#000',
+      },
+      btn: {
+        height: 60,
+        marginHorizontal: 20,
+        backgroundColor: 'black',
+        borderRadius: 15,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      title: {fontSize: 32, fontWeight: 'bold'},
+      textStyle: {fontSize: 16, color: '#A9A9A9'},
+      slide1: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#9DD6EB'
     },
+    slide2: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#97CAE5'
+    },
+    slide3: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#92BBD9'
+    },
+    text: {
+        color: '#fff',
+        fontSize: 30,
+        fontWeight: 'bold'
+    }
+    });
 
-
-})
+      
