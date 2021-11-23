@@ -44,42 +44,24 @@ export default class Overview extends React.Component {
       <StatusBar translucent backgroundColor="rgba(0,0,0,0)"/>
 
       {/* Onboarding Image */}
-      {/* <ScrollView
-    >
-      <Image
-        source={require('../assets/SFU.png')}
-        style={styles.image}
-      />
-       <Image source={require('../assets/Scene1.jpeg')}
-                        style={styles.image} />
-                    <Image source={require('../assets/avatar.jpg')}
-                        style={styles.image} />
-      </ScrollView>
-       */}
-       <View>
- <Swiper  style = {{flex: 1, }}showsButtons={true}>
+ <Swiper showsButtons={true}>
+   {/* //TODO: FlatList */}
                 <View style={styles.slide1}>
                 <Image source={require('../assets/Scene1.jpeg')}
                         style={styles.image} />
                     {/* <Image source={require('../assets/avatar.jpg')}
                         style={styles.image} /> */}
                 </View>
-                <View style={styles.slide2}>
-                    <Text style={styles.text}>Beautiful</Text>
-                </View>
-                <View style={styles.slide3}>
-                    <Text style={styles.text}>And simple</Text>
-                </View>
+              
             </Swiper>
-            </View>
 
 
       {/* Title and text container */}
       <View style={{paddingHorizontal: 20, paddingTop: 20}}>
         {/* Title container */}
         <View>
-          <Text style={styles.title}>Find your</Text>
-          <Text style={styles.title}>sweet home</Text>
+          <Text style={styles.title}>{this.state.locationName}</Text>
+          <Text style={styles.textStyle}>{this.state.locationIntroduction}</Text>
         </View>
 
         {/* Text container */}

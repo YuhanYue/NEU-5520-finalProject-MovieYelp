@@ -10,16 +10,20 @@ import {
     Dimensions,
     Animated,
     Modal,
-    TextInput
+    TextInput,
+    Pressable
 } from 'react-native'
 import CameraButton from '../components/CameraButton';
 import { Button } from 'react-native-paper';
 import * as ImagePicker from 'expo-image-picker';
 import { block } from 'react-native-reanimated';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 function addReview() {
 
 }
+
+const {width} = Dimensions.get('screen');
 
 export default class Reviews extends React.Component {
 
@@ -126,18 +130,7 @@ export default class Reviews extends React.Component {
 
 
 
-                <View style={styles.infoBoxWrapper}>
-                    <Image style={styles.thumbnail}
-                        source={require("../assets/DCPdehaze(1).jpg")} />
-                    {/* fetch from Firebase and use flatlist t display all reviews */}
-                    <View style={styles.reviewPart}>
-                        <Text style={styles.userInfo}>
-                            {this.state.username}
-                            {"\n"}
-                            {"\n"}</Text>
-                        <Text style={styles.reviewBody}>This is the first view</Text>
-                    </View>
-                </View>
+
                 <View style={styles.infoBoxWrapper}>
                     <Image style={styles.thumbnail}
                         source={require("../assets/DCPdehaze(1).jpg")} />
@@ -163,30 +156,50 @@ export default class Reviews extends React.Component {
                         <Text style={styles.reviewBody}>This is the first view</Text>
                     </View>
                 </View>
-                <View style={styles.infoBoxWrapper}>
-                    <Image style={styles.thumbnail}
-                        source={require("../assets/DCPdehaze(1).jpg")} />
-                    {/* fetch from Firebase and use flatlist t display all reviews */}
-                    <View style={styles.reviewPart}>
-                        <Text style={styles.userInfo}>
-                            {this.state.username}
-                            {"\n"}
-                            {"\n"}</Text>
-                        <Text style={styles.reviewBody}>This is the first view</Text>
-                    </View>
-                </View>
-                <View style={styles.infoBoxWrapper}>
-                    <Image style={styles.thumbnail}
-                        source={require("../assets/DCPdehaze(1).jpg")} />
-                    {/* fetch from Firebase and use flatlist t display all reviews */}
-                    <View style={styles.reviewPart}>
-                        <Text style={styles.userInfo}>
-                            {this.state.username}
-                            {"\n"}
-                            {"\n"}</Text>
-                        <Text style={styles.reviewBody}>This is the first view</Text>
-                    </View>
-                </View>
+      <Pressable
+        activeOpacity={0.8}
+        // onPress={() => navigation.navigate('DetailsScreen', house)}>
+        >
+        <View style={styles.card}>
+          {/* House image */}
+          <Image source={require('../assets/SFU.png')} style={styles.cardImage} />
+          <View style={{marginTop: 10}}>
+            {/* Title and price container */}
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 10,
+              }}>
+              <Text style={{fontSize: 16, fontWeight: 'bold'}}>
+                Hello
+              </Text>
+              <Text
+                style={{fontWeight: 'bold', color: '#5f82e6', fontSize: 16}}>
+                $1,500
+              </Text>
+            </View>
+
+            {/* Location text */}
+
+            <Text style={{color: '#A9A9A9', fontSize: 14, marginTop: 5}}>
+              hello  again
+            </Text>
+
+            {/* Facilities container */}
+            <View style={{marginTop: 10, flexDirection: 'row'}}>
+              <View style={styles.facility}>
+                <Icon name="movie" size={18} />
+                <Text style={styles.facilityText}>2</Text>
+              </View>
+              <View style={styles.facility}>
+                <Icon name="people" size={18} />
+                <Text style={styles.facilityText}>2</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </Pressable>
 
             </ScrollView>
         );
@@ -262,6 +275,22 @@ const styles = StyleSheet.create({
     },
     bottomWrapper:{
         flexDirection:'row',
-    }
+    },
+    card: {
+        height: 250,
+        backgroundColor: '#FFF',
+        elevation: 10,
+        width: width - 40,
+        marginRight: 20,
+        padding: 15,
+        borderRadius: 20,
+      },
+      cardImage: {
+        width: '100%',
+        height: 120,
+        borderRadius: 15,
+      },
+      facility: {flexDirection: 'row', marginRight: 15},
+      facilityText: {marginLeft: 5, color: '#97CAE5'},
 
 })
