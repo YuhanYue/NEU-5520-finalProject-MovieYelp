@@ -19,6 +19,8 @@ import Inputs from "../components/Inputs";
 import Submit from "../components/Submit";
 import { FlatList } from "react-native-gesture-handler";
 
+
+// todo: search by movie name and location name
 export default class SearchScreen extends React.Component {
   constructor(props) {
     super(props);

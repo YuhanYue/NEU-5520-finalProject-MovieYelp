@@ -10,15 +10,20 @@ import {
     Dimensions,
     Animated,
     Modal,
-    TextInput
+    TextInput,
+    Pressable
 } from 'react-native'
 import CameraButton from '../components/CameraButton';
 import { Button } from 'react-native-paper';
 import * as ImagePicker from 'expo-image-picker';
+import { block } from 'react-native-reanimated';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 function addReview() {
 
 }
+
+const {width} = Dimensions.get('screen');
 
 export default class Reviews extends React.Component {
 
@@ -48,19 +53,19 @@ export default class Reviews extends React.Component {
 
     }
 
-    
+
     render() {
 
         return (
             <ScrollView>
                 <TouchableOpacity
-                    style={[styles.submitContainer, { backgroundColor: '#0251ce' }]}
+                    style={styles.submitContainer}
                     onPress={() => {
                         this.setState({
                             modalVisible: true
                         })
                     }}>
-                    <Text style={styles.submitText}>Wirte your own Review</Text>
+                    <Text style={styles.submit}>Wirte your own Review</Text>
                 </TouchableOpacity>
 
                 {/* Review MODAL */}
@@ -68,33 +73,48 @@ export default class Reviews extends React.Component {
                     animationType="slide"
                     transparent={false}
                     visible={this.state.modalVisible}
-                >
 
-                    <View style={styles.reviewContainer}>
-                        <Text>Please input your review about this shooting place:</Text>
+                >
+                    <View style={[styles.reviewContainer, { backgroundColor: 'F2EEE5' }]}>
+                        <Image source={require('../assets/review.jpg')}
+                            style={{
+                                width: 200,
+                                height: 200,
+                                alignSelf: 'center'
+                            }} />
+                        <Text style={
+                            {
+                                fontSize:18,
+                                color:"#b8bece",
+                                fontWeight: 'bold',
+                                marginTop: 20,
+                            }
+                        }>Please input your review about this shooting place:</Text>
                         <TextInput
                             style={{ height: 100, borderColor: 'gray', borderWidth: 2 }}
                             maxLength={200}
                             multiline
                             numberOfLines={4}
                         />
-                        <TouchableOpacity
-                            style={[styles.submitContainer, { backgroundColor: '#0251ce' }]}
-                            onPress={() => {
+                        <View style={styles.buttomWrapper}>
+                            <TouchableOpacity
+                                style={[styles.submitContainer, { backgroundColor: '#0251ce' }]}
+                                onPress={() => {
 
-                            }}>
-                            <Text style={styles.submitText}>Submit</Text>
-                        </TouchableOpacity>
+                                }}>
+                                <Text style={styles.submit}>Submit</Text>
+                            </TouchableOpacity>
 
-                        <TouchableOpacity
-                            style={[styles.submitContainer, { backgroundColor: '#0251ce' }]}
-                            onPress={() => {
-                                this.openImagePickerAsync();
-                            }}>
-                            <Text style={styles.submitText}>Upload Images</Text>
+                            <TouchableOpacity
+                                style={[styles.submitContainer, { backgroundColor: '#0251ce' }]}
+                                onPress={() => {
+                                    this.openImagePickerAsync();
+                                }}>
+                                <Text style={styles.submit}>Upload Images</Text>
 
 
-                        </TouchableOpacity>
+                            </TouchableOpacity></View>
+
                         <TouchableOpacity style={styles.button}
                             onPress={() =>
                                 this.setState({
@@ -108,18 +128,9 @@ export default class Reviews extends React.Component {
                 </Modal >
 
 
-                <View style={styles.infoBoxWrapper}>
-                    <Image style={styles.thumbnail}
-                        source={require("../assets/DCPdehaze(1).jpg")} />
-                    {/* fetch from Firebase and use flatlist t display all reviews */}
-                    <View style={styles.reviewPart}>
-                        <Text style={styles.userInfo}>
-                            {this.state.username}
-                            {"\n"}
-                            {"\n"}</Text>
-                        <Text style={styles.reviewBody}>This is the first view</Text>
-                    </View>
-                </View>
+
+
+
                 <View style={styles.infoBoxWrapper}>
                     <Image style={styles.thumbnail}
                         source={require("../assets/DCPdehaze(1).jpg")} />
@@ -145,30 +156,50 @@ export default class Reviews extends React.Component {
                         <Text style={styles.reviewBody}>This is the first view</Text>
                     </View>
                 </View>
-                <View style={styles.infoBoxWrapper}>
-                    <Image style={styles.thumbnail}
-                        source={require("../assets/DCPdehaze(1).jpg")} />
-                    {/* fetch from Firebase and use flatlist t display all reviews */}
-                    <View style={styles.reviewPart}>
-                        <Text style={styles.userInfo}>
-                            {this.state.username}
-                            {"\n"}
-                            {"\n"}</Text>
-                        <Text style={styles.reviewBody}>This is the first view</Text>
-                    </View>
-                </View>
-                <View style={styles.infoBoxWrapper}>
-                    <Image style={styles.thumbnail}
-                        source={require("../assets/DCPdehaze(1).jpg")} />
-                    {/* fetch from Firebase and use flatlist t display all reviews */}
-                    <View style={styles.reviewPart}>
-                        <Text style={styles.userInfo}>
-                            {this.state.username}
-                            {"\n"}
-                            {"\n"}</Text>
-                        <Text style={styles.reviewBody}>This is the first view</Text>
-                    </View>
-                </View>
+      <Pressable
+        activeOpacity={0.8}
+        // onPress={() => navigation.navigate('DetailsScreen', house)}>
+        >
+        <View style={styles.card}>
+          {/* House image */}
+          <Image source={require('../assets/SFU.png')} style={styles.cardImage} />
+          <View style={{marginTop: 10}}>
+            {/* Title and price container */}
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 10,
+              }}>
+              <Text style={{fontSize: 16, fontWeight: 'bold'}}>
+                Hello
+              </Text>
+              <Text
+                style={{fontWeight: 'bold', color: '#5f82e6', fontSize: 16}}>
+                $1,500
+              </Text>
+            </View>
+
+            {/* Location text */}
+
+            <Text style={{color: '#A9A9A9', fontSize: 14, marginTop: 5}}>
+              hello  again
+            </Text>
+
+            {/* Facilities container */}
+            <View style={{marginTop: 10, flexDirection: 'row'}}>
+              <View style={styles.facility}>
+                <Icon name="movie" size={18} />
+                <Text style={styles.facilityText}>2</Text>
+              </View>
+              <View style={styles.facility}>
+                <Icon name="people" size={18} />
+                <Text style={styles.facilityText}>2</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </Pressable>
 
             </ScrollView>
         );
@@ -190,10 +221,6 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         marginBottom: 10,
         marginTop: 5,
-    },
-    locationIntroductionSection: {
-        paddingHorizontal: 30,
-        marginBottom: 25,
     },
     infoBoxWrapper: {
         borderBottomColor: '#dddddd',
@@ -228,25 +255,42 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
     },
     submitContainer: {
-        width: '90%',
+        borderRadius: 100,
+        width: '60%',
         height: 50,
         borderColor: 'blue',
         borderRadius: 10,
         marginVertical: 10,
         borderWidth: 0,
         justifyContent: 'center',
+        alignSelf: "center",
+        backgroundColor: "#C3E2DD"
     },
-    submitText: {
+    submit: {
         fontSize: 22,
         fontWeight: 'bold',
         color: 'white',
         alignSelf: 'center',
         marginVertical: 10,
     },
-    thumbnail: {
-        width: 300,
-        height: 300,
-        resizeMode: 'contain',
+    bottomWrapper:{
+        flexDirection:'row',
     },
+    card: {
+        height: 250,
+        backgroundColor: '#FFF',
+        elevation: 10,
+        width: width - 40,
+        marginRight: 20,
+        padding: 15,
+        borderRadius: 20,
+      },
+      cardImage: {
+        width: '100%',
+        height: 120,
+        borderRadius: 15,
+      },
+      facility: {flexDirection: 'row', marginRight: 15},
+      facilityText: {marginLeft: 5, color: '#97CAE5'},
 
 })

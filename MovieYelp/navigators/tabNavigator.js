@@ -18,8 +18,8 @@ const MapForMovieStack = createNativeStackNavigator();
 function MapForMovieStackScreen() {
   return (
     <MapForMovieStack.Navigator>
-      <MapForMovieStack.Screen name="card" component={CardViewScreen} />
-      <MapForMovieStack.Screen name="movie" component={MoviePage} />
+      <MapForMovieStack.Screen name="card" component={CardViewScreen} options={{headerShown:false}} />
+      <MapForMovieStack.Screen name="movie" component={MoviePage} options={{headerShown:false}}/>
     </MapForMovieStack.Navigator>
   );
 }
@@ -29,8 +29,8 @@ const CallOutForMovieStack = createNativeStackNavigator();
 function CallOutForMovieStackScreen() {
   return (
     <CallOutForMovieStack.Navigator>
-      <CallOutForMovieStack.Screen name="map" component={MapViewScreen} />
-      <CallOutForMovieStack.Screen name="movie" component={MoviePage} />
+      <CallOutForMovieStack.Screen name="map" component={MapViewScreen} options={{headerShown:false}} />
+      <CallOutForMovieStack.Screen name="movie" component={MoviePage} options={{headerShown:false}} />
     </CallOutForMovieStack.Navigator>
   );
 }
@@ -38,8 +38,8 @@ function CallOutForMovieStackScreen() {
 function SearchForMovieStackScreen() {
   return (
     <MapForMovieStack.Navigator>
-      <MapForMovieStack.Screen name="search" component={SearchScreen} />
-      <MapForMovieStack.Screen name="movie" component={MoviePage} />
+      <MapForMovieStack.Screen name="search" component={SearchScreen} options={{headerShown:false}} />
+      <MapForMovieStack.Screen name="movie" component={MoviePage} options={{headerShown:false}}/>
     </MapForMovieStack.Navigator>
   );
 }
