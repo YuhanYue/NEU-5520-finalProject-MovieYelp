@@ -19,7 +19,7 @@ function MapForMovieStackScreen() {
   return (
     <MapForMovieStack.Navigator>
       <MapForMovieStack.Screen name="card" component={CardViewScreen} options={{headerShown:false}} />
-      <MapForMovieStack.Screen name="movie" component={MoviePage} options={{headerShown:false}}/>
+      <MapForMovieStack.Screen name="movie" component={MoviePage} options={{headerShown:true}}/>
     </MapForMovieStack.Navigator>
   );
 }
@@ -30,7 +30,7 @@ function CallOutForMovieStackScreen() {
   return (
     <CallOutForMovieStack.Navigator>
       <CallOutForMovieStack.Screen name="map" component={MapViewScreen} options={{headerShown:false}} />
-      <CallOutForMovieStack.Screen name="movie" component={MoviePage} options={{headerShown:false}} />
+      <CallOutForMovieStack.Screen name="movie" component={MoviePage} options={{headerShown:true}} />
     </CallOutForMovieStack.Navigator>
   );
 }
@@ -39,7 +39,7 @@ function SearchForMovieStackScreen() {
   return (
     <MapForMovieStack.Navigator>
       <MapForMovieStack.Screen name="search" component={SearchScreen} options={{headerShown:false}} />
-      <MapForMovieStack.Screen name="movie" component={MoviePage} options={{headerShown:false}}/>
+      <MapForMovieStack.Screen name="movie" component={MoviePage} options={{headerShown:true}}/>
     </MapForMovieStack.Navigator>
   );
 }

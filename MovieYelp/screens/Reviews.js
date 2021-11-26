@@ -33,6 +33,8 @@ export default class Reviews extends React.Component {
             username: "Username",
             modalVisible: false,
             selectImage: "",
+            reviewContent:"This is great!!",
+            
         }
     }
 
@@ -127,35 +129,6 @@ export default class Reviews extends React.Component {
                     </View>
                 </Modal >
 
-
-
-
-
-                <View style={styles.infoBoxWrapper}>
-                    <Image style={styles.thumbnail}
-                        source={require("../assets/DCPdehaze(1).jpg")} />
-                    {/* fetch from Firebase and use flatlist t display all reviews */}
-                    <View style={styles.reviewPart}>
-                        <Text style={styles.userInfo}>
-                            {this.state.username}
-                            {"\n"}
-                            {"\n"}</Text>
-                        <Text style={styles.reviewBody}>This is the first view</Text>
-                    </View>
-                </View>
-
-                <View style={styles.infoBoxWrapper}>
-                    <Image style={styles.thumbnail}
-                        source={require("../assets/DCPdehaze(1).jpg")} />
-                    {/* fetch from Firebase and use flatlist t display all reviews */}
-                    <View style={styles.reviewPart}>
-                        <Text style={styles.userInfo}>
-                            {this.state.username}
-                            {"\n"}
-                            {"\n"}</Text>
-                        <Text style={styles.reviewBody}>This is the first view</Text>
-                    </View>
-                </View>
       <Pressable
         activeOpacity={0.8}
         // onPress={() => navigation.navigate('DetailsScreen', house)}>
@@ -172,24 +145,24 @@ export default class Reviews extends React.Component {
                 marginTop: 10,
               }}>
               <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-                Hello
+                {this.state.reviewContent}
               </Text>
-              <Text
+              {/* <Text
                 style={{fontWeight: 'bold', color: '#5f82e6', fontSize: 16}}>
                 $1,500
-              </Text>
+              </Text> */}
             </View>
 
             {/* Location text */}
 
             <Text style={{color: '#A9A9A9', fontSize: 14, marginTop: 5}}>
-              hello  again
+              {this.state.username}
             </Text>
 
             {/* Facilities container */}
             <View style={{marginTop: 10, flexDirection: 'row'}}>
               <View style={styles.facility}>
-                <Icon name="movie" size={18} />
+                <Icon name="thumb" size={18} />
                 <Text style={styles.facilityText}>2</Text>
               </View>
               <View style={styles.facility}>
@@ -287,7 +260,7 @@ const styles = StyleSheet.create({
       },
       cardImage: {
         width: '100%',
-        height: 120,
+        height: '100%',
         borderRadius: 15,
       },
       facility: {flexDirection: 'row', marginRight: 15},
