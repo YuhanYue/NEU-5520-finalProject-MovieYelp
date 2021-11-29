@@ -1,124 +1,113 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 import {
-    View,
-    StyleSheet,
-    Text,
-    ScrollView,
-    Image,
-    TouchableOpacity,
-    Dimensions,
-    Animated,
-} from 'react-native'
-import { StatusBar } from 'expo-status-bar';
-import {
-    Avatar,
-    TouchableRipple,
-    Title,
-} from 'react-native-paper';
-import { TabView, SceneMap } from 'react-native-tab-view';
-import Login from './Login';
-import Overview from './Overveiw';
-import Reviews from './Reviews';
-
+  View,
+  StyleSheet,
+  Text,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+  Dimensions,
+  Animated,
+} from "react-native";
+import { StatusBar } from "expo-status-bar";
+import { Avatar, TouchableRipple, Title } from "react-native-paper";
+import { TabView, SceneMap } from "react-native-tab-view";
+import Login from "./Login";
+import Overview from "./Overview";
+import Reviews from "./Reviews";
 
 const FirstRoute = () => (
-    <View style={[styles.container, { backgroundColor: '#ff4081' }]} />
+  <View style={[styles.container, { backgroundColor: "#ff4081" }]} />
 );
 const SecondRoute = () => (
-    <View style={[styles.container, { backgroundColor: '#673ab7' }]} />
+  <View style={[styles.container, { backgroundColor: "#673ab7" }]} />
 );
 
 export default class MoviePage extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-    constructor(props) {
-        super(props);
-    }
+  state = {
+    index: 0,
+    routes: [
+      { key: "first", title: "Overview" },
+      { key: "second", title: "Reviews" },
+    ],
+  };
 
-    state = {
-        index: 0,
-        routes: [
-            { key: 'first', title: 'Overview' },
-            { key: 'second', title: 'Reviews' },
-        ],
-    };
+  _handleIndexChange = (index) => this.setState({ index });
 
-    _handleIndexChange = (index) => this.setState({ index });
+  _renderTabBar = (props) => {
+    const inputRange = props.navigationState.routes.map((x, i) => i);
+    return (
+      <View style={styles.tabBar}>
+        {props.navigationState.routes.map((route, i) => {
+          const opacity = props.position.interpolate({
+            inputRange,
+            outputRange: inputRange.map((inputIndex) =>
+              inputIndex === i ? 1 : 0.5
+            ),
+          });
 
-    _renderTabBar = (props) => {
-        const inputRange = props.navigationState.routes.map((x, i) => i);
-        return (
-            <View style={styles.tabBar}>
-                {props.navigationState.routes.map((route, i) => {
-                    const opacity = props.position.interpolate({
-                        inputRange,
-                        outputRange: inputRange.map((inputIndex) =>
-                            inputIndex === i ? 1 : 0.5
-                        ),
-                    });
+          return (
+            <TouchableOpacity
+              style={styles.tabItem}
+              onPress={() => this.setState({ index: i })}
+            >
+              <Animated.Text style={{ opacity }}>{route.title}</Animated.Text>
+            </TouchableOpacity>
+          );
+        })}
+      </View>
+    );
+  };
 
-                    return (
-                        <TouchableOpacity
-                            style={styles.tabItem}
-                            onPress={() => this.setState({ index: i })}>
-                            <Animated.Text style={{ opacity }}>{route.title}</Animated.Text>
-                        </TouchableOpacity>
-                    );
-                })}
-            </View>
-        );
-    };
+  _renderScene = SceneMap({
+    first: () => <Overview movieItem={this.props.route.params.movieItem} />,
+    second: () => <Reviews movieItem={this.props.route.params.movieItem} />,
+  });
 
-    _renderScene = SceneMap({
-        first:  Overview,
-        second: Reviews,
-    });
-
-    
-    render() {
-        return (
-            
-                <TabView
-                navigationState={this.state}
-                renderScene={this._renderScene}
-                renderTabBar={this._renderTabBar}
-                onIndexChange={this._handleIndexChange}
-              />
-        );
-    }
+  render() {
+    const movieItem = this.props.route.params.movieItem;
+    console.log("movie view here");
+    console.log(movieItem);
+    return (
+      <TabView
+        navigationState={this.state}
+        renderScene={this._renderScene}
+        renderTabBar={this._renderTabBar}
+        onIndexChange={this._handleIndexChange}
+      />
+    );
+  }
 }
 
-
-
-
-
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-
-    },
-    image: {
-        width: 200,
-        height: 200,
-        marginLeft: 5,
-        marginRight: 5,
-        borderRadius: 20,
-        marginBottom: 0
-    },
-    tabContainer: {
-        flex: 1,
-    },
-    tabBar: {
-        flexDirection: 'row',
-    },
-    tabItem: {
-        flex: 1,
-        alignItems: 'center',
-        padding: 16,
-    },
-
-})
-
+  container: {
+    flex: 1,
+  },
+  image: {
+    width: 200,
+    height: 200,
+    marginLeft: 5,
+    marginRight: 5,
+    borderRadius: 20,
+    marginBottom: 0,
+  },
+  tabContainer: {
+    flex: 1,
+  },
+  tabBar: {
+    flexDirection: "row",
+  },
+  tabItem: {
+    flex: 1,
+    alignItems: "center",
+    padding: 16,
+  },
+});
 
 const Content = styled.View`
   height: 100%;
@@ -131,7 +120,6 @@ const Container = styled.View`
 const Cover = styled.View`
   height: 375px;
 `;
-
 
 const Caption = styled.Text`
   color: white;
@@ -166,5 +154,3 @@ const Subtitle = styled.Text`
   margin-left: 5px;
   text-transform: uppercase;
 `;
-
-

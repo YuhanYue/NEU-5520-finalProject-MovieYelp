@@ -24,11 +24,22 @@ import Card from "../components/Card";
 import { LinearGradient } from "expo-linear-gradient";
 import { block } from "react-native-reanimated";
 import { Ionicons, Entypo } from "@expo/vector-icons";
-import firebase from "../firbase-config";
+import Parse from "parse/react-native";
+import UploadImage from "../components/UploadingImage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+//Before using the SDK...
+Parse.setAsyncStorage(AsyncStorage);
+
+Parse.initialize(
+  "yyq9HLKMQVgQFbCIVBl7dAaIboyCTbyoRQjUYZc8",
+  "KBig8FUxq4rXuILfdgXQX6L053KYdDM8SclCM2Vs"
+); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
+Parse.serverURL = "https://parseapi.back4app.com/";
 
 const userName = "Dog Lover";
 const userEmail = "myemail@email.com";
-const profilePic = "https://picsum.photos/id/200/200/200";
+var profilePic = "https://picsum.photos/id/200/200/200";
 const userBio =
   '"Hello, I am a student from Northeastern University and I like movies, hit me up if you like movies too! "';
 const displayPics = [
@@ -43,15 +54,28 @@ const displayPics = [
 export default class Profile extends React.Component {
   constructor(props) {
     super(props);
-    var ref = firebase.database().ref("users/ada");
-    ref.this.state = {
+    this.state = {
       pairedImageData: null,
       dehazeCount: 0,
       postPress: true,
       galleryPress: false,
+      profilePic: "https://picsum.photos/id/200/200/200",
     };
   }
 
+  onRetrieveProfilePic = async () => {
+    const query = new Parse.Query("User");
+    var profilePic = null;
+    try {
+      const person = await query.get("w6nh7htdN8");
+
+      profilePic = person.get("avatar").url();
+      console.log(profilePic);
+    } catch (error) {
+      alert(`Failed to retrieve the object, with error code: ${error.message}`);
+    }
+    this.setState({ profilePic: profilePic });
+  };
   morePress = () => {
     // console.log("You press the button");
     Alert.alert("MORE", "What's more?", [
@@ -197,11 +221,14 @@ export default class Profile extends React.Component {
       displayView = this.galleryPics();
       height = displayPics.length * 275;
     }
-
+    this.onRetrieveProfilePic();
+    console.log("aaaaaaa");
+    console.log(this.state.profilePic);
     // this.fetchData();
     return (
       // user info part
       <View>
+        {/* <UploadImage /> */}
         {/*This is the header: */}
         <View>
           {/* <LinearGradient colors={['#61698E', '#F97878']} start={[0.5, 0.5]} end={[0.5, 0.5]}> */}
@@ -214,7 +241,10 @@ export default class Profile extends React.Component {
           >
             {/* <Text> This is a profile page</Text> */}
             <TouchableOpacity>
-              <Image source={{ uri: profilePic }} style={styles.avatar} />
+              <Image
+                source={{ uri: this.state.profilePic }}
+                style={styles.avatar}
+              />
             </TouchableOpacity>
             <Text style={styles.userName}>{userName}</Text>
             <Text style={{ color: "white", textAlign: "center" }}>

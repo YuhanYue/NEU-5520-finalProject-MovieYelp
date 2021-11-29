@@ -14,11 +14,22 @@ import { auth } from "../firbase-config";
 import { createUserWithEmailAndPassword } from "@firebase/auth";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Input } from "react-native-elements";
-import { firebase } from "../firbase-config";
-// import { firestore } from "@firebase/firestore";
+// import database
 // import database from "@react-native-firebase/database";
-// import firestore from "@react-native-firebase/firestore";
+// const reference = database.ref("/users");
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import Parse from "parse/react-native";
 
+//Before using the SDK...
+Parse.setAsyncStorage(AsyncStorage);
+
+Parse.initialize(
+  "yyq9HLKMQVgQFbCIVBl7dAaIboyCTbyoRQjUYZc8",
+  "KBig8FUxq4rXuILfdgXQX6L053KYdDM8SclCM2Vs"
+); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
+Parse.serverURL = "https://parseapi.back4app.com/";
+
+var globalAvatar = null;
 export default class SignUp extends React.Component {
   constructor(props) {
     super(props);
@@ -26,45 +37,112 @@ export default class SignUp extends React.Component {
       userEmail: "",
       userPassword: "",
       isFocused: false,
+      avatar: null,
     };
+    //Saving your First Data Object on Back4App
+    async function saveNewPerson() {
+      const person = new Parse.Object("Person");
+
+      person.set("name", "John Snow");
+      person.set("age", 27);
+      try {
+        let result = await person.save();
+        alert("New object created with objectId: " + result.id);
+      } catch (error) {
+        alert("Failed to create new object, with error code: " + error.message);
+      }
+    }
+    // saveNewPerson();
+
+    //Reading your First Data Object from Back4App
+    async function retrievePerson() {
+      const query = new Parse.Query("Person");
+
+      try {
+        const person = await query.get("mhPFDlCahj");
+        const name = person.get("name");
+        const age = person.get("age");
+
+        alert(`Name: ${name} age: ${age}`);
+      } catch (error) {
+        alert(
+          `Failed to retrieve the object, with error code: ${error.message}`
+        );
+      }
+    }
+
+    // async function retrieveUser() {
+    //   const query = new Parse.Query("User");
+
+    //   try {
+    //     const person = await query.get("9H8x1d6To7");
+    //     const avatar = person.get("avatar");
+    //     const name = person.get("username");
+    //     // console.log(avatar);
+    //     globalAvatar = avatar;
+    //     // console.log("11111111");
+
+    //     // console.log(globalAvatar);
+    //     // console.log("2222222");
+
+    //     alert(`Name: ${name} `);
+    //   } catch (error) {
+    //     alert(
+    //       `Failed to retrieve the object, with error code: ${error.message}`
+    //     );
+    //   }
+    // }
+    // retrieveUser();
+    // console.log(globalAvatar);
   }
 
   onFoucusChange = () => {
     this.setState({ isFocused: true });
   };
 
+  onRetrieveUser = async () => {
+    const query = new Parse.Query("User");
+
+    try {
+      const person = await query.get("MZQD2y0nUB");
+      console.log(person);
+      console.log("avatar");
+
+      const name = person.get("username");
+      console.log(person.get("avatar").url());
+    } catch (error) {
+      alert(`Failed to retrieve the object, with error code: ${error.message}`);
+    }
+  };
+
+  // uploadImage = async () => {
+  //   const {base64, fileName} = image;
+  //   const  parseFile = new  Parse.File(fileName, {base64});
+
+  //   // 2. Save the file
+  //   try {
+  //   const responseFile = await  parseFile.save();
+  //   const Gallery = Parse.Object.extend('Gallery');
+  //   const gallery = new  Gallery();
+  //   gallery.set('picture', responseFile);
+
+  //   await gallery.save();
+  //   Alert.alert('The file has been saved to Back4app.');
+  //   } catch (error) {
+  //     console.log(
+  //       'The file either could not be read, or could not be saved to Back4app.',
+  //     );
+  //   }
+  // }
+
   handleRegister = async () => {
     try {
-      // const user = createUserWithEmailAndPassword(
-      //   auth,
-      //   this.state.userEmail,
-      //   this.state.userPassword
-      // );
-      // console.log(user);
-
-      createUserWithEmailAndPassword(
+      const user = createUserWithEmailAndPassword(
         auth,
         this.state.userEmail,
         this.state.userPassword
-      ).then((response) => {
-        const uid = response.user.uid;
-        const data = {
-          id: uid,
-          email: this.state.userEmail,
-          // fullName,
-        };
-        console.log(data);
-        const usersRef = firestore()
-          .collection("users")
-          .doc("5N4QYz7mpz6C0JsPxOsp");
-        console.log(usersRef);
-        // usersRef
-        //   .doc(firestore, uid)
-        //   .set(data)
-        //   .catch((error) => {
-        //     alert(error);
-        //   });
-      });
+      );
+      console.log(user);
     } catch {
       console.log(Error);
     }
@@ -83,11 +161,26 @@ export default class SignUp extends React.Component {
   };
 
   render() {
+    this.onRetrieveUser();
+    console.log("render");
+    // console.log(globalAvatar);
+    console.log(this.state.avatar);
+
+    console.log("render");
+
     return (
       <ScrollView style={{ backgroundColor: "white" }}>
         <View style={styles.container}>
           <Image
             source={require("../assets/registeration.png")}
+            style={styles.image}
+          />
+          {console.log("---------")}
+
+          {console.log(globalAvatar)}
+          {console.log(globalAvatar["url"])}
+          <Image
+            source={{ uri: globalAvatar["url"][0] }}
             style={styles.image}
           />
           <Text style={styles.textTitle}>Let's Get Started</Text>

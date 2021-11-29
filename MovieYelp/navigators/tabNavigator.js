@@ -18,8 +18,16 @@ const MapForMovieStack = createNativeStackNavigator();
 function MapForMovieStackScreen() {
   return (
     <MapForMovieStack.Navigator>
-      <MapForMovieStack.Screen name="card" component={CardViewScreen} options={{headerShown:false}} />
-      <MapForMovieStack.Screen name="movie" component={MoviePage} options={{headerShown:true}}/>
+      <MapForMovieStack.Screen
+        name="card"
+        component={CardViewScreen}
+        options={{ headerShown: false }}
+      />
+      <MapForMovieStack.Screen
+        name="movie"
+        component={MoviePage}
+        options={{ headerShown: true }}
+      />
     </MapForMovieStack.Navigator>
   );
 }
@@ -29,8 +37,16 @@ const CallOutForMovieStack = createNativeStackNavigator();
 function CallOutForMovieStackScreen() {
   return (
     <CallOutForMovieStack.Navigator>
-      <CallOutForMovieStack.Screen name="map" component={MapViewScreen} options={{headerShown:false}} />
-      <CallOutForMovieStack.Screen name="movie" component={MoviePage} options={{headerShown:true}} />
+      <CallOutForMovieStack.Screen
+        name="map"
+        component={MapViewScreen}
+        options={{ headerShown: false }}
+      />
+      <CallOutForMovieStack.Screen
+        name="movie"
+        component={MoviePage}
+        options={{ headerShown: true }}
+      />
     </CallOutForMovieStack.Navigator>
   );
 }
@@ -38,8 +54,16 @@ function CallOutForMovieStackScreen() {
 function SearchForMovieStackScreen() {
   return (
     <MapForMovieStack.Navigator>
-      <MapForMovieStack.Screen name="search" component={SearchScreen} options={{headerShown:false}} />
-      <MapForMovieStack.Screen name="movie" component={MoviePage} options={{headerShown:true}}/>
+      <MapForMovieStack.Screen
+        name="search"
+        component={SearchScreen}
+        options={{ headerShown: false }}
+      />
+      <MapForMovieStack.Screen
+        name="movie"
+        component={MoviePage}
+        options={{ headerShown: true }}
+      />
     </MapForMovieStack.Navigator>
   );
 }
@@ -49,7 +73,7 @@ const TabNavigator = () => {
   return (
     <NavigationContainer independent={true}>
       <Tab.Navigator
-        screenOptions={{
+        scrernOptions={{
           showLabel: false,
           style: {
             position: "absolute",
@@ -62,7 +86,7 @@ const TabNavigator = () => {
             ...styles.shadow,
           },
         }}
-        initialRouteName="CardView"
+        initialRouteName="Search"
       >
         <Tab.Screen
           name="CardView"
