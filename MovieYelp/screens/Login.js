@@ -49,9 +49,7 @@ export default class Login extends React.Component {
 
     //   }
 
-    login = () => {
-       
-    }
+
 
     render() {
         return (

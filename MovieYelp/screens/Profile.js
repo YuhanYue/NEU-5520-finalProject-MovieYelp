@@ -82,7 +82,6 @@ export default class Profile extends React.Component {
   galleryPics = () => {
 
     var res = displayPics;
-
     var ans = []
     if (this.state.galleryPress) {
       for (var i = 0; i < res.length; i += 2) {
@@ -158,22 +157,23 @@ export default class Profile extends React.Component {
           </View>
 
           {/*This is the status bar: */}
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "row" }}
+          >
             <View style={{ flex: 1, alignItems: "center", borderWidth: 1, borderColor: "lightgrey" }}>
               <TouchableOpacity onPress={this.myPostBress}>
-                <Ionicons name="add-circle" style={{ color: "#FF8000" }} size={24} />
+                <Ionicons name="add-circle" style={{ color: "grey" }} size={24} />
               </TouchableOpacity>
               <Text style={{ color: "grey" }}>My Post</Text>
             </View>
             <View style={{ flex: 1, alignItems: "center", borderWidth: 1, borderColor: "lightgrey" }}>
               <TouchableOpacity onPress={this.myGalleryBress}>
-                <Ionicons name="images" style={{ color: "#FF8000" }} size={24} />
+                <Ionicons name="images" style={{ color: "grey" }} size={24} />
               </TouchableOpacity>
               <Text style={{ color: "grey" }}>My Gallery</Text>
             </View>
             <View style={{ flex: 1, alignItems: "center", borderWidth: 1, borderColor: "lightgrey" }}>
               <TouchableOpacity onPress={this.morePress}>
-                <Ionicons name="ellipsis-horizontal" style={{ color: "#FF8000" }} size={24} />
+                <Ionicons name="ellipsis-horizontal" style={{ color: "grey" }} size={24} />
               </TouchableOpacity>
               <Text style={{ color: "grey" }}>More</Text>
             </View>

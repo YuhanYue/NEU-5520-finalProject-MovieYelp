@@ -77,7 +77,6 @@ export default class MoviePage extends React.Component {
     
     render() {
         return (
-            
                 <TabView
                 navigationState={this.state}
                 renderScene={this._renderScene}

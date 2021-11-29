@@ -23,7 +23,7 @@ function addReview() {
 
 }
 
-const {width} = Dimensions.get('screen');
+const { width } = Dimensions.get('screen');
 
 export default class Reviews extends React.Component {
 
@@ -33,8 +33,8 @@ export default class Reviews extends React.Component {
             username: "Username",
             modalVisible: false,
             selectImage: "",
-            reviewContent:"This is great!!",
-            
+            reviewContent: "This is great!!",
+
         }
     }
 
@@ -60,119 +60,159 @@ export default class Reviews extends React.Component {
 
         return (
             <ScrollView>
-                <TouchableOpacity
-                    style={styles.submitContainer}
-                    onPress={() => {
-                        this.setState({
-                            modalVisible: true
-                        })
-                    }}>
-                    <Text style={styles.submit}>Wirte your own Review</Text>
-                </TouchableOpacity>
+                <View style={{ alignItems: 'flex-end' }}>
+                    <TouchableOpacity
+                        style={styles.submitContainer}
+                        onPress={() => {
+                            this.setState({
+                                modalVisible: true
+                            })
+                        }}>
+                        <Text style={styles.submit}>Wirte your own Review</Text>
+                    </TouchableOpacity>
 
-                {/* Review MODAL */}
-                <Modal
-                    animationType="slide"
-                    transparent={false}
-                    visible={this.state.modalVisible}
+                    {/* Review MODAL */}
+                    <Modal
+                        animationType="slide"
+                        transparent={false}
+                        visible={this.state.modalVisible}
 
-                >
-                    <View style={[styles.reviewContainer, { backgroundColor: 'F2EEE5' }]}>
-                        <Image source={require('../assets/review.jpg')}
-                            style={{
-                                width: 200,
-                                height: 200,
-                                alignSelf: 'center'
-                            }} />
-                        <Text style={
-                            {
-                                fontSize:18,
-                                color:"#b8bece",
-                                fontWeight: 'bold',
-                                marginTop: 20,
-                            }
-                        }>Please input your review about this shooting place:</Text>
-                        <TextInput
-                            style={{ height: 100, borderColor: 'gray', borderWidth: 2 }}
-                            maxLength={200}
-                            multiline
-                            numberOfLines={4}
-                        />
-                        <View style={styles.buttomWrapper}>
-                            <TouchableOpacity
-                                style={[styles.submitContainer, { backgroundColor: '#0251ce' }]}
-                                onPress={() => {
+                    >
+                        <View style={[styles.reviewContainer, { backgroundColor: 'F2EEE5' }]}>
+                            <Image source={require('../assets/review.jpg')}
+                                style={{
+                                    width: 200,
+                                    height: 200,
+                                    alignSelf: 'center'
+                                }} />
+                            <Text style={
+                                {
+                                    fontSize: 18,
+                                    color: "#b8bece",
+                                    fontWeight: 'bold',
+                                    marginTop: 20,
+                                }
+                            }>Please input your review about this shooting place:</Text>
+                            <TextInput
+                                style={{ height: 100, borderColor: 'gray', borderWidth: 2 }}
+                                maxLength={200}
+                                multiline
+                                numberOfLines={4}
+                            />
+                            <View style={styles.buttomWrapper}>
+                                <TouchableOpacity
+                                    style={[styles.submitContainer, { backgroundColor: '#0251ce' }]}
+                                    onPress={() => {
 
-                                }}>
-                                <Text style={styles.submit}>Submit</Text>
+                                    }}>
+                                    <Text style={styles.submit}>Submit</Text>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity
+                                    style={[styles.submitContainer, { backgroundColor: '#0251ce' }]}
+                                    onPress={() => {
+                                        this.openImagePickerAsync();
+                                    }}>
+                                    <Text style={styles.submit}>Upload Images</Text>
+
+
+                                </TouchableOpacity></View>
+
+                            <TouchableOpacity style={styles.button}
+                                onPress={() =>
+                                    this.setState({
+                                        modalVisible: this.state.modalVisible == true ? false : true
+                                    })
+                                }
+                            >
+                                <Text>Cancel</Text>
                             </TouchableOpacity>
+                        </View>
+                    </Modal >
 
-                            <TouchableOpacity
-                                style={[styles.submitContainer, { backgroundColor: '#0251ce' }]}
-                                onPress={() => {
-                                    this.openImagePickerAsync();
-                                }}>
-                                <Text style={styles.submit}>Upload Images</Text>
-
-
-                            </TouchableOpacity></View>
-
-                        <TouchableOpacity style={styles.button}
-                            onPress={() =>
-                                this.setState({
-                                    modalVisible: this.state.modalVisible == true ? false : true
-                                })
-                            }
-                        >
-                            <Text>Cancel</Text>
-                        </TouchableOpacity>
-                    </View>
-                </Modal >
-
-      <Pressable
-        activeOpacity={0.8}
-        // onPress={() => navigation.navigate('DetailsScreen', house)}>
-        >
-        <View style={styles.card}>
-          {/* House image */}
-          <Image source={require('../assets/SFU.png')} style={styles.cardImage} />
-          <View style={{marginTop: 10}}>
-            {/* Title and price container */}
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginTop: 10,
-              }}>
-              <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-                {this.state.reviewContent}
-              </Text>
-              {/* <Text
+                    <Pressable style={{marginBottom:20}}>
+                        <View style={styles.card}>
+                            {/* House image */}
+                            <Image source={require('../assets/SFU.png')} style={styles.cardImage} />
+                            <View style={{ marginTop: 10 }}>
+                                {/* Title and price container */}
+                                <View
+                                    style={{
+                                        flexDirection: 'row',
+                                        justifyContent: 'space-between',
+                                        marginTop: 10,
+                                    }}>
+                                    <Text style={{ fontSize: 16, fontWeight: 'bold' }}>
+                                        {this.state.reviewContent}
+                                    </Text>
+                                    {/* <Text
                 style={{fontWeight: 'bold', color: '#5f82e6', fontSize: 16}}>
                 $1,500
               </Text> */}
-            </View>
+                                </View>
 
-            {/* Location text */}
 
-            <Text style={{color: '#A9A9A9', fontSize: 14, marginTop: 5}}>
-              {this.state.username}
-            </Text>
+                                <Text style={{ color: '#A9A9A9', fontSize: 14, marginTop: 5 }}>
+                                    {this.state.username}
+                                </Text>
 
-            {/* Facilities container */}
-            <View style={{marginTop: 10, flexDirection: 'row'}}>
-              <View style={styles.facility}>
-                <Icon name="thumb" size={18} />
-                <Text style={styles.facilityText}>2</Text>
-              </View>
-              <View style={styles.facility}>
-                <Icon name="people" size={18} />
-                <Text style={styles.facilityText}>2</Text>
-              </View>
-            </View>
-          </View>
-        </View>
-      </Pressable>
+                                <View style={{ marginTop: 10, flexDirection: 'row' }}>
+                                    <View style={styles.facility}>
+                                        <Icon name="thumb" size={18} />
+                                        <Text style={styles.facilityText}>2</Text>
+                                    </View>
+                                    <View style={styles.facility}>
+                                        <Icon name="people" size={18} />
+                                        <Text style={styles.facilityText}>2</Text>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                    </Pressable>
+
+
+                    <Pressable>
+                        <View style={styles.card}>
+                            {/* House image */}
+                            <Image source={require('../assets/NEU.png')} style={styles.cardImage} />
+                            <View style={{ marginTop: 10 }}>
+                                {/* Title and price container */}
+                                <View
+                                    style={{
+                                        flexDirection: 'row',
+                                        justifyContent: 'space-between',
+                                        marginTop: 10,
+                                    }}>
+                                    <Text style={{ fontSize: 16, fontWeight: 'bold' }}>
+                                        {this.state.reviewContent}
+                                    </Text>
+                                    {/* <Text
+                style={{fontWeight: 'bold', color: '#5f82e6', fontSize: 16}}>
+                $1,500
+              </Text> */}
+                                </View>
+
+
+                                <Text style={{ color: '#A9A9A9', fontSize: 14, marginTop: 5 }}>
+                                    {this.state.username}
+                                </Text>
+
+                                <View style={{ marginTop: 10, flexDirection: 'row' }}>
+                                    <View style={styles.facility}>
+                                        <Icon name="thumb" size={18} />
+                                        <Text style={styles.facilityText}>2</Text>
+                                    </View>
+                                    <View style={styles.facility}>
+                                        <Icon name="people" size={18} />
+                                        <Text style={styles.facilityText}>2</Text>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                    </Pressable>
+
+                </View>
+
 
             </ScrollView>
         );
@@ -246,8 +286,8 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginVertical: 10,
     },
-    bottomWrapper:{
-        flexDirection:'row',
+    bottomWrapper: {
+        flexDirection: 'row',
     },
     card: {
         height: 250,
@@ -257,13 +297,13 @@ const styles = StyleSheet.create({
         marginRight: 20,
         padding: 15,
         borderRadius: 20,
-      },
-      cardImage: {
+    },
+    cardImage: {
         width: '100%',
-        height: '100%',
+        height: 140,
         borderRadius: 15,
-      },
-      facility: {flexDirection: 'row', marginRight: 15},
-      facilityText: {marginLeft: 5, color: '#97CAE5'},
+    },
+    facility: { flexDirection: 'row', marginRight: 15 },
+    facilityText: { marginLeft: 5, color: '#97CAE5' },
 
 })

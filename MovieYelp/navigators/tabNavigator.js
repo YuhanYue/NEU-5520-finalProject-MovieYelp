@@ -77,7 +77,7 @@ const TabNavigator = () => {
                 }}
               >
                 <Image
-                  source={require("../assets/dehaze.png")}
+                  source={require("../assets/homePage.png")}
                   resizeMode="contain"
                   style={{
                     width: 40,
@@ -106,7 +106,7 @@ const TabNavigator = () => {
                 }}
               >
                 <Image
-                  source={require("../assets/dehaze.png")}
+                  source={require("../assets/maps.png")}
                   resizeMode="contain"
                   style={{
                     width: 40,
@@ -135,7 +135,7 @@ const TabNavigator = () => {
                 }}
               >
                 <Image
-                  source={require("../assets/search.png")}
+                  source={require("../assets/searchIcon.png")}
                   resizeMode="contain"
                   style={{
                     marginTop: 3,
