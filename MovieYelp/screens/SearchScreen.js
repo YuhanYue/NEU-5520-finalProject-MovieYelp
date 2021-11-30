@@ -45,6 +45,7 @@ export default class SearchScreen extends React.Component {
       movie: [],
       movieFiltered: [],
     };
+    this.retrieveMovie();
   }
 
   static defaultProps = {
@@ -122,7 +123,7 @@ export default class SearchScreen extends React.Component {
 
   render() {
     const { search } = this.state;
-    this.retrieveMovie();
+    // this.retrieveMovie();
 
     return (
       <View>

@@ -40,6 +40,7 @@ export default class MapViewScreen extends React.Component {
       },
       movie: [],
     };
+    this.retrieveMovie();
   }
 
   getInitialState() {
@@ -89,8 +90,6 @@ export default class MapViewScreen extends React.Component {
   );
 
   render() {
-    this.retrieveMovie();
-
     return (
       <MapView
         style={styles.map}
@@ -118,12 +117,6 @@ export default class MapViewScreen extends React.Component {
             </Callout>
           </Marker>
         ))}
-        {/* <FlatList
-          style={styles.flatListStyle}
-          data={this.state.movie}
-          renderItem={this.renderItem}
-          keyExtractor={(item) => item.id}
-        /> */}
 
         {/* <Marker
           coordinate={{

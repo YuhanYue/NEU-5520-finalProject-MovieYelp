@@ -14,9 +14,7 @@ import { auth } from "../firbase-config";
 import { createUserWithEmailAndPassword } from "@firebase/auth";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Input } from "react-native-elements";
-// import database
-// import database from "@react-native-firebase/database";
-// const reference = database.ref("/users");
+
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Parse from "parse/react-native";
 
@@ -38,7 +36,9 @@ export default class SignUp extends React.Component {
       userPassword: "",
       isFocused: false,
       avatar: null,
+      allUsers: [],
     };
+    this.retrieveAllUsers();
     //Saving your First Data Object on Back4App
     async function saveNewPerson() {
       const person = new Parse.Object("Person");
@@ -53,23 +53,6 @@ export default class SignUp extends React.Component {
       }
     }
     // saveNewPerson();
-
-    //Reading your First Data Object from Back4App
-    async function retrievePerson() {
-      const query = new Parse.Query("Person");
-
-      try {
-        const person = await query.get("mhPFDlCahj");
-        const name = person.get("name");
-        const age = person.get("age");
-
-        alert(`Name: ${name} age: ${age}`);
-      } catch (error) {
-        alert(
-          `Failed to retrieve the object, with error code: ${error.message}`
-        );
-      }
-    }
 
     // async function retrieveUser() {
     //   const query = new Parse.Query("User");
@@ -95,6 +78,19 @@ export default class SignUp extends React.Component {
     // retrieveUser();
     // console.log(globalAvatar);
   }
+
+  retrieveAllUsers = async () => {
+    if (this.state.allUsers.length != 0) return;
+    const query = new Parse.Query("User");
+    let queryResult = null;
+    try {
+      queryResult = await query.find();
+    } catch (error) {
+      // alert("Failed to create new object, with error code: " + error.message);
+    }
+    this.setState({ allUsers: queryResult });
+    console.log(queryResult);
+  };
 
   onFoucusChange = () => {
     this.setState({ isFocused: true });
@@ -175,14 +171,14 @@ export default class SignUp extends React.Component {
             source={require("../assets/registeration.png")}
             style={styles.image}
           />
-          {console.log("---------")}
+          {/* {console.log("---------")}
 
           {console.log(globalAvatar)}
           {console.log(globalAvatar["url"])}
           <Image
             source={{ uri: globalAvatar["url"][0] }}
             style={styles.image}
-          />
+          /> */}
           <Text style={styles.textTitle}>Let's Get Started</Text>
           <Text style={styles.textBody}>
             Create a new account for your dehaze APP
