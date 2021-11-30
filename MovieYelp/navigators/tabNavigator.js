@@ -15,17 +15,18 @@ import MapViewScreen from "../screens/MapViewScreen";
 
 const MapForMovieStack = createNativeStackNavigator();
 
+var user = null;
 function MapForMovieStackScreen() {
   return (
     <MapForMovieStack.Navigator>
       <MapForMovieStack.Screen
         name="card"
-        component={CardViewScreen}
+        children={() => <CardViewScreen user={user}></CardViewScreen>}
         options={{ headerShown: false }}
       />
       <MapForMovieStack.Screen
         name="movie"
-        component={MoviePage}
+        children={() => <MoviePage user={user}></MoviePage>}
         options={{ headerShown: true }}
       />
     </MapForMovieStack.Navigator>
@@ -39,12 +40,12 @@ function CallOutForMovieStackScreen() {
     <CallOutForMovieStack.Navigator>
       <CallOutForMovieStack.Screen
         name="map"
-        component={MapViewScreen}
+        children={() => <MapViewScreen user={user}></MapViewScreen>}
         options={{ headerShown: false }}
       />
       <CallOutForMovieStack.Screen
         name="movie"
-        component={MoviePage}
+        children={() => <MoviePage user={user}></MoviePage>}
         options={{ headerShown: true }}
       />
     </CallOutForMovieStack.Navigator>
@@ -56,12 +57,12 @@ function SearchForMovieStackScreen() {
     <MapForMovieStack.Navigator>
       <MapForMovieStack.Screen
         name="search"
-        component={SearchScreen}
+        children={() => <SearchScreen user={user}></SearchScreen>}
         options={{ headerShown: false }}
       />
       <MapForMovieStack.Screen
         name="movie"
-        component={MoviePage}
+        children={() => <MoviePage user={user}></MoviePage>}
         options={{ headerShown: true }}
       />
     </MapForMovieStack.Navigator>
@@ -70,6 +71,11 @@ function SearchForMovieStackScreen() {
 
 const Tab = createBottomTabNavigator();
 export default class TabNavigator extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+    user = this.props.route.params.user;
+  }
   render() {
     return (
       <NavigationContainer independent={true}>
@@ -117,6 +123,7 @@ export default class TabNavigator extends React.Component {
                 </View>
               ),
             }}
+            // user={this.state.user}
           />
           <Tab.Screen
             name="Map"
@@ -180,7 +187,7 @@ export default class TabNavigator extends React.Component {
           />
           <Tab.Screen
             name="Profile"
-            component={Profile}
+            children={() => <Profile user={user}></Profile>}
             options={{
               tabBarIcon: ({ focused }) => (
                 <View

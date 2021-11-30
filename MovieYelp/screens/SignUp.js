@@ -38,7 +38,7 @@ export default class SignUp extends React.Component {
       avatar: null,
       allUsers: [],
     };
-    this.retrieveAllUsers();
+    // this.retrieveAllUsers();
     //Saving your First Data Object on Back4App
     async function saveNewPerson() {
       const person = new Parse.Object("Person");

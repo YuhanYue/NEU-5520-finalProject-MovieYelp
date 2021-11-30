@@ -29,15 +29,17 @@ export default class Login extends React.Component {
     super(props);
     this.state = {
       username: " ",
+      userEmail: " ",
       password: " ",
       allUsers: [],
+      user: null,
     };
     this.retrieveAllUsers();
   }
 
   retrieveAllUsers = async () => {
     if (this.state.allUsers.length != 0) return;
-    const query = new Parse.Query("User");
+    const query = new Parse.Query("Users");
     let queryResult = null;
     try {
       queryResult = await query.find();
@@ -45,6 +47,8 @@ export default class Login extends React.Component {
       // alert("Failed to create new object, with error code: " + error.message);
     }
     this.setState({ allUsers: queryResult });
+    console.log("------retrieveAllUsers-----");
+
     console.log(queryResult);
   };
 
@@ -53,13 +57,67 @@ export default class Login extends React.Component {
   // }
 
   onUsernameChanged = (newUsername) => {
-    this.username = newUsername;
+    this.state.username = newUsername;
+    //update state usernmae
+  };
+
+  onEmailChanged = (newUserEmail) => {
+    this.state.userEmail = newUserEmail;
     //update state usernmae
   };
 
   onPasswordChanged = (newPassword) => {
-    this.password = newPassword;
+    this.state.password = newPassword;
   };
+
+  checkEmailExist = () => {
+    var judge = false;
+    this.state.allUsers.forEach((item) => {
+      if (item.get("email") === this.state.userEmail) {
+        judge = true;
+      }
+    });
+
+    return judge;
+  };
+
+  checkPassword = () => {
+    var judge = false;
+    this.state.allUsers.forEach((item) => {
+      if (
+        item.get("email") === this.state.userEmail &&
+        item.get("password") === this.state.password
+      ) {
+        judge = true;
+        this.state.user = item;
+      }
+    });
+
+    return judge;
+  };
+
+  // checkPassword = async () => {
+  //   const query = new Parse.Query("Users");
+  //   // query.contains("name", this.props.movieItem.get("objectID"));
+  //   query.equalTo("email", this.state.userEmail);
+
+  //   let queryResult = null;
+  //   try {
+  //     queryResult = await query.find();
+  //   } catch (error) {
+  //     // alert("Failed to create new object, with error code: " + error.message);
+  //   }
+  //   if (queryResult.length == 0) {
+  //     return false;
+  //   }
+  //   if (queryResult[0].get("password") != this.password) {
+  //     return false;
+  //   }
+  //   // console.log(queryResult);
+  //   return true;
+  //   // if(queryResult)
+  //   // if(queryResult.get)
+  // };
 
   // retrieveUsername = async () => {
   //     try{
@@ -75,6 +133,16 @@ export default class Login extends React.Component {
 
   login = () => {};
 
+  setDefaultUser = () => {
+    this.state.allUsers.forEach((item) => {
+      if (item.get("email") === "jiabin@gmail.com") {
+        console.log("---jiabin is here");
+        console.log(item);
+        this.state.user = item;
+      }
+    });
+  };
+
   render() {
     return (
       <ScrollView style={{ backgroundColor: "whilte" }}>
@@ -83,8 +151,13 @@ export default class Login extends React.Component {
           <Text style={styles.textTitle}>Welcome Back</Text>
           <Text style={styles.textBody}>Log in to your existant account</Text>
           <View style={{ marginTop: 20 }} />
-          <Inputs name="Email" icon="user" />
-          <Inputs name="Password" icon="lock" pass={true} />
+          <Inputs name="Email" icon="user" onChangeText={this.onEmailChanged} />
+          <Inputs
+            name="Password"
+            icon="lock"
+            pass={true}
+            onChangeText={this.onPasswordChanged}
+          />
           <View style={{ width: "90%" }}>
             <Text style={([styles.textBody], { alignSelf: "flex-end" })}>
               Forgot Password?
@@ -93,9 +166,24 @@ export default class Login extends React.Component {
           <TouchableOpacity
             style={[styles.submitContainer, { backgroundColor: "#0251ce" }]}
             onPress={() => {
-              this.props.navigation.replace("HomePageNavigation", {
-                userID: "Yuhan Yue",
-              });
+              const inDevelop = true;
+              if (inDevelop) {
+                this.setDefaultUser();
+
+                this.props.navigation.navigate("HomePageNavigation", {
+                  user: this.state.user,
+                });
+              } else {
+                if (!this.checkEmailExist()) {
+                  alert("Email does not exist, please sign up");
+                } else if (!this.checkPassword()) {
+                  alert("Wrong password. Please enter again");
+                } else {
+                  this.props.navigation.navigate("HomePageNavigation", {
+                    user: this.state.user,
+                  });
+                }
+              }
             }}
           >
             <Text style={styles.submitText}>LOG IN</Text>

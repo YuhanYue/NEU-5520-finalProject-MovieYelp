@@ -242,13 +242,15 @@ export default class Profile extends React.Component {
             {/* <Text> This is a profile page</Text> */}
             <TouchableOpacity>
               <Image
-                source={{ uri: this.state.profilePic }}
+                source={{ uri: this.props.user.get("avatar").url() }}
                 style={styles.avatar}
               />
             </TouchableOpacity>
-            <Text style={styles.userName}>{userName}</Text>
+            <Text style={styles.userName}>
+              {this.props.user.get("userName")}
+            </Text>
             <Text style={{ color: "white", textAlign: "center" }}>
-              {userEmail}
+              {this.props.user.get("email")}
             </Text>
           </View>
           {/* </LinearGradient> */}
@@ -257,7 +259,7 @@ export default class Profile extends React.Component {
               ABOUT ME
             </Text>
             <Text style={{ color: "grey", fontWeight: "600", marginTop: 5 }}>
-              {userBio}
+              {this.props.user.get("userBio")}
             </Text>
             <View>
               <Ionicons
