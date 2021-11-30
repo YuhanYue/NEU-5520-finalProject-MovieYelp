@@ -47,9 +47,9 @@ export default class Login extends React.Component {
       // alert("Failed to create new object, with error code: " + error.message);
     }
     this.setState({ allUsers: queryResult });
-    console.log("------retrieveAllUsers-----");
+    // console.log("------retrieveAllUsers-----");
 
-    console.log(queryResult);
+    // console.log(queryResult);
   };
 
   // componentDidMount() {
@@ -62,12 +62,14 @@ export default class Login extends React.Component {
   };
 
   onEmailChanged = (newUserEmail) => {
-    this.state.userEmail = newUserEmail;
+    let email = newUserEmail.toLowerCase()
+    this.state.userEmail = email;
     //update state usernmae
   };
 
   onPasswordChanged = (newPassword) => {
-    this.state.password = newPassword;
+    let password = newPassword.toLowerCase()
+    this.state.password = password;
   };
 
   checkEmailExist = () => {
@@ -166,7 +168,7 @@ export default class Login extends React.Component {
           <TouchableOpacity
             style={[styles.submitContainer, { backgroundColor: "#0251ce" }]}
             onPress={() => {
-              const inDevelop = true;
+              const inDevelop = false;
               if (inDevelop) {
                 this.setDefaultUser();
 

@@ -61,7 +61,7 @@ export default class Reviews extends React.Component {
       // alert("Failed to create new object, with error code: " + error.message);
     }
     this.setState({ review: queryResult });
-
+    console.log("queryReview");
     console.log(queryResult);
   };
 

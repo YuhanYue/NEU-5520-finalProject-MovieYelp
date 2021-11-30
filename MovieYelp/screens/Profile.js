@@ -51,6 +51,7 @@ const displayPics = [
 export default class Profile extends React.Component {
   constructor(props) {
     super(props);
+    // this.onRetrieveProfile();
     this.state = {
       pairedImageData: null,
       dehazeCount: 0,
@@ -61,23 +62,34 @@ export default class Profile extends React.Component {
       userName : "Dog Lover",
       userEmail : "myemail@email.com",
       image : null,
+      userPost : [],
+      userPostDate:[],
     };
-    
-  }
-
-  componentDidUpdate(){
     this.onRetrieveProfile();
   }
+
+  // componentDidUpdate(){
+  //   this.onRetrieveProfile();
+  // }
 
   onRetrieveProfile = async () => {
     // const User = new Parse.Object.extend("User");
     const query = new Parse.Query("Users");
-    query.equalTo("email","yunfeng@gmail.com");
-    var profilePic = null;
+    query.equalTo("email",this.props.user.get("email"));
+    const reviewQuery = new Parse.Query("review");
+    reviewQuery.equalTo("email",this.props.user.get("email"));
+    var profilePic = null, userPost  = [], userPostDate = [];
     var userBio = "", userName = "", userEmail = "";
     try {
       const object = await query.find();
       const person = object[0];
+      const reviewObject = await reviewQuery.find();
+      for(let i = 0; i  <reviewObject.length; i++){
+        userPost.push(reviewObject[i].get("photo").url());
+        var date = reviewObject[i].get("createdAt");
+        let theDate = date.getMonth()  +"/"+ date.getDate() +"/"+ date.getFullYear();
+        userPostDate.push(theDate);
+      }
       // console.log("======object=======");
       // console.log(object);
       userBio = person.get("userBio");
@@ -95,7 +107,11 @@ export default class Profile extends React.Component {
       userBio :  userBio,
       userName : userName,
       userEmail : userEmail,
+      userPost : userPost,
+      userPostDate : userPostDate,
     });
+    // console.log("userPostDate");
+    // console.log(userPostDate);
   };
   morePress = () => {
     // console.log("You press the button");
@@ -140,20 +156,14 @@ export default class Profile extends React.Component {
     
     // const {base64, fileName} = this.state.image;
     const base64 = this.state.image.base64;
-    // const fileName = this.state.image.base64;
-    // console.log(this.state.image);
-    // console.log("fileName");
-    // console.log(fileName);
-    // console.log(pickerResult);
-    // console.log("base64");
-    // console.log(base64);
+
     const  parseFile = new  Parse.File("avatar.jpg", {base64});
     // this.onSaveNewUser();
     // 2. Save the file
     try {
       const responseFile = await parseFile.save();
       const query = new Parse.Query("Users");
-      query.equalTo("email","yunfeng@gmail.com");
+      query.equalTo("email",this.props.user.get("email"));
       const object = await query.find();
       const person = object[0];
       person.set('avatar', responseFile);
@@ -166,27 +176,6 @@ export default class Profile extends React.Component {
     }
   }
 
-  onSaveNewUser = async () => {
-    // const query = new Parse.Query("User");
-    let user = new Parse.Object.extend("User");
-    var User = new user();
-    User.set("authDsta","{}");
-    User.set("username","YYH");
-    User.set("password","123");
-    User.set("userBio","Hello I am Yuhan Yue");
-    User.set("email","yyh@gmail.com");
-
-    try {
-      // const person = await query.get("MZQD2y0nUB");
-      // console.log(person);
-      // console.log("avatar");
-      let result = await User.save();
-      alert("New object created with objectId: " + result.id);
-      // console.log(person.get("avatar").url());
-    } catch (error) {
-      alert("Failed to create new object, with error code: " + error.message);
-    }
-  };
 
 //   openImagePickerAsync = async () => {
 //     let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -204,7 +193,8 @@ export default class Profile extends React.Component {
 // }
 
   postPics = () => {
-    var res = displayPics;
+    var res = this.state.userPost;
+    var date = this.state.userPostDate;
     var table = [];
     if (this.state.postPress) {
       for (var i = 0; i < res.length; i++) {
@@ -212,7 +202,7 @@ export default class Profile extends React.Component {
           <View key={i.toString()} style={{ flexDirection: "row" }}>
             {
               <View style={{ flex: 1, marginTop: 10 }}>
-                <Text style={{ color: "grey" }}>MM/DD/YY</Text>
+                <Text style={{ color: "grey" }}>{date[i]}</Text>
               </View>
             }
             {
@@ -240,8 +230,7 @@ export default class Profile extends React.Component {
   };
 
   galleryPics = () => {
-    var res = displayPics;
-
+    var res = this.state.userPost;
     var ans = [];
     if (this.state.galleryPress) {
       for (var i = 0; i < res.length; i += 2) {
@@ -316,13 +305,13 @@ export default class Profile extends React.Component {
   };
 
   render() {
-    var displayView;
+    //var displayView;
     var height = 0;
     if (this.state.postPress) {
-      displayView = this.postPics();
+      //displayView = this.postPics;
       height = displayPics.length * 450;
     } else {
-      displayView = this.galleryPics();
+      //displayView = this.galleryPics;
       height = displayPics.length * 275;
     }
     
@@ -431,7 +420,7 @@ export default class Profile extends React.Component {
           {/*This is the display/post view: */}
           <View style={{ margin: 2, borderColor: "grey" }}>
             <ScrollView>
-              <View style={{ height: height }}>{displayView}</View>
+              <View style={{ height: height }}>{this.state.postPress? this.postPics() : this.galleryPics()}</View>
             </ScrollView>
           </View>
         </View>
