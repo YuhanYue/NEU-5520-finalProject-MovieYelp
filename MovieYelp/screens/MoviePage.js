@@ -65,8 +65,18 @@ export default class MoviePage extends React.Component {
   };
 
   _renderScene = SceneMap({
-    first: () => <Overview movieItem={this.props.route.params.movieItem} />,
-    second: () => <Reviews movieItem={this.props.route.params.movieItem} />,
+    first: () => (
+      <Overview
+        movieItem={this.props.route.params.movieItem}
+        user={this.props.route.params.user}
+      />
+    ), //user={this.props.user}
+    second: () => (
+      <Reviews
+        movieItem={this.props.route.params.movieItem}
+        user={this.props.route.params.user}
+      />
+    ),
   });
 
   render() {

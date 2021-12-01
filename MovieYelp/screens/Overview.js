@@ -35,8 +35,10 @@ export default class Overview extends React.Component {
   };
 
   render() {
-    console.log("!!!!OverView here");
-    console.log(this.props.movieItem);
+    // console.log("!!!!OverView here");
+    // console.log(this.props.movieItem);
+    // console.log(this.props.user);
+
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
         <StatusBar translucent backgroundColor="rgba(0,0,0,0)" />
@@ -58,6 +60,8 @@ export default class Overview extends React.Component {
         <View style={{ paddingHorizontal: 20, paddingTop: 20 }}>
           {/* Title container */}
           <View>
+            {/* <Text style={styles.title}>{this.props.user.get("userName")}</Text> */}
+
             <Text style={styles.title}>{this.props.movieItem.get("name")}</Text>
             <Text style={styles.textStyle}>
               {this.props.movieItem.get("description")}
