@@ -12,7 +12,6 @@ import {
   Modal,
   TextInput,
   Pressable,
-  Alert,
 } from "react-native";
 import CameraButton from "../components/CameraButton";
 import { Button } from "react-native-paper";
@@ -45,8 +44,6 @@ export default class Reviews extends React.Component {
       selectImage: "",
       reviewContent: "This is great!!",
       review: [],
-      submitReview : "",
-      submitImage : null,
     };
     this.retrieveReview();
   }
@@ -54,7 +51,6 @@ export default class Reviews extends React.Component {
   retrieveReview = async () => {
     if (this.state.review.length != 0) return;
     const query = new Parse.Query("review");
-    // query.contains("name", this.props.movieItem.get("objectID"));
     query.equalTo("movieName", this.props.movieItem.get("name"));
 
     let queryResult = null;
@@ -65,6 +61,7 @@ export default class Reviews extends React.Component {
     }
     this.setState({ review: queryResult });
 
+    console.log(queryResult);
   };
 
   openImagePickerAsync = async () => {
@@ -82,86 +79,9 @@ export default class Reviews extends React.Component {
     console.log(this.state.selectImage);
   };
 
-  pickImage = async()=> {
-    let response = await ImagePicker.launchImageLibraryAsync(
-    {
-      mediaType:  'photo',
-      base64:  true,
-    });
-      // Add selected image to the state
-    // let base64 = response.base64;
-    // const  parseFile = new  Parse.File("reviewPhoto.jpg", {base64});
-    this.setState({
-      submitImage:response,
-    })
-    // console.log(response)
-    // console.log(this.state.submiteImage);
-    // this.uploadImage();
-  }
-
-  onSubmitReview = async() => {
-    // This value comes from a state variable
-    const base64 = this.state.submitImage.base64;
-    // console.log("onSubmitReview");
-    const reviewContent = this.state.submitReview;
-    const photo = new  Parse.File("photo.jpg", {base64});
-    const email = this.props.user.get("email");
-    const userName = this.props.user.get("userName");
-    const movieName = this.props.movieItem.get("name");
-    // console.log("review info");
-    // console.log(movieName);
-    // console.log(userName);
-    // console.log(email);
-    // console.log("reviewContent");
-    // console.log(reviewContent);
-    // console.log(photo);
-    // Creates a new Todo parse object instance
-    let Review = new Parse.Object('review');
-    Review.set("reviewContent",reviewContent);
-    Review.set("photo",photo);
-    Review.set("email",email);
-    Review.set("userName",userName);
-    Review.set("movieName",movieName);
-    // Todo.set('title', newTodoTitleValue);
-    // Todo.set('done', false);
-    // After setting the todo values, save it on the server
-    try {
-      await Review.save();
-      // Success
-      Alert.alert('Success!', 'Review uploaded!');
-      // Refresh todos list to show the new one (you will create this function later)
-    } catch (error) {
-      // Error can be caused by lack of Internet connection
-      Alert.alert('Error!', error.message);
-    };
-  };
-
-  uploadImage = async() => {
-    
-    // const {base64, fileName} = this.state.image;
-    const base64 = this.state.image.base64;
-
-    const  parseFile = new  Parse.File("avatar.jpg", {base64});
-    // this.onSaveNewUser();
-    // 2. Save the file
-    try {
-      const responseFile = await parseFile.save();
-      const query = new Parse.Query("Users");
-      query.equalTo("email",this.props.user.get("email"));
-      const object = await query.find();
-      const person = object[0];
-      person.set('avatar', responseFile);
-      await person.save();
-      Alert.alert('The file has been saved to Back4app.');
-    } catch (error) {
-      console.log(
-        'The file either could not be read, or could not be saved to Back4app.', error.message
-      );
-    }
-  }
-
-
   render() {
+    // console.log("reviewreviewreviewreview is here");
+    // console.log(this.props.user);
     return (
       <ScrollView>
         <View style={{ alignItems: "flex-end" }}>
@@ -208,9 +128,6 @@ export default class Reviews extends React.Component {
                 maxLength={200}
                 multiline
                 numberOfLines={4}
-                onChangeText = { (text) => this.setState({
-                  submitReview: text,
-                })}
               />
               <View style={styles.buttomWrapper}>
                 <TouchableOpacity
@@ -218,13 +135,7 @@ export default class Reviews extends React.Component {
                     styles.submitContainer,
                     { backgroundColor: "#0251ce" },
                   ]}
-                  onPress={() => {
-                    this.onSubmitReview();
-                    this.setState({
-                      modalVisible: this.state.modalVisible == true ? false : true,
-                    })
-                    this.retrieveReview();
-                    }}
+                  onPress={() => {}}
                 >
                   <Text style={styles.submit}>Submit</Text>
                 </TouchableOpacity>
@@ -235,7 +146,7 @@ export default class Reviews extends React.Component {
                     { backgroundColor: "#0251ce" },
                   ]}
                   onPress={() => {
-                    this.pickImage();
+                    this.openImagePickerAsync();
                   }}
                 >
                   <Text style={styles.submit}>Upload Images</Text>
