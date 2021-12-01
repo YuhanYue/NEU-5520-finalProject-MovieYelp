@@ -15,7 +15,7 @@ const Card = props => (
         {/* <Subtitle>{props.subtitle}</Subtitle> */}
         <View realtedMoviesWrapper>
         {/* Fetch related movies as a flatList */}
-        <Text style={styles.realtedMovies}>Related Movies: Harry Potter, Never Have I ever,...</Text>
+        <Text style={styles.realtedMovies}>{props.realtedMovies}</Text>
         {/* <Text style={styles.realtedMovies}>Harry Potter</Text> */}
         </View>
       </Wrapper>
@@ -39,6 +39,8 @@ const Caption = styled.Text`
   font-size: 20px;
   font-weight: 400;
   left: 30;
+  margin-left:-30;
+
 `;
 
 const Subtitle = styled.Text`

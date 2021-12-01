@@ -47,6 +47,7 @@ export default class CardViewScreen extends React.Component {
             <Card
               image={require("../assets/NEU.png")}
               caption={'NEU Vancouver Campus'}
+              realtedMovies={'Harry Potter, Never Have I ever...'}
 
             />
           </TouchableOpacity>

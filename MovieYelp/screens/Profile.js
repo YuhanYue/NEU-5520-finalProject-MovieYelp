@@ -9,22 +9,25 @@ import { View, SafeAreaView, StyleSheet, FlatList, Text } from 'react-native';
 // } from 'react-native-paper';
 
 // import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
 // import Share from 'react-native-share';
-import { ScrollView, Alert, TouchableOpacity, Image, Button } from 'react-native';
+import { ScrollView, Alert, TouchableOpacity, Image, Button ,
+Dimensions} from 'react-native';
 import { TouchableOpacityBase } from 'react-native';
 import { Component } from 'react';
 import Card from '../components/Card'
 import { LinearGradient } from 'expo-linear-gradient';
 import { block } from 'react-native-reanimated';
 import { Ionicons, Entypo } from '@expo/vector-icons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const userName = "Dog Lover";
 const userEmail = "myemail@email.com";
 const profilePic = 'https://picsum.photos/id/200/200/200';
 const userBio = '"Hello, I am a student from Northeastern University and I like movies, hit me up if you like movies too! "';
 const displayPics = ['https://picsum.photos/id/500/200/200', 'https://picsum.photos/id/600/200/200', 'https://picsum.photos/id/700/200/200', 'https://picsum.photos/id/800/200/200', 'https://picsum.photos/id/900/200/200', 'https://picsum.photos/id/377/200/200']
+const colors = ['#ECB49F', '#E5C151','#C3E2DD','#6ECEDA']
 
+const width = Dimensions.get("window").width;
 export default class Profile extends React.Component {
   constructor(props) {
     super(props);
@@ -33,6 +36,8 @@ export default class Profile extends React.Component {
       dehazeCount: 0,
       postPress: true,
       galleryPress: false,
+      username:"Yuhan",
+      reviewContent:"This is great!",
     }
   }
 
@@ -65,14 +70,56 @@ export default class Profile extends React.Component {
     if (this.state.postPress) {
       for (var i = 0; i < res.length; i++) {
         table.push(
-          <View key={i.toString()} style={{ flexDirection: 'row' }}>
-            {<View style={{ flex: 1, marginTop: 10 }}><Text style={{ color: "grey" }}>MM/DD/YY</Text></View>}
-            {<View style={{ flex: 4 }} >
-              {<Image source={{
-                uri: res[i]
-              }} style={{ width: 250, height: 250, borderRadius: 10, marginTop: 10 }} />}
-            </View>}
-          </View>)
+        //   <View style={{alignItems:'center'}}>
+        //   <Card
+        //   image={{uri: res[i]}}
+        //   caption={'MM/DD/YY'}
+        // />
+        // </View>
+                        <View style={{ height: 250,
+                          backgroundColor: colors[i%4],
+                          elevation: 10,
+                          width: width - 40,
+                          marginRight: 20,
+                          padding: 15,
+                          borderRadius: 20,
+                          marginTop: 20}}>
+                            {/* House image */}
+                            <Image source={{uri: res[i]}} style={styles.cardImage} />
+                            <View style={{ marginTop: 10 }}>
+                                {/* Title and price container */}
+                                <View
+                                    style={{
+                                        flexDirection: 'row',
+                                        justifyContent: 'space-between',
+                                        marginTop: 10,
+                                    }}>
+                                    <Text style={{ fontSize: 16, fontWeight: 'bold' }}>
+                                        {this.state.reviewContent}
+                                    </Text>
+                                    {/* <Text
+                style={{fontWeight: 'bold', color: '#5f82e6', fontSize: 16}}>
+                $1,500
+              </Text> */}
+                                </View>
+                                <Text style={{ color: '#A9A9A9', fontSize: 14, marginTop: 5 }}>
+                                    {this.state.username}
+                                </Text>
+
+                                <View style={{ marginTop: 10, flexDirection: 'row' }}>
+                                    <View style={styles.facility}>
+                                        <Icon name="visibility" size={20} />
+                                        <Text style={styles.facilityText}>2</Text>
+                                    </View>
+                                    <View style={styles.facility}>
+                                        <Icon name="recommend" size={20} />
+                                        <Text style={styles.facilityText}>2</Text>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+  
+        )
       }
 
     }
@@ -125,6 +172,7 @@ export default class Profile extends React.Component {
       height = displayPics.length * 275;
     }
 
+
     // this.fetchData();
     return (
 
@@ -163,7 +211,7 @@ export default class Profile extends React.Component {
               <TouchableOpacity onPress={this.myPostBress}>
                 <Ionicons name="add-circle" style={{ color: "grey" }} size={24} />
               </TouchableOpacity>
-              <Text style={{ color: "grey" }}>My Post</Text>
+              <Text style={{ color: "grey" }}>My Reviews</Text>
             </View>
             <View style={{ flex: 1, alignItems: "center", borderWidth: 1, borderColor: "lightgrey" }}>
               <TouchableOpacity onPress={this.myGalleryBress}>
@@ -182,7 +230,7 @@ export default class Profile extends React.Component {
           {/*This is the display/post view: */}
           <View style={{ margin: 2, borderColor: "grey" }}>
             <ScrollView>
-              <View style={{ height: height }}>
+              <View style={{ height: height , alignItems:'center', marginLeft:20,}}>
                 {displayView}
               </View>
             </ScrollView>
@@ -254,5 +302,92 @@ const styles = StyleSheet.create({
     marginLeft: 0,
     
   },
+  reviewContainer: {
+    flex: 1,
+    justifyContent: 'center',
+},
+thumbnail: {
+    width: 150,
+    height: 150,
+    marginLeft: 5,
+    marginRight: 5,
+    borderRadius: 5,
+    marginBottom: 10,
+    marginTop: 5,
+},
+infoBoxWrapper: {
+    borderBottomColor: '#dddddd',
+    borderBottomWidth: 1,
+    borderTopColor: '#dddddd',
+    borderTopWidth: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+},
+relatedMoviesSection: {
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+},
+infoBox: {
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+},
+userInfo: {
+    fontSize: 20,
+    fontWeight: "bold",
+    flexDirection: 'row',
+},
+reviewBody: {
+    fontSize: 15,
+    flexDirection: 'row',
+
+},
+reviewPart: {
+    flexDirection: 'column',
+},
+submitContainer: {
+    borderRadius: 100,
+    width: '60%',
+    height: 50,
+    borderColor: 'blue',
+    borderRadius: 10,
+    marginVertical: 10,
+    borderWidth: 0,
+    justifyContent: 'center',
+    alignSelf: "center",
+    backgroundColor: "#C3E2DD"
+},
+submit: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: 'white',
+    alignSelf: 'center',
+    marginVertical: 10,
+},
+bottomWrapper: {
+    flexDirection: 'row',
+},
+card: {
+   
+},
+cardImage: {
+    width: '100%',
+    height: 140,
+    borderRadius: 15,
+},
+facility: { flexDirection: 'row', marginRight: 15 },
+facilityText: { marginLeft: 5, color: '#97CAE5' },
 
 });
+
+
+         // <View key={i.toString()} style={{ flexDirection: 'row' }}>
+          //   {<View style={{ flex: 1, marginTop: 10 }}><Text style={{ color: "grey" }}>MM/DD/YY</Text></View>}
+          //   {<View style={{ flex: 4 }} >
+          //     {<Image source={{
+          //       uri: res[i]
+          //     }} style={{ width: 250, height: 250, borderRadius: 10, marginTop: 10 }} />}
+          //   </View>}
+          // </View>)

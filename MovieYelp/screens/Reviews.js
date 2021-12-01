@@ -151,25 +151,23 @@ export default class Reviews extends React.Component {
               </Text> */}
                                 </View>
 
-
                                 <Text style={{ color: '#A9A9A9', fontSize: 14, marginTop: 5 }}>
                                     {this.state.username}
                                 </Text>
 
                                 <View style={{ marginTop: 10, flexDirection: 'row' }}>
                                     <View style={styles.facility}>
-                                        <Icon name="thumb" size={18} />
+                                        <Icon name="visibility" size={18} />
                                         <Text style={styles.facilityText}>2</Text>
                                     </View>
                                     <View style={styles.facility}>
-                                        <Icon name="people" size={18} />
+                                        <Icon name="recommend" size={18} />
                                         <Text style={styles.facilityText}>2</Text>
                                     </View>
                                 </View>
                             </View>
                         </View>
                     </Pressable>
-
 
                     <Pressable>
                         <View style={styles.card}>
@@ -199,11 +197,11 @@ export default class Reviews extends React.Component {
 
                                 <View style={{ marginTop: 10, flexDirection: 'row' }}>
                                     <View style={styles.facility}>
-                                        <Icon name="thumb" size={18} />
+                                        <Icon name="visibility" size={18} />
                                         <Text style={styles.facilityText}>2</Text>
                                     </View>
                                     <View style={styles.facility}>
-                                        <Icon name="people" size={18} />
+                                        <Icon name="recommend" size={18} />
                                         <Text style={styles.facilityText}>2</Text>
                                     </View>
                                 </View>
