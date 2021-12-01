@@ -68,12 +68,14 @@ export default class Profile extends React.Component {
     this.onRetrieveProfile();
   }
 
+
   // componentDidUpdate(){
   //   this.onRetrieveProfile();
   // }
 
   onRetrieveProfile = async () => {
     // const User = new Parse.Object.extend("User");
+    console.log("update");
     const query = new Parse.Query("Users");
     query.equalTo("email",this.props.user.get("email"));
     const reviewQuery = new Parse.Query("review");

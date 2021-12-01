@@ -48,21 +48,6 @@ export default class SignUp extends React.Component {
     this.setState({ isFocused: true });
   };
 
-  // onRetrieveUser = async () => {
-  //   const query = new Parse.Query("Users");
-
-  //   try {
-  //     const person = await query.get("MZQD2y0nUB");
-  //     // console.log(person);
-  //     // console.log("avatar");
-
-  //     const name = person.get("userName");
-  //     // console.log(person.get("avatar").url());
-  //   } catch (error) {
-  //     alert(`Failed to retrieve the object, with error code: ${error.message}`);
-  //   }
-  // };
-
 
   onSaveNewUser = async () => {
     // const query = new Parse.Query("User");
@@ -74,44 +59,17 @@ export default class SignUp extends React.Component {
     User.set("email",this.state.userEmail);
 
     try {
-      // const person = await query.get("MZQD2y0nUB");
-      // console.log(person);
-      // console.log("avatar");
+      
       let result = await User.save();
       alert("New object created with objectId: " + result.id);
       // console.log(person.get("avatar").url());
     } catch (error) {
       alert("Failed to create new object, with error code: " + error.message);
     }
+
+    this.props.navigation.navigate("Login");
   };
 
-  // onSaveNewPerson() = async () => {
-  //   const person = new Parse.Object("Person");
-
-  //   person.set("name", "John Snow");
-  //   person.set("age", 27);
-  //   try {
-  //     let result = await person.save();
-  //     alert("New object created with objectId: " + result.id);
-  //   } catch (error) {
-  //     alert("Failed to create new object, with error code: " + error.message);
-  //   }
-  // };
-
-
-
-  // handleRegister = async () => {
-  //   try {
-  //     const user = createUserWithEmailAndPassword(
-  //       auth,
-  //       this.state.userEmail,
-  //       this.state.userPassword
-  //     );
-  //     console.log(user);
-  //   } catch {
-  //     console.log(Error);
-  //   }
-  // };
 
   onChangePassword = (password) => {
     this.setState({
@@ -248,7 +206,9 @@ export default class SignUp extends React.Component {
           {/* <Inputs name='Confirm Password' icon='lock' pass={true} /> */}
           <TouchableOpacity
             style={[styles.submitContainer, { backgroundColor: "blue" }]}
-            onPress={this.onSaveNewUser}
+            onPress={()=>
+            this.onSaveNewUser()
+            }
           >
             <Text style={styles.submitText}>Create</Text>
           </TouchableOpacity>
