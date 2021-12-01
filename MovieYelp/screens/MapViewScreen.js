@@ -38,6 +38,7 @@ export default class MapViewScreen extends React.Component {
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421,
       },
+      user: this.props.route.params.user,
       movie: [],
     };
     this.retrieveMovie();
@@ -79,6 +80,7 @@ export default class MapViewScreen extends React.Component {
           onPress={() =>
             this.props.navigation.navigate("movie", {
               movieItem: item,
+              user: this.state.user,
             })
           }
           style={[styles.calloutButton]}

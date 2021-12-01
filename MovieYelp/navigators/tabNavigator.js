@@ -21,13 +21,15 @@ function MapForMovieStackScreen() {
     <MapForMovieStack.Navigator>
       <MapForMovieStack.Screen
         name="card"
-        children={() => <CardViewScreen user={user}></CardViewScreen>}
+        component={CardViewScreen}
         options={{ headerShown: false }}
+        initialParams={{ user: user }}
       />
       <MapForMovieStack.Screen
         name="movie"
-        children={() => <MoviePage user={user}></MoviePage>}
+        component={MoviePage}
         options={{ headerShown: true }}
+        initialParams={{ user: user }}
       />
     </MapForMovieStack.Navigator>
   );
@@ -40,32 +42,39 @@ function CallOutForMovieStackScreen() {
     <CallOutForMovieStack.Navigator>
       <CallOutForMovieStack.Screen
         name="map"
-        children={() => <MapViewScreen user={user}></MapViewScreen>}
+        component={MapViewScreen}
         options={{ headerShown: false }}
+        initialParams={{ user: user }}
       />
       <CallOutForMovieStack.Screen
         name="movie"
-        children={() => <MoviePage user={user}></MoviePage>}
+        component={MoviePage}
         options={{ headerShown: true }}
+        initialParams={{ user: user }}
       />
     </CallOutForMovieStack.Navigator>
   );
 }
 
+const SearchForMovieStack = createNativeStackNavigator();
+
 function SearchForMovieStackScreen() {
   return (
-    <MapForMovieStack.Navigator>
-      <MapForMovieStack.Screen
+    <SearchForMovieStack.Navigator>
+      <SearchForMovieStack.Screen
         name="search"
-        children={() => <SearchScreen user={user}></SearchScreen>}
+        component={SearchScreen}
+        // component={() => <SearchScreen></SearchScreen>}
         options={{ headerShown: false }}
+        initialParams={{ user: user }}
       />
-      <MapForMovieStack.Screen
+      <SearchForMovieStack.Screen
         name="movie"
-        children={() => <MoviePage user={user}></MoviePage>}
+        component={MoviePage}
+        initialParams={{ user: user }}
         options={{ headerShown: true }}
       />
-    </MapForMovieStack.Navigator>
+    </SearchForMovieStack.Navigator>
   );
 }
 

@@ -35,7 +35,6 @@ Parse.serverURL = "https://parseapi.back4app.com/";
 export default class SearchScreen extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       search: "",
       keyExist: false,
@@ -44,6 +43,7 @@ export default class SearchScreen extends React.Component {
       DATA: this.props.DATA,
       movie: [],
       movieFiltered: [],
+      user: this.props.route.params.user,
     };
     this.retrieveMovie();
   }
@@ -68,11 +68,14 @@ export default class SearchScreen extends React.Component {
   renderItem = ({ item }) => (
     <TouchableOpacity
       style={styles.infoBox}
-      onPress={() =>
+      onPress={() => {
+        // console.log("-------renderItem");
+        // console.log(this.state.user);
         this.props.navigation.navigate("movie", {
           movieItem: item,
-        })
-      }
+          user: this.state.user,
+        });
+      }}
     >
       <CardUri
         image={item.get("photo").url()}
@@ -123,9 +126,14 @@ export default class SearchScreen extends React.Component {
 
   render() {
     const { search } = this.state;
+    // console.log("useruseruseruseruseruser111");
+    // console.log(this.props.route.params.user);
+    // console.log("useruseruseruseruseruser222");
+
     // this.retrieveMovie();
 
     return (
+      // <ScrollView style={styles.container}>
       <View>
         <SearchBar
           style={styles.searchBarStyle}
@@ -135,6 +143,16 @@ export default class SearchScreen extends React.Component {
           lightTheme={true}
           inputContainerStyle={{ backgroundColor: "white" }}
         />
+
+        <View style={styles.titleBar}>
+          <Image
+            style={styles.avatar}
+            source={{ uri: this.state.user.get("avatar").url() }}
+          />
+          <Text style={styles.userTitle}>Welcome back,</Text>
+          <Text style={styles.username}>{this.state.user.get("userName")}</Text>
+        </View>
+
         <FlatList
           style={styles.flatListStyle}
           data={this.state.movieFiltered}
@@ -142,11 +160,29 @@ export default class SearchScreen extends React.Component {
           keyExtractor={(item) => item.id}
         />
       </View>
+      // {/* </ScrollView> */}
     );
   }
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "white",
+  },
+  titleBar: {
+    width: "100%",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    marginLeft: 10, //center
+    // backgroundColor: "#6ECEDA",
+  },
+  avatar: {
+    width: 100,
+    height: 100,
+    borderRadius: 100,
+  },
   container: {
     flex: 1,
     alignItems: "center",
@@ -160,5 +196,21 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
+  },
+  userTitle: {
+    fontSize: 16,
+    color: "#b8bece",
+    fontWeight: "500",
+    justifyContent: "center",
+  },
+  userInfoSection: {
+    paddingHorizontal: 30,
+    marginBottom: 25,
+  },
+  username: {
+    fontSize: 20,
+    color: "#3c4560",
+    fontWeight: "bold",
+    marginLeft: 0,
   },
 });

@@ -20,12 +20,9 @@ import {
 } from "react-native";
 import { TouchableOpacityBase } from "react-native";
 import { Component } from "react";
-import Card from "../components/Card";
-import { LinearGradient } from "expo-linear-gradient";
-import { block } from "react-native-reanimated";
 import { Ionicons, Entypo } from "@expo/vector-icons";
 import Parse from "parse/react-native";
-import UploadImage from "../components/UploadingImage";
+import * as ImagePicker from "expo-image-picker";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 //Before using the SDK...
@@ -37,11 +34,11 @@ Parse.initialize(
 ); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
 Parse.serverURL = "https://parseapi.back4app.com/";
 
-const userName = "Dog Lover";
-const userEmail = "myemail@email.com";
-var profilePic = "https://picsum.photos/id/200/200/200";
-const userBio =
-  '"Hello, I am a student from Northeastern University and I like movies, hit me up if you like movies too! "';
+// const userName = "Dog Lover";
+// const userEmail = "myemail@email.com";
+// var profilePic = "https://picsum.photos/id/200/200/200";
+// const userBio =
+//   '"Hello, I am a student from Northeastern University and I like movies, hit me up if you like movies too! "';
 const displayPics = [
   "https://picsum.photos/id/500/200/200",
   "https://picsum.photos/id/600/200/200",
@@ -54,27 +51,72 @@ const displayPics = [
 export default class Profile extends React.Component {
   constructor(props) {
     super(props);
+    // this.onRetrieveProfile();
     this.state = {
       pairedImageData: null,
       dehazeCount: 0,
       postPress: true,
       galleryPress: false,
       profilePic: "https://picsum.photos/id/200/200/200",
+      userBio: "I am on Movie Yelp now!",
+      userName: "Dog Lover",
+      userEmail: "myemail@email.com",
+      image: null,
+      userPost: [],
+      userPostDate: [],
     };
+    this.onRetrieveProfile();
   }
 
-  onRetrieveProfilePic = async () => {
-    const query = new Parse.Query("User");
-    var profilePic = null;
-    try {
-      const person = await query.get("w6nh7htdN8");
+  // componentDidUpdate(){
+  //   this.onRetrieveProfile();
+  // }
 
+  onRetrieveProfile = async () => {
+    // const User = new Parse.Object.extend("User");
+    const query = new Parse.Query("Users");
+    query.equalTo("email", this.props.user.get("email"));
+    const reviewQuery = new Parse.Query("review");
+    reviewQuery.equalTo("email", this.props.user.get("email"));
+    var profilePic = null,
+      userPost = [],
+      userPostDate = [];
+    var userBio = "",
+      userName = "",
+      userEmail = "";
+    try {
+      const object = await query.find();
+      const person = object[0];
+      const reviewObject = await reviewQuery.find();
+      for (let i = 0; i < reviewObject.length; i++) {
+        userPost.push(reviewObject[i].get("photo").url());
+        var date = reviewObject[i].get("createdAt");
+        let theDate =
+          date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear();
+        userPostDate.push(theDate);
+      }
+      // console.log("======object=======");
+      // console.log(object);
+      userBio = person.get("userBio");
+      userName = person.get("userName");
+      userEmail = person.get("email");
       profilePic = person.get("avatar").url();
-      console.log(profilePic);
+
+      // console.log(person.get("avatar"));
     } catch (error) {
       alert(`Failed to retrieve the object, with error code: ${error.message}`);
     }
-    this.setState({ profilePic: profilePic });
+    // console.log(userEmail  +" name:" + userName);
+    this.setState({
+      profilePic: profilePic,
+      userBio: userBio,
+      userName: userName,
+      userEmail: userEmail,
+      userPost: userPost,
+      userPostDate: userPostDate,
+    });
+    // console.log("userPostDate");
+    // console.log(userPostDate);
   };
   morePress = () => {
     // console.log("You press the button");
@@ -99,8 +141,61 @@ export default class Profile extends React.Component {
     });
   };
 
+  pickImage = async () => {
+    let response = await ImagePicker.launchImageLibraryAsync({
+      mediaType: "photo",
+      base64: true,
+    });
+    // Add selected image to the state
+    this.setState({
+      image: response,
+    });
+    // console.log(response)
+    this.uploadImage();
+  };
+
+  uploadImage = async () => {
+    // const {base64, fileName} = this.state.image;
+    const base64 = this.state.image.base64;
+
+    const parseFile = new Parse.File("avatar.jpg", { base64 });
+    // this.onSaveNewUser();
+    // 2. Save the file
+    try {
+      const responseFile = await parseFile.save();
+      const query = new Parse.Query("Users");
+      query.equalTo("email", this.props.user.get("email"));
+      const object = await query.find();
+      const person = object[0];
+      person.set("avatar", responseFile);
+      await person.save();
+      Alert.alert("The file has been saved to Back4app.");
+    } catch (error) {
+      console.log(
+        "The file either could not be read, or could not be saved to Back4app.",
+        error.message
+      );
+    }
+  };
+
+  //   openImagePickerAsync = async () => {
+  //     let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+  //     if (permissionResult.granted === false) {
+  //         alert("Permission to access camera roll is required!");
+  //         return;
+  //     }
+  //     let pickerResult = await ImagePicker.launchImageLibraryAsync();
+  //     this.setState({
+  //         selectImage: pickerResult.uri,
+  //     })
+  //     console.log(this.state.selectImage);
+
+  // }
+
   postPics = () => {
-    var res = displayPics;
+    var res = this.state.userPost;
+    var date = this.state.userPostDate;
     var table = [];
     if (this.state.postPress) {
       for (var i = 0; i < res.length; i++) {
@@ -108,7 +203,7 @@ export default class Profile extends React.Component {
           <View key={i.toString()} style={{ flexDirection: "row" }}>
             {
               <View style={{ flex: 1, marginTop: 10 }}>
-                <Text style={{ color: "grey" }}>MM/DD/YY</Text>
+                <Text style={{ color: "grey" }}>{date[i]}</Text>
               </View>
             }
             {
@@ -136,8 +231,7 @@ export default class Profile extends React.Component {
   };
 
   galleryPics = () => {
-    var res = displayPics;
-
+    var res = this.state.userPost;
     var ans = [];
     if (this.state.galleryPress) {
       for (var i = 0; i < res.length; i += 2) {
@@ -212,18 +306,18 @@ export default class Profile extends React.Component {
   };
 
   render() {
-    var displayView;
+    //var displayView;
     var height = 0;
     if (this.state.postPress) {
-      displayView = this.postPics();
+      //displayView = this.postPics;
       height = displayPics.length * 450;
     } else {
-      displayView = this.galleryPics();
+      //displayView = this.galleryPics;
       height = displayPics.length * 275;
     }
-    this.onRetrieveProfilePic();
-    console.log("aaaaaaa");
-    console.log(this.state.profilePic);
+
+    // console.log("aaaaaaa");
+    // console.log(this.state.profilePic);
     // this.fetchData();
     return (
       // user info part
@@ -240,17 +334,19 @@ export default class Profile extends React.Component {
             }}
           >
             {/* <Text> This is a profile page</Text> */}
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                this.pickImage();
+              }}
+            >
               <Image
-                source={{ uri: this.props.user.get("avatar").url() }}
+                source={{ uri: this.state.profilePic }}
                 style={styles.avatar}
               />
             </TouchableOpacity>
-            <Text style={styles.userName}>
-              {this.props.user.get("userName")}
-            </Text>
+            <Text style={styles.userName}>{this.state.userName}</Text>
             <Text style={{ color: "white", textAlign: "center" }}>
-              {this.props.user.get("email")}
+              {this.state.userEmail}
             </Text>
           </View>
           {/* </LinearGradient> */}
@@ -259,7 +355,7 @@ export default class Profile extends React.Component {
               ABOUT ME
             </Text>
             <Text style={{ color: "grey", fontWeight: "600", marginTop: 5 }}>
-              {this.props.user.get("userBio")}
+              {this.state.userBio}
             </Text>
             <View>
               <Ionicons
@@ -329,7 +425,9 @@ export default class Profile extends React.Component {
           {/*This is the display/post view: */}
           <View style={{ margin: 2, borderColor: "grey" }}>
             <ScrollView>
-              <View style={{ height: height }}>{displayView}</View>
+              <View style={{ height: height }}>
+                {this.state.postPress ? this.postPics() : this.galleryPics()}
+              </View>
             </ScrollView>
           </View>
         </View>

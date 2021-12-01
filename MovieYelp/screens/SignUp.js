@@ -14,10 +14,11 @@ import { auth } from "../firbase-config";
 import { createUserWithEmailAndPassword } from "@firebase/auth";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Input } from "react-native-elements";
-
+// import database
+// import database from "@react-native-firebase/database";
+// const reference = database.ref("/users");
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Parse from "parse/react-native";
-
 //Before using the SDK...
 Parse.setAsyncStorage(AsyncStorage);
 
@@ -27,7 +28,6 @@ Parse.initialize(
 ); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
 Parse.serverURL = "https://parseapi.back4app.com/";
 
-var globalAvatar = null;
 export default class SignUp extends React.Component {
   constructor(props) {
     super(props);
@@ -36,112 +36,33 @@ export default class SignUp extends React.Component {
       userPassword: "",
       isFocused: false,
       avatar: null,
-      allUsers: [],
+      userName: "",
+      userBio: "",
     };
-    // this.retrieveAllUsers();
-    //Saving your First Data Object on Back4App
-    async function saveNewPerson() {
-      const person = new Parse.Object("Person");
-
-      person.set("name", "John Snow");
-      person.set("age", 27);
-      try {
-        let result = await person.save();
-        alert("New object created with objectId: " + result.id);
-      } catch (error) {
-        alert("Failed to create new object, with error code: " + error.message);
-      }
-    }
-    // saveNewPerson();
-
-    // async function retrieveUser() {
-    //   const query = new Parse.Query("User");
-
-    //   try {
-    //     const person = await query.get("9H8x1d6To7");
-    //     const avatar = person.get("avatar");
-    //     const name = person.get("username");
-    //     // console.log(avatar);
-    //     globalAvatar = avatar;
-    //     // console.log("11111111");
-
-    //     // console.log(globalAvatar);
-    //     // console.log("2222222");
-
-    //     alert(`Name: ${name} `);
-    //   } catch (error) {
-    //     alert(
-    //       `Failed to retrieve the object, with error code: ${error.message}`
-    //     );
-    //   }
-    // }
-    // retrieveUser();
-    // console.log(globalAvatar);
   }
-
-  retrieveAllUsers = async () => {
-    if (this.state.allUsers.length != 0) return;
-    const query = new Parse.Query("User");
-    let queryResult = null;
-    try {
-      queryResult = await query.find();
-    } catch (error) {
-      // alert("Failed to create new object, with error code: " + error.message);
-    }
-    this.setState({ allUsers: queryResult });
-    console.log(queryResult);
-  };
 
   onFoucusChange = () => {
     this.setState({ isFocused: true });
   };
 
-  onRetrieveUser = async () => {
-    const query = new Parse.Query("User");
+  onSaveNewUser = async () => {
+    // const query = new Parse.Query("User");
+    let user = new Parse.Object.extend("Users");
+    var User = new user();
+    User.set("userName", this.state.userName);
+    User.set("password", this.state.userPassword);
+    User.set("userBio", this.state.userBio);
+    User.set("email", this.state.userEmail);
 
     try {
-      const person = await query.get("MZQD2y0nUB");
-      console.log(person);
-      console.log("avatar");
-
-      const name = person.get("username");
-      console.log(person.get("avatar").url());
+      let result = await User.save();
+      alert("New object created with objectId: " + result.id);
+      // console.log(person.get("avatar").url());
     } catch (error) {
-      alert(`Failed to retrieve the object, with error code: ${error.message}`);
+      alert("Failed to create new object, with error code: " + error.message);
     }
-  };
 
-  // uploadImage = async () => {
-  //   const {base64, fileName} = image;
-  //   const  parseFile = new  Parse.File(fileName, {base64});
-
-  //   // 2. Save the file
-  //   try {
-  //   const responseFile = await  parseFile.save();
-  //   const Gallery = Parse.Object.extend('Gallery');
-  //   const gallery = new  Gallery();
-  //   gallery.set('picture', responseFile);
-
-  //   await gallery.save();
-  //   Alert.alert('The file has been saved to Back4app.');
-  //   } catch (error) {
-  //     console.log(
-  //       'The file either could not be read, or could not be saved to Back4app.',
-  //     );
-  //   }
-  // }
-
-  handleRegister = async () => {
-    try {
-      const user = createUserWithEmailAndPassword(
-        auth,
-        this.state.userEmail,
-        this.state.userPassword
-      );
-      console.log(user);
-    } catch {
-      console.log(Error);
-    }
+    this.props.navigation.navigate("Login");
   };
 
   onChangePassword = (password) => {
@@ -150,20 +71,24 @@ export default class SignUp extends React.Component {
     });
   };
 
-  onChangeUsername = (email) => {
+  onChangeUserEmail = (email) => {
     this.setState({
       userEmail: email,
     });
   };
 
+  onChangeUserName = (name) => {
+    this.setState({
+      userName: name,
+    });
+  };
+
+  onChangeUserBio = (Bio) => {
+    this.setState({
+      userBio: Bio,
+    });
+  };
   render() {
-    this.onRetrieveUser();
-    console.log("render");
-    // console.log(globalAvatar);
-    console.log(this.state.avatar);
-
-    console.log("render");
-
     return (
       <ScrollView style={{ backgroundColor: "white" }}>
         <View style={styles.container}>
@@ -171,18 +96,57 @@ export default class SignUp extends React.Component {
             source={require("../assets/registeration.png")}
             style={styles.image}
           />
-          {/* {console.log("---------")}
 
-          {console.log(globalAvatar)}
-          {console.log(globalAvatar["url"])}
-          <Image
-            source={{ uri: globalAvatar["url"][0] }}
-            style={styles.image}
-          /> */}
           <Text style={styles.textTitle}>Let's Get Started</Text>
           <Text style={styles.textBody}>
             Create a new account for your dehaze APP
           </Text>
+          <View
+            style={[
+              styles.inputContainerWrap,
+              { borderColor: this.state.isFocused ? "#0779ef" : "#eee" },
+            ]}
+          >
+            <Input
+              onChangeText={this.onChangeUserName}
+              placeholder="Name"
+              onFocus={this.onFoucusChange}
+              inputContainerStyle={styles.inputContainer}
+              inputSyle={styles.inputText}
+              secureTextEnrty="false"
+              leftIcon={
+                <Icon
+                  name="pencil"
+                  size={20}
+                  color={this.state.isFocused ? "#0779e4" : "grey"}
+                />
+              }
+              // onChangeText = {this.passTextToFather}
+            />
+          </View>
+          <View
+            style={[
+              styles.inputContainerWrap,
+              { borderColor: this.state.isFocused ? "#0779ef" : "#eee" },
+            ]}
+          >
+            <Input
+              onChangeText={this.onChangeUserBio}
+              placeholder="Bio"
+              onFocus={this.onFoucusChange}
+              inputContainerStyle={styles.inputContainer}
+              inputSyle={styles.inputText}
+              secureTextEnrty="false"
+              leftIcon={
+                <Icon
+                  name="edit"
+                  size={20}
+                  color={this.state.isFocused ? "#0779e4" : "grey"}
+                />
+              }
+              // onChangeText = {this.passTextToFather}
+            />
+          </View>
           {/* <Inputs name='Full Name' icon='user'/> */}
           <View
             style={[
@@ -191,7 +155,7 @@ export default class SignUp extends React.Component {
             ]}
           >
             <Input
-              onChangeText={this.onChangeUsername}
+              onChangeText={this.onChangeUserEmail}
               placeholder="Email"
               onFocus={this.onFoucusChange}
               inputContainerStyle={styles.inputContainer}
@@ -235,7 +199,7 @@ export default class SignUp extends React.Component {
           {/* <Inputs name='Confirm Password' icon='lock' pass={true} /> */}
           <TouchableOpacity
             style={[styles.submitContainer, { backgroundColor: "blue" }]}
-            onPress={this.handleRegister}
+            onPress={() => this.onSaveNewUser()}
           >
             <Text style={styles.submitText}>Create</Text>
           </TouchableOpacity>

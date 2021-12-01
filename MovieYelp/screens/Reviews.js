@@ -51,7 +51,6 @@ export default class Reviews extends React.Component {
   retrieveReview = async () => {
     if (this.state.review.length != 0) return;
     const query = new Parse.Query("review");
-    // query.contains("name", this.props.movieItem.get("objectID"));
     query.equalTo("movieName", this.props.movieItem.get("name"));
 
     let queryResult = null;
@@ -81,6 +80,8 @@ export default class Reviews extends React.Component {
   };
 
   render() {
+    // console.log("reviewreviewreviewreview is here");
+    // console.log(this.props.user);
     return (
       <ScrollView>
         <View style={{ alignItems: "flex-end" }}>
