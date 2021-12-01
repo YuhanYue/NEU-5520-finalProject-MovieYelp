@@ -39,14 +39,14 @@ Parse.serverURL = "https://parseapi.back4app.com/";
 // var profilePic = "https://picsum.photos/id/200/200/200";
 // const userBio =
 //   '"Hello, I am a student from Northeastern University and I like movies, hit me up if you like movies too! "';
-const displayPics = [
-  "https://picsum.photos/id/500/200/200",
-  "https://picsum.photos/id/600/200/200",
-  "https://picsum.photos/id/700/200/200",
-  "https://picsum.photos/id/800/200/200",
-  "https://picsum.photos/id/900/200/200",
-  "https://picsum.photos/id/377/200/200",
-];
+// const displayPics = [
+//   "https://picsum.photos/id/500/200/200",
+//   "https://picsum.photos/id/600/200/200",
+//   "https://picsum.photos/id/700/200/200",
+//   "https://picsum.photos/id/800/200/200",
+//   "https://picsum.photos/id/900/200/200",
+//   "https://picsum.photos/id/377/200/200",
+// ];
 
 export default class Profile extends React.Component {
   constructor(props) {
@@ -68,10 +68,6 @@ export default class Profile extends React.Component {
     this.onRetrieveProfile();
   }
 
-
-  // componentDidUpdate(){
-  //   this.onRetrieveProfile();
-  // }
 
   onRetrieveProfile = async () => {
     // const User = new Parse.Object.extend("User");
@@ -150,8 +146,6 @@ export default class Profile extends React.Component {
     })
     // console.log(response)
     this.uploadImage();
-  
-
   }
 
   uploadImage = async() => {
@@ -179,20 +173,6 @@ export default class Profile extends React.Component {
   }
 
 
-//   openImagePickerAsync = async () => {
-//     let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
-
-//     if (permissionResult.granted === false) {
-//         alert("Permission to access camera roll is required!");
-//         return;
-//     }
-//     let pickerResult = await ImagePicker.launchImageLibraryAsync();
-//     this.setState({
-//         selectImage: pickerResult.uri,
-//     })
-//     console.log(this.state.selectImage);
-
-// }
 
   postPics = () => {
     var res = this.state.userPost;
@@ -311,10 +291,10 @@ export default class Profile extends React.Component {
     var height = 0;
     if (this.state.postPress) {
       //displayView = this.postPics;
-      height = displayPics.length * 450;
+      height = this.state.userPost.length * 600;
     } else {
       //displayView = this.galleryPics;
-      height = displayPics.length * 275;
+      height = this.state.userPost.length * 325;
     }
     
     // console.log("aaaaaaa");
@@ -374,7 +354,10 @@ export default class Profile extends React.Component {
                 borderColor: "lightgrey",
               }}
             >
-              <TouchableOpacity onPress={this.myPostBress}>
+              <TouchableOpacity onPress={() => {
+                this.myPostBress();
+                this.onRetrieveProfile();
+              }}>
                 <Ionicons
                   name="add-circle"
                   style={{ color: "#FF8000" }}
@@ -391,7 +374,10 @@ export default class Profile extends React.Component {
                 borderColor: "lightgrey",
               }}
             >
-              <TouchableOpacity onPress={this.myGalleryBress}>
+              <TouchableOpacity onPress={() => {
+                this.myGalleryBress();
+                this.onRetrieveProfile();
+                }}>
                 <Ionicons
                   name="images"
                   style={{ color: "#FF8000" }}

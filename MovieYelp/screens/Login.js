@@ -98,40 +98,6 @@ export default class Login extends React.Component {
     return judge;
   };
 
-  // checkPassword = async () => {
-  //   const query = new Parse.Query("Users");
-  //   // query.contains("name", this.props.movieItem.get("objectID"));
-  //   query.equalTo("email", this.state.userEmail);
-
-  //   let queryResult = null;
-  //   try {
-  //     queryResult = await query.find();
-  //   } catch (error) {
-  //     // alert("Failed to create new object, with error code: " + error.message);
-  //   }
-  //   if (queryResult.length == 0) {
-  //     return false;
-  //   }
-  //   if (queryResult[0].get("password") != this.password) {
-  //     return false;
-  //   }
-  //   // console.log(queryResult);
-  //   return true;
-  //   // if(queryResult)
-  //   // if(queryResult.get)
-  // };
-
-  // retrieveUsername = async () => {
-  //     try{
-  //       const username = await AsyncStorage.getItem("username")
-  //       if(username !== null){
-  //         console.log(username);
-  //         this.props.
-  //         this.props.updateUsername(username);
-  //       }
-  //     }catch(error){}
-
-  //   }
 
   login = () => {};
 
@@ -168,7 +134,7 @@ export default class Login extends React.Component {
           <TouchableOpacity
             style={[styles.submitContainer, { backgroundColor: "#0251ce" }]}
             onPress={() => {
-              const inDevelop = false;
+              const inDevelop = true;
               if (inDevelop) {
                 this.setDefaultUser();
 
