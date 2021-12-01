@@ -55,6 +55,10 @@ export default class Reviews extends React.Component {
 
     }
 
+    recommendReview = () =>{
+
+    }
+
 
     render() {
 
@@ -161,8 +165,10 @@ export default class Reviews extends React.Component {
                                         <Text style={styles.facilityText}>2</Text>
                                     </View>
                                     <View style={styles.facility}>
+                                        <TouchableOpacity style={{ flexDirection:'row'}}>
                                         <Icon name="recommend" size={18} />
-                                        <Text style={styles.facilityText}>2</Text>
+                                        <Text style={styles.facilityText}>4</Text>
+                                        </TouchableOpacity>
                                     </View>
                                 </View>
                             </View>
@@ -196,6 +202,7 @@ export default class Reviews extends React.Component {
                                 </Text>
 
                                 <View style={{ marginTop: 10, flexDirection: 'row' }}>
+                                    
                                     <View style={styles.facility}>
                                         <Icon name="visibility" size={18} />
                                         <Text style={styles.facilityText}>2</Text>

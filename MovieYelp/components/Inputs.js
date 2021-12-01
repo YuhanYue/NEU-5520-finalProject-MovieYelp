@@ -13,11 +13,13 @@ class Inputs extends Component{
     onFoucusChange = () =>{
         this.setState({isFocused: true})
     }
+    onChange
     render(){
         return(
             <View 
             style = {[styles.container, {borderColor: this.state.isFocused ? '#0779ef':'#eee'}]}>
                 <Input
+                onChangeText={this.onChanged}
                     placeholder = {this.props.name}
                     onFocus = {this.onFoucusChange}
                     inputContainerStyle = {styles.inputContainer}

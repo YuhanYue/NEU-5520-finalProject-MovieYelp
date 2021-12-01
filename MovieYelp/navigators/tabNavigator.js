@@ -67,7 +67,9 @@ const TabNavigator = () => {
         <Tab.Screen
           name="CardView"
           component={MapForMovieStackScreen}
+
           options={{
+            headerShown:false,
             tabBarIcon: ({ focused }) => (
               <View
                 style={{
@@ -157,6 +159,7 @@ const TabNavigator = () => {
           name="Profile"
           component={Profile}
           options={{
+            headerShown:false,
             tabBarIcon: ({ focused }) => (
               <View
                 style={{

@@ -7,17 +7,21 @@ import {
   Image,
   TouchableOpacity,
   Dimensions,
+  StatusBar,
 } from 'react-native'
 
 import {
   TouchableRipple,
 
 } from 'react-native-paper';
+import LinearGradient from 'react-native-linear-gradient';
 
 import Card from '../components/Card';
 import styled from 'styled-components';
 import Login from './Login';
 import { SwitchRouter } from 'react-navigation';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Circle } from 'react-native-svg';
 
 
 const width = Dimensions.get("window").width;
@@ -32,15 +36,28 @@ export default class CardViewScreen extends React.Component {
 
   render() {
     return (
+      
+      // <SafeAreaView style={{flex:1}}>
       <ScrollView style={styles.container}>
+        <Circle
+  cx={width / 2}
+  cy={`-${898 - 20 + 2}`}
+  r="898.5"
+  fill="#EFF2F3"
+  stroke="#C5CACD"
+  strokeWidth="2"
+/>
         <View style={styles.titleBar}>
           <Image style={styles.avatar} source={require('../assets/avatar.jpg')} />
           <Text style={styles.userTitle}>Welcome back,</Text>
           {/* this.username */}
           <Text style={styles.username}>{this.state.username}</Text>
-        </View>
-          {/* TODO:flatlist to fetch and display data */}
           <Subtitle style={{ paddingTop: 10 }}>Starting your journey from...</Subtitle>
+          
+        </View>
+       
+        <View style={{marginTop:20}}>
+          {/* TODO:flatlist to fetch and display data */}
           <TouchableOpacity style={styles.infoBox}
             onPress={() => this.props.navigation.navigate("movie")}
             >
@@ -59,7 +76,9 @@ export default class CardViewScreen extends React.Component {
               onPress
             />
           </TouchableOpacity>
+          </View>
       </ScrollView>
+      // </SafeAreaView>
     );
   }
 }
@@ -92,10 +111,12 @@ const styles = StyleSheet.create({
   titleBar:{
     width: "100%",
     flexDirection: 'column',
+    height:230,
     alignItems:'center',
-    justifyContent: "center",
-    marginLeft: 10//center
-    // backgroundColor: "#6ECEDA",
+    justifyContent: "flex-end",
+    // marginLeft: 10//center
+    backgroundColor: "#F8E7B4",
+    borderBottomLeftRadius:100,
   },
   avatar:{
     width: 100,
