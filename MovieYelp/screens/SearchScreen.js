@@ -69,8 +69,6 @@ export default class SearchScreen extends React.Component {
     <TouchableOpacity
       style={styles.infoBox}
       onPress={() => {
-        // console.log("-------renderItem");
-        // console.log(this.state.user);
         this.props.navigation.navigate("movie", {
           movieItem: item,
           user: this.state.user,
@@ -96,11 +94,7 @@ export default class SearchScreen extends React.Component {
     }
     this.setState({ movie: queryResult });
     this.setState({ movieFiltered: queryResult });
-    console.log(queryResult);
   };
-  // async componentDidMount() {
-  //   await this.retrieveMovie();
-  // }
 
   searchFilterFunction = (text) => {
     this.setState({ search: text });
@@ -133,8 +127,8 @@ export default class SearchScreen extends React.Component {
     // this.retrieveMovie();
 
     return (
-      // <ScrollView style={styles.container}>
       <View>
+        {/* <ScrollView style={styles.container}> */}
         <SearchBar
           style={styles.searchBarStyle}
           placeholder="Type movie name"
@@ -144,23 +138,15 @@ export default class SearchScreen extends React.Component {
           inputContainerStyle={{ backgroundColor: "white" }}
         />
 
-        <View style={styles.titleBar}>
-          <Image
-            style={styles.avatar}
-            source={{ uri: this.state.user.get("avatar").url() }}
-          />
-          <Text style={styles.userTitle}>Welcome back,</Text>
-          <Text style={styles.username}>{this.state.user.get("userName")}</Text>
-        </View>
-
         <FlatList
           style={styles.flatListStyle}
           data={this.state.movieFiltered}
           renderItem={this.renderItem}
           keyExtractor={(item) => item.id}
         />
+
+        {/* </ScrollView> */}
       </View>
-      // {/* </ScrollView> */}
     );
   }
 }
@@ -183,11 +169,11 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 100,
   },
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
+  // container: {
+  //   flex: 1,
+  //   alignItems: "center",
+  //   justifyContent: "center",
+  // },
   searchBarStyle: {},
   flatListStyle: {
     height: "100%",
