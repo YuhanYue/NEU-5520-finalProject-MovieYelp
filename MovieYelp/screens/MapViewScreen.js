@@ -10,14 +10,10 @@ import MapView, {
   Marker,
   Callout,
   CalloutSubview,
-  ProviderPropType,
 } from "react-native-maps";
-import MoviePage from "./MoviePage";
-import CustomCallout from "./CustomCallout";
+
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Parse from "parse/react-native";
-import CardUri from "../components/CardUri";
-import { FlatList } from "react-native-gesture-handler";
 
 //Before using the SDK...
 Parse.setAsyncStorage(AsyncStorage);
@@ -120,54 +116,7 @@ export default class MapViewScreen extends React.Component {
           </Marker>
         ))}
 
-        {/* <Marker
-          coordinate={{
-            latitude: this.state.region.latitude,
-            longitude: this.state.region.longitude,
-          }}
-        >
-          <Callout style={styles.customView}>
-            <CalloutSubview
-              onPress={() => this.props.navigation.navigate("movie")}
-              style={[styles.calloutButton]}
-            >
-              <Text>Click me to see more info about this place</Text>
-            </CalloutSubview>
-          </Callout>
-        </Marker>
-
-        <Marker coordinate={{ latitude: 49.282961, longitude: -123.120472 }}>
-          <Callout style={styles.customView}>
-            <CalloutSubview
-              onPress={() => this.props.navigation.navigate("movie")}
-              style={[styles.calloutButton]}
-            >
-              <Text>Click me to see more info about this place</Text>
-            </CalloutSubview>
-          </Callout>
-        </Marker>
-
-        <Marker coordinate={{ latitude: 49.28734, longitude: -123.117107 }}>
-          <Callout style={styles.customView}>
-            <CalloutSubview
-              onPress={() => this.props.navigation.navigate("movie")}
-              style={[styles.calloutButton]}
-            >
-              <Text>Click me to see more info about this place</Text>
-            </CalloutSubview>
-          </Callout>
-        </Marker>
-
-        <Marker coordinate={{ latitude: 49.246292, longitude: -123.116226 }}>
-          <Callout style={styles.customView}>
-            <CalloutSubview
-              onPress={() => this.props.navigation.navigate("movie")}
-              style={[styles.calloutButton]}
-            >
-              <Text>Click me to see more info about this place</Text>
-            </CalloutSubview>
-          </Callout>
-        </Marker> */}
+       
       </MapView>
     );
   }

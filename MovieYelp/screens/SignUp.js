@@ -7,16 +7,8 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-
-import Submit from "../components/Submit";
-import Inputs from "../components/Inputs";
-import { auth } from "../firbase-config";
-import { createUserWithEmailAndPassword } from "@firebase/auth";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Input } from "react-native-elements";
-// import database
-// import database from "@react-native-firebase/database";
-// const reference = database.ref("/users");
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Parse from "parse/react-native";
 //Before using the SDK...
@@ -50,7 +42,6 @@ export default class SignUp extends React.Component {
 
 
   onSaveNewUser = async () => {
-    // const query = new Parse.Query("User");
     let user = new Parse.Object.extend("Users");
     var User = new user();
     User.set("userName", this.state.userName);
@@ -62,7 +53,6 @@ export default class SignUp extends React.Component {
 
       let result = await User.save();
       alert("New object created with objectId: " + result.id);
-      // console.log(person.get("avatar").url());
     } catch (error) {
       alert("Failed to create new object, with error code: " + error.message);
     }
@@ -128,7 +118,6 @@ export default class SignUp extends React.Component {
                   color={this.state.isFocused ? "#0779e4" : "grey"}
                 />
               }
-            // onChangeText = {this.passTextToFather}
             />
           </View>
           <View
@@ -151,10 +140,8 @@ export default class SignUp extends React.Component {
                   color={this.state.isFocused ? "#0779e4" : "grey"}
                 />
               }
-            // onChangeText = {this.passTextToFather}
             />
           </View>
-          {/* <Inputs name='Full Name' icon='user'/> */}
           <View
             style={[
               styles.inputContainerWrap,
@@ -175,10 +162,8 @@ export default class SignUp extends React.Component {
                   color={this.state.isFocused ? "#0779e4" : "grey"}
                 />
               }
-            // onChangeText = {this.passTextToFather}
             />
           </View>
-          {/* <Inputs name='Phone' icon='phone'/> */}
 
           <View
             style={[
@@ -200,10 +185,8 @@ export default class SignUp extends React.Component {
                   color={this.state.isFocused ? "#0779e4" : "grey"}
                 />
               }
-            // onChangeText = {this.passTextToFather}
             />
           </View>
-          {/* <Inputs name='Confirm Password' icon='lock' pass={true} /> */}
           <TouchableOpacity
             style={[styles.submitContainer, { backgroundColor: "blue" }]}
             onPress={() =>
@@ -217,7 +200,6 @@ export default class SignUp extends React.Component {
             <Text
               style={[styles.textBody, { color: "blue" }]}
               onPress={() =>
-                /*括号后面不能加空格 unexpected token*/
                 this.props.navigation.navigate("Login")
               }
             >

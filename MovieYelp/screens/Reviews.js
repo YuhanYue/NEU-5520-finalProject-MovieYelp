@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import {
   View,
   StyleSheet,
@@ -8,17 +7,13 @@ import {
   Image,
   TouchableOpacity,
   Dimensions,
-  Animated,
   Modal,
   TextInput,
   Pressable,
   Alert,
 } from "react-native";
-import { Button } from "react-native-paper";
 import * as ImagePicker from "expo-image-picker";
-import { block } from "react-native-reanimated";
 import Icon from "react-native-vector-icons/MaterialIcons";
-
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Parse from "parse/react-native";
 
@@ -55,14 +50,12 @@ export default class Reviews extends React.Component {
   retrieveReview = async () => {
     if (this.state.review.length != 0) return;
     const query = new Parse.Query("review");
-    // query.contains("name", this.props.movieItem.get("objectID"));
     query.equalTo("movieName", this.props.movieItem.get("name"));
 
     let queryResult = null;
     try {
       queryResult = await query.find();
     } catch (error) {
-      // alert("Failed to create new object, with error code: " + error.message);
     }
     this.setState({ review: queryResult });
 
@@ -130,12 +123,9 @@ export default class Reviews extends React.Component {
 
   uploadImage = async() => {
     
-    // const {base64, fileName} = this.state.image;
     const base64 = this.state.image.base64;
 
     const  parseFile = new  Parse.File("avatar.jpg", {base64});
-    // this.onSaveNewUser();
-    // 2. Save the file
     try {
       const responseFile = await parseFile.save();
       const query = new Parse.Query("Users");
@@ -152,9 +142,6 @@ export default class Reviews extends React.Component {
     }
   }
 
-    recommendReview = () =>{
-
-    }
 
 
   render() {
@@ -183,7 +170,6 @@ export default class Reviews extends React.Component {
             >
 
               <Image
-                // source={{uri: 'https://media3.giphy.com/media/wWue0rCDOphOE/giphy.gif'}}
                 source={require("../assets/84848-polar-bear.gif")}
                 style={{
                   width: 430,
@@ -280,10 +266,6 @@ export default class Reviews extends React.Component {
                     <Text style={{ fontSize: 16, fontWeight: "bold" }}>
                       {item.get("reviewContent")}
                     </Text>
-                    {/* <Text
-                style={{fontWeight: 'bold', color: '#5f82e6', fontSize: 16}}>
-                $1,500
-              </Text> */}
                   </View>
 
                   <Text
