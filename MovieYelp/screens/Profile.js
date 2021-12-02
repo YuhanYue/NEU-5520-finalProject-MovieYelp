@@ -165,7 +165,7 @@ export default class Profile extends React.Component {
       for (var i = 0; i < res.length; i++) {
         table.push(
           <View style={{
-            marginLeft:20,
+            marginLeft: 20,
             height: 250,
             // backgroundColor: colors[i%4],
             // backgroundColor:'light grey',
@@ -175,7 +175,7 @@ export default class Profile extends React.Component {
             padding: 15,
             borderRadius: 20,
             marginTop: 20,
-            backgroundColor:'#fff'
+            backgroundColor: '#fff'
           }}>
             {/* House image */}
             <Image source={{ uri: res[i] }} style={styles.cardImage} />
@@ -187,8 +187,8 @@ export default class Profile extends React.Component {
                   justifyContent: 'space-between',
                   marginTop: 10,
                 }}>
-                <Text style={{ fontSize: 16, fontWeight: 'bold', color :"grey" }}>
-                 📅 Post Date: {this.state.userPostDate[i]}
+                <Text style={{ fontSize: 16, fontWeight: 'bold', color: "grey" }}>
+                  📅 Post Date: {this.state.userPostDate[i]}
                 </Text>
                 {/* <Text
                 style={{fontWeight: 'bold', color: '#5f82e6', fontSize: 16}}>
@@ -321,13 +321,13 @@ export default class Profile extends React.Component {
             borderBottomStartRadius: 180,
             borderBottomEndRadius: 180,
             backgroundColor: "#F8E7B4",
-            
+
           }}>
             <TouchableOpacity
               onPress={() => {
                 this.pickImage();
               }}>
-               <Image
+              <Image
                 source={{ uri: this.state.profilePic }}
                 style={styles.avatar}
               />
@@ -357,8 +357,9 @@ export default class Profile extends React.Component {
 
 
           {/*This is the status bar: */}
-          <View style={{ flexDirection: "row" ,
-                    }}>
+          <View style={{
+            flexDirection: "row",
+          }}>
             <View
               style={{
                 flex: 1,
@@ -414,12 +415,12 @@ export default class Profile extends React.Component {
               <TouchableOpacity onPress={this.morePress}>
                 <Ionicons
                   name="ellipsis-horizontal"
-                  style={{ color: "#F8E7B4"}}
+                  style={{ color: "#F8E7B4" }}
                   size={24}
                 />
               </TouchableOpacity>
               <Text style={{ color: "grey" }}>More</Text>
-            </View> 
+            </View>
           </View>
 
 

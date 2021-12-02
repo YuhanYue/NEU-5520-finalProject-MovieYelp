@@ -14,7 +14,6 @@ import {
   Pressable,
   Alert,
 } from "react-native";
-import CameraButton from "../components/CameraButton";
 import { Button } from "react-native-paper";
 import * as ImagePicker from "expo-image-picker";
 import { block } from "react-native-reanimated";
@@ -32,7 +31,6 @@ Parse.initialize(
 ); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
 Parse.serverURL = "https://parseapi.back4app.com/";
 
-import AnimatedLottieView from "lottie-react-native";
 
 
 const { width } = Dimensions.get("screen");
@@ -183,7 +181,7 @@ export default class Reviews extends React.Component {
             <View
               style={[styles.reviewContainer, { backgroundColor: "F2EEE5" }]}
             >
-              {/* <AnimatedLottieView source={require('../assets/84848-polar-bear.json')} autoPlay loop /> */}
+
               <Image
                 // source={{uri: 'https://media3.giphy.com/media/wWue0rCDOphOE/giphy.gif'}}
                 source={require("../assets/84848-polar-bear.gif")}

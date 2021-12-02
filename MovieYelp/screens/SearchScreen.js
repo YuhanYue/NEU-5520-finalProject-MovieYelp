@@ -13,7 +13,6 @@ import Profile from "./Profile";
 import _ from "lodash";
 
 import CardViewScreen from "./CardViewScreen";
-import Card from "../components/Card";
 import CardUri from "../components/CardUri";
 import Inputs from "../components/Inputs";
 import Submit from "../components/Submit";

@@ -1,12 +1,9 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { defineAnimation } from "react-native-reanimated";
 
 import Profile from "../screens/Profile";
-import SignUp from "../screens/SignUp";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CardViewScreen from "../screens/CardViewScreen";
 import SearchScreen from "../screens/SearchScreen";
@@ -102,14 +99,14 @@ export default class TabNavigator extends React.Component {
               ...styles.shadow,
             },
           }}
-          initialRouteName="Search"
+          initialRouteName="CardView"
         >
           <Tab.Screen
             name="CardView"
-            
+
             component={MapForMovieStackScreen}
             options={{
-              tabBarShowLabel:false,
+              tabBarShowLabel: false,
               tabBarIcon: ({ focused }) => (
                 <View
                   style={{
@@ -134,13 +131,13 @@ export default class TabNavigator extends React.Component {
                 </View>
               ),
             }}
-            // user={this.state.user}
+          // user={this.state.user}
           />
           <Tab.Screen
             name="Map"
             component={CallOutForMovieStackScreen}
             options={{
-              tabBarShowLabel:false,
+              tabBarShowLabel: false,
               tabBarIcon: ({ focused }) => (
                 <View
                   style={{
@@ -170,7 +167,7 @@ export default class TabNavigator extends React.Component {
             name="Search"
             component={SearchForMovieStackScreen}
             options={{
-              tabBarShowLabel:false,
+              tabBarShowLabel: false,
               tabBarIcon: ({ focused }) => (
                 <View
                   style={{
@@ -202,7 +199,7 @@ export default class TabNavigator extends React.Component {
             name="Profile"
             children={() => <Profile user={user}></Profile>}
             options={{
-              tabBarShowLabel:false,
+              tabBarShowLabel: false,
               tabBarIcon: ({ focused }) => (
                 <View
                   style={{

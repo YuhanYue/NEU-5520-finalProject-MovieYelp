@@ -29,17 +29,17 @@ Parse.initialize(
 Parse.serverURL = "https://parseapi.back4app.com/";
 
 export default class SignUp extends React.Component {
-  
+
   constructor(props) {
-    
+
     super(props);
     this.state = {
       userEmail: "",
       userPassword: "",
       isFocused: false,
       avatar: null,
-      userName : "",
-      userBio : "",
+      userName: "",
+      userBio: "",
     };
 
   }
@@ -53,13 +53,13 @@ export default class SignUp extends React.Component {
     // const query = new Parse.Query("User");
     let user = new Parse.Object.extend("Users");
     var User = new user();
-    User.set("userName",this.state.userName);
-    User.set("password",this.state.userPassword);
-    User.set("userBio",this.state.userBio);
-    User.set("email",this.state.userEmail.toLowerCase());
+    User.set("userName", this.state.userName);
+    User.set("password", this.state.userPassword);
+    User.set("userBio", this.state.userBio);
+    User.set("email", this.state.userEmail.toLowerCase());
 
     try {
-      
+
       let result = await User.save();
       alert("New object created with objectId: " + result.id);
       // console.log(person.get("avatar").url());
@@ -103,7 +103,7 @@ export default class SignUp extends React.Component {
             source={require("../assets/register.gif")}
             style={styles.image}
           />
-  
+
           <Text style={styles.textTitle}>Let's Get Started</Text>
           <Text style={styles.textBody}>
             Create a new account for your dehaze APP
@@ -128,7 +128,7 @@ export default class SignUp extends React.Component {
                   color={this.state.isFocused ? "#0779e4" : "grey"}
                 />
               }
-              // onChangeText = {this.passTextToFather}
+            // onChangeText = {this.passTextToFather}
             />
           </View>
           <View
@@ -151,7 +151,7 @@ export default class SignUp extends React.Component {
                   color={this.state.isFocused ? "#0779e4" : "grey"}
                 />
               }
-              // onChangeText = {this.passTextToFather}
+            // onChangeText = {this.passTextToFather}
             />
           </View>
           {/* <Inputs name='Full Name' icon='user'/> */}
@@ -175,7 +175,7 @@ export default class SignUp extends React.Component {
                   color={this.state.isFocused ? "#0779e4" : "grey"}
                 />
               }
-              // onChangeText = {this.passTextToFather}
+            // onChangeText = {this.passTextToFather}
             />
           </View>
           {/* <Inputs name='Phone' icon='phone'/> */}
@@ -200,14 +200,14 @@ export default class SignUp extends React.Component {
                   color={this.state.isFocused ? "#0779e4" : "grey"}
                 />
               }
-              // onChangeText = {this.passTextToFather}
+            // onChangeText = {this.passTextToFather}
             />
           </View>
           {/* <Inputs name='Confirm Password' icon='lock' pass={true} /> */}
           <TouchableOpacity
             style={[styles.submitContainer, { backgroundColor: "blue" }]}
-            onPress={()=>
-            this.onSaveNewUser()
+            onPress={() =>
+              this.onSaveNewUser()
             }
           >
             <Text style={styles.submitText}>Create</Text>

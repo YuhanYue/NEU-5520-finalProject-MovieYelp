@@ -9,18 +9,12 @@ import {
   Dimensions,
 } from "react-native";
 
-import { TouchableRipple } from "react-native-paper";
-
-import Card from "../components/Card";
 import styled from "styled-components";
 import CardUri from "../components/CardUri";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Parse from "parse/react-native";
-import Login from "./Login";
-import { SwitchRouter } from "react-navigation";
-import { FlatList } from "react-native-gesture-handler";
-Parse.setAsyncStorage(AsyncStorage);
 
+Parse.setAsyncStorage(AsyncStorage);
 Parse.initialize(
   "iX9UmLwWNOSVhSfrvY7YnWOAyZPNujc2cvKSCkFT",
   "NSdhBidUcAsiTET1C4r7ZWGjgTDCLgBdvFkecWr5"
@@ -30,7 +24,6 @@ Parse.serverURL = "https://parseapi.back4app.com/";
 
 const width = Dimensions.get("window").width;
 export default class CardViewScreen extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -76,38 +69,38 @@ export default class CardViewScreen extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-      <View style={styles.titleBar}>
-        <Image
-          style={styles.avatar}
-          source={{ uri: this.state.user.get("avatar").url() }}
-        />
-        <Text style={styles.userTitle}>👏Welcome back,</Text>
-        {/* this.username */}
-        <Text style={styles.username}>{this.state.user.get("userName")}</Text>
-      </View>
-      <Subtitle style={{ paddingTop: 10 }}>
-        Starting your journey from...
-      </Subtitle>
-      {this.state.movie.map((item) => (
-        <TouchableOpacity
-          style={styles.infoBox}
-          onPress={() => {
-            this.props.navigation.navigate("movie", {
-              movieItem: item,
-              user: this.state.user,
-            });
-          }}
-        >
-          <CardUri
-            image={item.get("photo").url()}
-            caption={item.get("name")}
-            relatedMovies={item.get("relatedMovies")}
-            location = {item.get("location")}
+        <View style={styles.titleBar}>
+          <Image
+            style={styles.avatar}
+            source={{ uri: this.state.user.get("avatar").url() }}
           />
-        </TouchableOpacity>
-      ))}
+          <Text style={styles.userTitle}>👏Welcome back,</Text>
+          {/* this.username */}
+          <Text style={styles.username}>{this.state.user.get("userName")}</Text>
+        </View>
+        <Subtitle style={{ paddingTop: 10 }}>
+          Starting your journey from...
+        </Subtitle>
+        {this.state.movie.map((item) => (
+          <TouchableOpacity
+            style={styles.infoBox}
+            onPress={() => {
+              this.props.navigation.navigate("movie", {
+                movieItem: item,
+                user: this.state.user,
+              });
+            }}
+          >
+            <CardUri
+              image={item.get("photo").url()}
+              caption={item.get("name")}
+              relatedMovies={item.get("relatedMovies")}
+              location={item.get("location")}
+            />
+          </TouchableOpacity>
+        ))}
 
-    </ScrollView>
+      </ScrollView>
     );
   }
 }
@@ -137,37 +130,37 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
-  titleBar:{
+  titleBar: {
     width: "100%",
     flexDirection: 'column',
-    height:230,
-    alignItems:'center',
+    height: 230,
+    alignItems: 'center',
     justifyContent: "flex-end",
     // marginLeft: 10//center
     backgroundColor: "#F8E7B4",
-    borderBottomLeftRadius:100,
+    borderBottomLeftRadius: 100,
   },
-  avatar:{
+  avatar: {
     width: 100,
-    height:100,
+    height: 100,
     borderRadius: 100,
   },
-  userTitle:{
+  userTitle: {
     fontSize: 16,
-    color:"#b8bece",
-    fontWeight:"500",
+    color: "#b8bece",
+    fontWeight: "500",
     justifyContent: 'center',
   },
   userInfoSection: {
     paddingHorizontal: 30,
     marginBottom: 25,
   },
-  username:{
-    fontSize:20,
-    color:"#3c4560",
+  username: {
+    fontSize: 20,
+    color: "#3c4560",
     fontWeight: 'bold',
     marginLeft: 0,
-    
+
   },
   title: {
     fontSize: 24,

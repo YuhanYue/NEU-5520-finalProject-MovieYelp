@@ -36,7 +36,7 @@ export default class Overview extends React.Component {
 
   render() {
     return (
-        <View>
+      <View>
         {/* Onboarding Image */}
 
         {/* Title and text container */}
@@ -47,7 +47,7 @@ export default class Overview extends React.Component {
 
             <Text style={styles.title}>{this.props.movieItem.get("name")}</Text>
             <Text style={styles.textStyle}>
-            🔎 {this.props.movieItem.get("description")}
+              🔎 {this.props.movieItem.get("description")}
             </Text>
           </View>
 
@@ -58,7 +58,7 @@ export default class Overview extends React.Component {
           </View>
 
           {/* Text container */}
-          
+
         </View>
 
         {/* Button container */}
@@ -71,13 +71,13 @@ export default class Overview extends React.Component {
         >
           {/* button */}
         </View>
-        <View style={{alignItems: "center"}}>
-        <Image
-              source={{ uri: this.props.movieItem.get("photo").url() }}
-              style={styles.image}
-            />
-            </View>
+        <View style={{ alignItems: "center" }}>
+          <Image
+            source={{ uri: this.props.movieItem.get("photo").url() }}
+            style={styles.image}
+          />
         </View>
+      </View>
     );
   }
 }
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   image: {
     height: 440,
     width: "100%",
-    
+
   },
   indicatorContainer: {
     height: 20,
@@ -122,8 +122,8 @@ const styles = StyleSheet.create({
   },
   title: { fontSize: 32, fontWeight: "bold" },
   textStyle: { fontSize: 16, color: "#A9A9A9" },
-  relatedMovies:{
-    fontSize: 16, 
+  relatedMovies: {
+    fontSize: 16,
     color: "#278AFB",
   },
   slide1: {

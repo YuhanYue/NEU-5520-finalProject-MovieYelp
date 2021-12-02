@@ -11,7 +11,6 @@ import {
 import Inputs from "../components/Inputs";
 import Submit from "../components/Submit";
 import Icon from "react-native-vector-icons/FontAwesome";
-import HomePage from "./HomePage";
 import { Input } from "react-native-elements";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
