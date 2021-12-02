@@ -74,8 +74,6 @@ export default class MoviePage extends React.Component {
 
   render() {
     const movieItem = this.props.route.params.movieItem;
-    console.log("movie view here");
-    console.log(movieItem);
     return (
       <TabView
         navigationState={this.state}

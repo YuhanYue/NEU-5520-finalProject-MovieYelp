@@ -56,7 +56,6 @@ export default class MapViewScreen extends React.Component {
       // alert("Failed to create new object, with error code: " + error.message);
     }
     this.setState({ movie: queryResult });
-    console.log(queryResult);
   };
 
   renderItem = ({ item }) => (

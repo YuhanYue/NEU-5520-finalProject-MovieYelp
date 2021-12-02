@@ -83,8 +83,6 @@ export default class SearchScreen extends React.Component {
     }
     this.setState({ movie: queryResult });
     this.setState({ movieFiltered: queryResult });
-    console.log("queryResult");
-    console.log(queryResult);
   };
 
 
