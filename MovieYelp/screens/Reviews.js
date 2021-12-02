@@ -60,7 +60,6 @@ export default class Reviews extends React.Component {
     this.setState({
       selectImage: pickerResult.uri,
     });
-    console.log(this.state.selectImage);
   };
 
   pickImage = async () => {
@@ -84,7 +83,6 @@ export default class Reviews extends React.Component {
   onSubmitReview = async () => {
     // This value comes from a state variable
     const base64 = this.state.submitImage.base64;
-    // console.log("onSubmitReview");
     const reviewContent = this.state.submitReview;
     const photo = new Parse.File("photo.jpg", {
       base64
