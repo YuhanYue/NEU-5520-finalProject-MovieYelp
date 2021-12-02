@@ -287,7 +287,6 @@ export default class Profile extends React.Component {
   };
 
   render() {
-    //var displayView;
     var height = 0;
     if (this.state.postPress) {
       //displayView = this.postPics;
@@ -297,9 +296,6 @@ export default class Profile extends React.Component {
       height = this.state.userPost.length * 325;
     }
     
-    // console.log("aaaaaaa");
-    // console.log(this.state.profilePic);
-    // this.fetchData();
     return (
       // user info part
       <View>
