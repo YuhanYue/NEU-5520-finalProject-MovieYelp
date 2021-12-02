@@ -36,7 +36,6 @@ export default class Profile extends React.Component {
 
 
     onRetrieveProfile = async () => {
-        console.log("update");
         const query = new Parse.Query("Users");
         query.equalTo("email", this.props.user.get("email"));
         const reviewQuery = new Parse.Query("review");
@@ -65,7 +64,6 @@ export default class Profile extends React.Component {
         } catch ( error ) {
             alert(`Failed to retrieve the object, with error code: ${error.message}`);
         }
-        // console.log(userEmail  +" name:" + userName);
         this.setState({
             profilePic: profilePic,
             userBio: userBio,

@@ -20,7 +20,6 @@ Parse.initialize(
 ); 
 Parse.serverURL = "https://parseapi.back4app.com/";
 
-// todo: search by movie name and location name
 export default class SearchScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -83,8 +82,6 @@ export default class SearchScreen extends React.Component {
     }
     this.setState({ movie: queryResult });
     this.setState({ movieFiltered: queryResult });
-    console.log("queryResult");
-    console.log(queryResult);
   };
 
 
