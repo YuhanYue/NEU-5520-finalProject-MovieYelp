@@ -129,7 +129,7 @@ export default class Login extends React.Component {
           <TouchableOpacity
             style={[styles.submitContainer, { backgroundColor: "#0251ce" }]}
             onPress={() => {
-              const inDevelop = true;
+              const inDevelop = false;
               if (inDevelop) {
                 this.setDefaultUser();
                 this.props.navigation.navigate("HomePageNavigation", {
