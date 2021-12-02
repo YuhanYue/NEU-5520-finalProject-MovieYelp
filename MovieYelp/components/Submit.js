@@ -1,11 +1,10 @@
-import React, {Component} from 'react'
-import {View,
+import React from 'react'
+import {
     StyleSheet,
     Text,
     TouchableOpacity,
 }
-from 'react-native'
-import {Button} from 'react-native-elements'
+from 'react-native';
 
 const Submit = props => {
     return(

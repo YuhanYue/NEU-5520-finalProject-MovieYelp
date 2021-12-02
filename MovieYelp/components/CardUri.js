@@ -12,11 +12,6 @@ const CardUri = (props) => (
       <Text style={styles.title} > 🎬{props.caption}</Text>
         <View relatedMoviesWrapper>
         <Subtitle>📍{props.location}</Subtitle>
-          {/* Fetch related movies as a flatList */}
-          {/* <Text style={styles.relatedMovies}>
-            🎬Related Movies: {props.relatedMovies}
-          </Text> */}
-          {/* <Text style={styles.relatedMovies}>Harry Potter</Text> */}
         </View>
       </Wrapper>
     </Content>

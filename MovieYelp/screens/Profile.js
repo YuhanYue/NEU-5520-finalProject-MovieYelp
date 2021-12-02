@@ -1,17 +1,13 @@
 import React from "react";
-import { View, SafeAreaView, StyleSheet, FlatList, Text } from "react-native";
+import { View,  StyleSheet,  Text } from "react-native";
 import {
   ScrollView,
   Alert,
   TouchableOpacity,
   Image,
-  Button,
   Dimensions,
-  ImageBackground,
 } from "react-native";
-import { TouchableOpacityBase } from "react-native";
-import { Component } from "react";
-import { Ionicons, Entypo } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import Parse from "parse/react-native";
 import * as ImagePicker from "expo-image-picker";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -29,7 +25,6 @@ const width = Dimensions.get("window").width;
 export default class Profile extends React.Component {
   constructor(props) {
     super(props);
-    // this.onRetrieveProfile();
     this.state = {
       pairedImageData: null,
       dehazeCount: 0,
@@ -46,12 +41,8 @@ export default class Profile extends React.Component {
     this.onRetrieveProfile();
   }
 
-  // componentDidUpdate(){
-  //   this.onRetrieveProfile();
-  // }
 
   onRetrieveProfile = async () => {
-    // const User = new Parse.Object.extend("User");
     console.log("update");
     const query = new Parse.Query("Users");
     query.equalTo("email", this.props.user.get("email"));
@@ -74,14 +65,11 @@ export default class Profile extends React.Component {
           date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear();
         userPostDate.push(theDate);
       }
-      // console.log("======object=======");
-      // console.log(object);
       userBio = person.get("userBio");
       userName = person.get("userName");
       userEmail = person.get("email");
       profilePic = person.get("avatar").url();
 
-      // console.log(person.get("avatar"));
     } catch (error) {
       alert(`Failed to retrieve the object, with error code: ${error.message}`);
     }
@@ -94,11 +82,9 @@ export default class Profile extends React.Component {
       userPost: userPost,
       userPostDate: userPostDate,
     });
-    // console.log("userPostDate");
-    // console.log(userPostDate);
+
   };
   morePress = () => {
-    // console.log("You press the button");
     Alert.alert("MORE", "What's more?", [
       { text: "Edit profile" },
       { text: "Open Setting" },
@@ -129,17 +115,13 @@ export default class Profile extends React.Component {
     this.setState({
       image: response,
     });
-    // console.log(response)
     this.uploadImage();
   };
 
   uploadImage = async () => {
-    // const {base64, fileName} = this.state.image;
     const base64 = this.state.image.base64;
 
     const parseFile = new Parse.File("avatar.jpg", { base64 });
-    // this.onSaveNewUser();
-    // 2. Save the file
     try {
       const responseFile = await parseFile.save();
       const query = new Parse.Query("Users");
@@ -167,8 +149,6 @@ export default class Profile extends React.Component {
           <View style={{
             marginLeft: 20,
             height: 250,
-            // backgroundColor: colors[i%4],
-            // backgroundColor:'light grey',
             elevation: 10,
             width: width - 40,
             marginRight: 20,
@@ -190,10 +170,6 @@ export default class Profile extends React.Component {
                 <Text style={{ fontSize: 16, fontWeight: 'bold', color: "grey" }}>
                   📅 Post Date: {this.state.userPostDate[i]}
                 </Text>
-                {/* <Text
-                style={{fontWeight: 'bold', color: '#5f82e6', fontSize: 16}}>
-                $1,500
-              </Text> */}
               </View>
 
               <View style={{ marginTop: 10, flexDirection: 'row' }}>
@@ -293,20 +269,15 @@ export default class Profile extends React.Component {
   render() {
     var height = 0;
     if (this.state.postPress) {
-      //displayView = this.postPics;
       height = this.state.userPost.length * 1000;
     } else {
-      //displayView = this.galleryPics;
       height = this.state.userPost.length * 325;
     }
 
     return (
       // user info part
       <View>
-        {/* <UploadImage /> */}
-        {/*This is the header: */}
         <View >
-          {/* <LinearGradient colors={['#61698E', '#F97878']} start={[0.5, 0.5]} end={[0.5, 0.5]}> */}
           {/* <Text> This is a profile page</Text> */}
 
           <View style={{
