@@ -40,11 +40,12 @@ export default class Overview extends React.Component {
     // console.log(this.props.user);
 
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
-        <StatusBar translucent backgroundColor="rgba(0,0,0,0)" />
+        // <StatusBar translucent backgroundColor="rgba(0,0,0,0)" />
 
+        <View>
         {/* Onboarding Image */}
-        <Swiper showsButtons={true}>
+        <Swiper showsButtons={true}
+        style={{height:500}}>
           {/* //TODO: FlatList */}
           <View style={styles.slide1}>
             <Image
@@ -69,18 +70,13 @@ export default class Overview extends React.Component {
           </View>
 
           <View style={{ marginTop: 10 }}>
-            <Text style={styles.textStyle}>
+            <Text style={styles.relatedMovies}>
               Related Movies: {this.props.movieItem.get("relatedMovies")}
             </Text>
           </View>
 
           {/* Text container */}
-          <View style={{ marginTop: 10 }}>
-            <Text style={styles.textStyle}>
-              Schedule visits in just a few clicks
-            </Text>
-            <Text style={styles.textStyle}>visit in just a few clicks</Text>
-          </View>
+          
         </View>
 
         {/* Button container */}
@@ -93,7 +89,13 @@ export default class Overview extends React.Component {
         >
           {/* button */}
         </View>
-      </SafeAreaView>
+        <View style={{alignItems: "center"}}>
+        <Image
+              source={{ uri: this.props.movieItem.get("photo").url() }}
+              style={styles.image}
+            />
+            </View>
+        </View>
     );
 
     // <ScrollView>
@@ -144,9 +146,9 @@ const Title = styled.Text`
 
 const styles = StyleSheet.create({
   image: {
-    height: 420,
+    height: 440,
     width: "100%",
-    borderBottomLeftRadius: 100,
+    
   },
   indicatorContainer: {
     height: 20,
@@ -174,6 +176,10 @@ const styles = StyleSheet.create({
   },
   title: { fontSize: 32, fontWeight: "bold" },
   textStyle: { fontSize: 16, color: "#A9A9A9" },
+  relatedMovies:{
+    fontSize: 16, 
+    color: "#278AFB",
+  },
   slide1: {
     flex: 1,
     justifyContent: "center",

@@ -16,6 +16,7 @@ import {
   TouchableOpacity,
   Image,
   Button,
+  Dimensions,
 } from "react-native";
 import { TouchableOpacityBase } from "react-native";
 import { Component } from "react";
@@ -23,7 +24,7 @@ import { Ionicons, Entypo } from "@expo/vector-icons";
 import Parse from "parse/react-native";
 import * as ImagePicker from "expo-image-picker";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
+import Icon from "react-native-vector-icons/MaterialIcons";
 //Before using the SDK...
 Parse.setAsyncStorage(AsyncStorage);
 
@@ -172,13 +173,8 @@ export default class Profile extends React.Component {
     if (this.state.postPress) {
       for (var i = 0; i < res.length; i++) {
         table.push(
-          //   <View style={{alignItems:'center'}}>
-          //   <Card
-          //   image={{uri: res[i]}}
-          //   caption={'MM/DD/YY'}
-          // />
-          // </View>
           <View style={{
+            marginLeft:20,
             height: 250,
             // backgroundColor: colors[i%4],
             // backgroundColor:'light grey',
@@ -192,7 +188,7 @@ export default class Profile extends React.Component {
           }}>
             {/* House image */}
             <Image source={{ uri: res[i] }} style={styles.cardImage} />
-            <View style={{ marginTop: 10 }}>
+            <View style={{ marginTop: 0 }}>
               {/* Title and price container */}
               <View
                 style={{
@@ -200,17 +196,14 @@ export default class Profile extends React.Component {
                   justifyContent: 'space-between',
                   marginTop: 10,
                 }}>
-                <Text style={{ fontSize: 16, fontWeight: 'bold' }}>
-                  {this.state.reviewContent}
+                <Text style={{ fontSize: 16, fontWeight: 'bold', color :"grey" }}>
+                 Post Date: {this.state.userPostDate[i]}
                 </Text>
                 {/* <Text
                 style={{fontWeight: 'bold', color: '#5f82e6', fontSize: 16}}>
                 $1,500
               </Text> */}
               </View>
-              <Text style={{ color: '#A9A9A9', fontSize: 14, marginTop: 5 }}>
-                {this.state.username}
-              </Text>
 
               <View style={{ marginTop: 10, flexDirection: 'row' }}>
                 <View style={styles.facility}>
@@ -310,7 +303,7 @@ export default class Profile extends React.Component {
     var height = 0;
     if (this.state.postPress) {
       //displayView = this.postPics;
-      height = this.state.userPost.length * 600;
+      height = this.state.userPost.length * 1000;
     } else {
       //displayView = this.galleryPics;
       height = this.state.userPost.length * 325;
@@ -350,11 +343,9 @@ export default class Profile extends React.Component {
             <Text style={styles.userName}>{this.state.userName}</Text>
             <Text style={{ color: "black", textAlign: 'center' }}>{this.state.userEmail}</Text>
           </View>
-          {/* </LinearGradient> */}
           <View style={{
             paddingVertical: 10,
 
-            borderTopLeftRadius: 100
           }}>
             <Text style={{ fontWeight: "600", textAlign: "left" }}>
               ABOUT ME
@@ -374,7 +365,8 @@ export default class Profile extends React.Component {
 
 
           {/*This is the status bar: */}
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "row" ,
+                    }}>
             <View
               style={{
                 flex: 1,
@@ -391,7 +383,7 @@ export default class Profile extends React.Component {
               >
                 <Ionicons
                   name="add-circle"
-                  style={{ color: "#FF8000" }}
+                  style={{ color: "#F8E7B4" }}
                   size={24}
                 />
               </TouchableOpacity>
@@ -413,7 +405,7 @@ export default class Profile extends React.Component {
               >
                 <Ionicons
                   name="images"
-                  style={{ color: "#FF8000" }}
+                  style={{ color: "#F8E7B4" }}
                   size={24}
                 />
               </TouchableOpacity>
@@ -430,18 +422,18 @@ export default class Profile extends React.Component {
               <TouchableOpacity onPress={this.morePress}>
                 <Ionicons
                   name="ellipsis-horizontal"
-                  style={{ color: "#FF8000" }}
+                  style={{ color: "#F8E7B4"}}
                   size={24}
                 />
               </TouchableOpacity>
               <Text style={{ color: "grey" }}>More</Text>
-            </View> */}
+            </View> 
           </View>
 
 
           {/*This is the display/post view: */}
           <View style={{ margin: 2, borderColor: 'F2EEE5' }}>
-            <ScrollView>
+            <ScrollView >
               <View style={{ height: height }}>
                 {this.state.postPress ? this.postPics() : this.galleryPics()}
               </View>
@@ -581,7 +573,7 @@ const styles = StyleSheet.create({
   },
   cardImage: {
     width: '100%',
-    height: 140,
+    height: 175,
     borderRadius: 15,
   },
   facility: { flexDirection: 'row', marginRight: 15 },

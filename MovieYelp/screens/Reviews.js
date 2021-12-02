@@ -109,23 +109,13 @@ export default class Reviews extends React.Component {
     const email = this.props.user.get("email");
     const userName = this.props.user.get("userName");
     const movieName = this.props.movieItem.get("name");
-    // console.log("review info");
-    // console.log(movieName);
-    // console.log(userName);
-    // console.log(email);
-    // console.log("reviewContent");
-    // console.log(reviewContent);
-    // console.log(photo);
-    // Creates a new Todo parse object instance
     let Review = new Parse.Object('review');
     Review.set("reviewContent",reviewContent);
     Review.set("photo",photo);
     Review.set("email",email);
     Review.set("userName",userName);
     Review.set("movieName",movieName);
-    // Todo.set('title', newTodoTitleValue);
-    // Todo.set('done', false);
-    // After setting the todo values, save it on the server
+
     try {
       await Review.save();
       // Success
@@ -209,7 +199,7 @@ export default class Reviews extends React.Component {
                 Please input your review about this shooting place:
               </Text>
               <TextInput
-                style={{ height: 100, borderColor: "gray", borderWidth: 2 }}
+                style={{ height: 100, borderColor: "gray", borderWidth: 2}}
                 maxLength={200}
                 multiline
                 numberOfLines={4}
@@ -218,7 +208,23 @@ export default class Reviews extends React.Component {
                 })}
               />
               <View style={styles.buttomWrapper}>
+
+
                 <TouchableOpacity
+                  style={[
+                    styles.submitContainer,
+                    { backgroundColor: "#0251ce" },
+                  ]}
+                  onPress={() => {
+                    this.pickImage();
+                  }}
+                >
+                  <Text style={styles.submit}>Upload Images</Text>
+                </TouchableOpacity>
+              </View>
+
+              
+              <TouchableOpacity
                   style={[
                     styles.submitContainer,
                     { backgroundColor: "#0251ce" },
@@ -234,20 +240,8 @@ export default class Reviews extends React.Component {
                   <Text style={styles.submit}>Submit</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity
-                  style={[
-                    styles.submitContainer,
-                    { backgroundColor: "#0251ce" },
-                  ]}
-                  onPress={() => {
-                    this.pickImage();
-                  }}
-                >
-                  <Text style={styles.submit}>Upload Images</Text>
-                </TouchableOpacity>
-              </View>
 
-              <TouchableOpacity
+                <TouchableOpacity
                 style={styles.button}
                 onPress={() =>
                   this.setState({
@@ -256,8 +250,10 @@ export default class Reviews extends React.Component {
                   })
                 }
               >
-                <Text>Cancel</Text>
+                <Text
+                style={ { color: "blue", fontSize:16, textAlign:"center"}}>Cancel</Text>
               </TouchableOpacity>
+
             </View>
           </Modal>
 
@@ -295,11 +291,11 @@ export default class Reviews extends React.Component {
 
                   <View style={{ marginTop: 10, flexDirection: "row" }}>
                     <View style={styles.facility}>
-                      <Icon name="thumb" size={18} />
+                      <Icon name="visibility" size={18} />
                       <Text style={styles.facilityText}>2</Text>
                     </View>
                     <View style={styles.facility}>
-                      <Icon name="people" size={18} />
+                      <Icon name="recommend" size={18} />
                       <Text style={styles.facilityText}>2</Text>
                     </View>
                   </View>
@@ -361,6 +357,8 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
     },
     submitContainer: {
+        shadowOpacity:10,
+        shadowRadius:2,
         borderRadius: 100,
         width: '60%',
         height: 50,

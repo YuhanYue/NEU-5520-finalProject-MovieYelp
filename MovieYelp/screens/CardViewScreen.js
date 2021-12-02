@@ -27,16 +27,17 @@ Parse.initialize(
 ); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
 Parse.serverURL = "https://parseapi.back4app.com/";
 
+
 const width = Dimensions.get("window").width;
 export default class CardViewScreen extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
-      username: "Yuhan",
       user: this.props.route.params.user,
       movie: [],
       movieFiltered: [],
-    };
+    }
     this.retrieveMovie();
   }
 
@@ -51,7 +52,6 @@ export default class CardViewScreen extends React.Component {
     }
     this.setState({ movie: queryResult });
     this.setState({ movieFiltered: queryResult });
-    console.log("CCCCCCardView");
 
     console.log(queryResult);
   };
@@ -74,80 +74,63 @@ export default class CardViewScreen extends React.Component {
     </TouchableOpacity>
   );
   render() {
-    // console.log("----------CardViewHere");
-
-    // // console.log(this.props.navigation.getState());
-    // // console.log(this.props.navigation);
-    // console.log(this.props);
-    // console.log(this.props.user);
-    // console.log(this.props.user.get("userName"));
-
     return (
       
       // <SafeAreaView style={{flex:1}}>
       <ScrollView style={styles.container}>
-        <Circle
-  cx={width / 2}
-  cy={`-${898 - 20 + 2}`}
-  r="898.5"
-  fill="#EFF2F3"
-  stroke="#C5CACD"
-  strokeWidth="2"
-/>
-        <View style={styles.titleBar}>
-          <Image
-            style={styles.avatar}
-            source={{ uri: this.state.user.get("avatar").url() }}
-          />
-          <Text style={styles.userTitle}>Welcome back,</Text>
-          {/* this.username */}
-          <Text style={styles.username}>{this.state.user.get("userName")}</Text>
-        </View>
-        {/* TODO:flatlist to fetch and display data */}
-        <Subtitle style={{ paddingTop: 10 }}>
-          Starting your journey from...
-        </Subtitle>
-        {/* <FlatList
-          style={styles.flatListStyle}
-          data={this.state.movie}
-          renderItem={this.renderItem}
-          keyExtractor={(item) => item.id}
-        /> */}
-        {this.state.movie.map((item) => (
-          <TouchableOpacity
-            style={styles.infoBox}
-            onPress={() => {
-              this.props.navigation.navigate("movie", {
-                movieItem: item,
-                user: this.state.user,
-              });
-            }}
-          >
-            <CardUri
-              image={item.get("photo").url()}
-              caption={item.get("name")}
-              relatedMovies={item.get("relatedMovies")}
-            />
-          </TouchableOpacity>
-        ))}
-        {/* <TouchableOpacity
+      <View style={styles.titleBar}>
+        <Image
+          style={styles.avatar}
+          source={{ uri: this.state.user.get("avatar").url() }}
+        />
+        <Text style={styles.userTitle}>Welcome back,</Text>
+        {/* this.username */}
+        <Text style={styles.username}>{this.state.user.get("userName")}</Text>
+      </View>
+      <Subtitle style={{ paddingTop: 10 }}>
+        Starting your journey from...
+      </Subtitle>
+      {/* <FlatList
+        style={styles.flatListStyle}
+        data={this.state.movie}
+        renderItem={this.renderItem}
+        keyExtractor={(item) => item.id}
+      /> */}
+      {this.state.movie.map((item) => (
+        <TouchableOpacity
           style={styles.infoBox}
-          onPress={() => this.props.navigation.navigate("movie")}
+          onPress={() => {
+            this.props.navigation.navigate("movie", {
+              movieItem: item,
+              user: this.state.user,
+            });
+          }}
         >
-          <Card
-            image={require("../assets/NEU.png")}
-            caption={"NEU Vancouver Campus"}
+          <CardUri
+            image={item.get("photo").url()}
+            caption={item.get("name")}
+            relatedMovies={item.get("relatedMovies")}
           />
         </TouchableOpacity>
+      ))}
+      {/* <TouchableOpacity
+        style={styles.infoBox}
+        onPress={() => this.props.navigation.navigate("movie")}
+      >
+        <Card
+          image={require("../assets/NEU.png")}
+          caption={"NEU Vancouver Campus"}
+        />
+      </TouchableOpacity>
 
-        <TouchableOpacity style={styles.infoBox}>
-          <Card
-            image={require("../assets/Scene1.jpeg")}
-            caption={"NEU Vancouver Campus"}
-            onPress
-          />
-        </TouchableOpacity> */}
-      </ScrollView>
+      <TouchableOpacity style={styles.infoBox}>
+        <Card
+          image={require("../assets/Scene1.jpeg")}
+          caption={"NEU Vancouver Campus"}
+          onPress
+        />
+      </TouchableOpacity> */}
+    </ScrollView>
       // </SafeAreaView>
     );
   }
@@ -169,14 +152,17 @@ const TitleBar = styled.View`
   color: #f2eee5;
 `;
 
+
+
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: 'white',
   },
-  titleBar: {
+  titleBar:{
     width: "100%",
-
     flexDirection: 'column',
     height:230,
     alignItems:'center',
@@ -185,57 +171,55 @@ const styles = StyleSheet.create({
     backgroundColor: "#F8E7B4",
     borderBottomLeftRadius:100,
   },
-  avatar: {
+  avatar:{
     width: 100,
-    height: 100,
+    height:100,
     borderRadius: 100,
   },
-  userTitle: {
+  userTitle:{
     fontSize: 16,
-    color: "#b8bece",
-    fontWeight: "500",
-    justifyContent: "center",
+    color:"#b8bece",
+    fontWeight:"500",
+    justifyContent: 'center',
   },
   userInfoSection: {
     paddingHorizontal: 30,
     marginBottom: 25,
   },
-  username: {
-    fontSize: 20,
-    color: "#3c4560",
-    fontWeight: "bold",
+  username:{
+    fontSize:20,
+    color:"#3c4560",
+    fontWeight: 'bold',
     marginLeft: 0,
+    
   },
   title: {
     fontSize: 24,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   caption: {
     fontSize: 14,
     lineHeight: 14,
-    fontWeight: "500",
-  },
-  flatListStyle: {
-    height: "100%",
+    fontWeight: '500',
   },
   row: {
-    flexDirection: "row",
+    flexDirection: 'row',
     marginBottom: 10,
   },
   infoBoxWrapper: {
-    borderBottomColor: "#dddddd",
+    borderBottomColor: '#dddddd',
     borderBottomWidth: 1,
-    borderTopColor: "#dddddd",
+    borderTopColor: '#dddddd',
     borderTopWidth: 1,
-    flexDirection: "row",
+    flexDirection: 'row',
 
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   infoBox: {
-    width: "100%",
-    alignItems: "center",
-    justifyContent: "center",
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-});
+})

@@ -10,7 +10,9 @@ import {
 
 import Inputs from "../components/Inputs";
 import Submit from "../components/Submit";
+import Icon from "react-native-vector-icons/FontAwesome";
 import HomePage from "./HomePage";
+import { Input } from "react-native-elements";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Parse from "parse/react-native";
@@ -99,7 +101,7 @@ export default class Login extends React.Component {
   };
 
 
-  login = () => {};
+  login = () => { };
 
   setDefaultUser = () => {
     this.state.allUsers.forEach((item) => {
@@ -119,11 +121,13 @@ export default class Login extends React.Component {
           <Text style={styles.textTitle}>Welcome Back</Text>
           <Text style={styles.textBody}>Log in to your existant account</Text>
           <View style={{ marginTop: 20 }} />
-          <Inputs name="Email" icon="user" onChangeText={this.onEmailChanged} />
+          <Inputs name="Email" icon="user"
+            password={false}
+            onChangeText={this.onEmailChanged} />
           <Inputs
             name="Password"
             icon="lock"
-            pass={true}
+            password={true}
             onChangeText={this.onPasswordChanged}
           />
           <View style={{ width: "90%" }}>

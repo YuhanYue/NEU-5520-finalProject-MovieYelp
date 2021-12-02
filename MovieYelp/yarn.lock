@@ -993,6 +993,21 @@
     pirates "^4.0.0"
     source-map-support "^0.5.16"
 
+"@babel/runtime-corejs3@7.14.7":
+  version "7.14.7"
+  resolved "https://registry.npmmirror.com/@babel/runtime-corejs3/download/@babel/runtime-corejs3-7.14.7.tgz?cache=0&sync_timestamp=1636495918130&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40babel%2Fruntime-corejs3%2Fdownload%2F%40babel%2Fruntime-corejs3-7.14.7.tgz#0ef292bbce40ca00f874c9724ef175a12476465c"
+  integrity sha1-DvKSu85AygD4dMlyTvF1oSR2Rlw=
+  dependencies:
+    core-js-pure "^3.15.0"
+    regenerator-runtime "^0.13.4"
+
+"@babel/runtime@7.15.4":
+  version "7.15.4"
+  resolved "https://registry.npmmirror.com/@babel/runtime/download/@babel/runtime-7.15.4.tgz?cache=0&sync_timestamp=1636495894093&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40babel%2Fruntime%2Fdownload%2F%40babel%2Fruntime-7.15.4.tgz#fd17d16bfdf878e6dd02d19753a39fa8a8d9c84a"
+  integrity sha1-/RfRa/34eObdAtGXU6OfqKjZyEo=
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
 "@babel/runtime@^7.14.0", "@babel/runtime@^7.8.4":
   version "7.16.3"
   resolved "https://registry.npmmirror.com/@babel/runtime/download/@babel/runtime-7.16.3.tgz?cache=0&sync_timestamp=1636495894093&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40babel%2Fruntime%2Fdownload%2F%40babel%2Fruntime-7.16.3.tgz"
@@ -1118,6 +1133,27 @@
     xcode "^3.0.1"
     xml2js "0.4.23"
 
+"@expo/config-plugins@^4.0.3":
+  version "4.0.10"
+  resolved "https://registry.npmmirror.com/@expo/config-plugins/download/@expo/config-plugins-4.0.10.tgz#6ed83012afea211442b02994fbc3ecffa95b4138"
+  integrity sha512-wdSgwWgonjnZBqkxH1TiFlPsY9nhJ6jSMiSKlUh2N8avgLeot2CzT8kTtJa3jB+3/sHiFZE6/VbD7USAIkmIIA==
+  dependencies:
+    "@expo/config-types" "^43.0.1"
+    "@expo/json-file" "8.2.34"
+    "@expo/plist" "0.0.16"
+    "@react-native/normalize-color" "^2.0.0"
+    chalk "^4.1.2"
+    debug "^4.3.1"
+    find-up "~5.0.0"
+    fs-extra "9.0.0"
+    getenv "^1.0.0"
+    glob "7.1.6"
+    resolve-from "^5.0.0"
+    semver "^7.3.5"
+    slash "^3.0.0"
+    xcode "^3.0.1"
+    xml2js "0.4.23"
+
 "@expo/config-types@^42.0.0":
   version "42.0.0"
   resolved "https://registry.npmmirror.com/@expo/config-types/download/@expo/config-types-42.0.0.tgz"
@@ -1154,6 +1190,15 @@
     json5 "^1.0.1"
     write-file-atomic "^2.3.0"
 
+"@expo/json-file@8.2.34":
+  version "8.2.34"
+  resolved "https://registry.npmmirror.com/@expo/json-file/download/@expo/json-file-8.2.34.tgz#2f24e90a677195f7a81e167115460eb2902c3130"
+  integrity sha512-ZxtBodAZGxdLtgKzmsC+8ViUxt1mhFW642Clu2OuG3f6PAyAFsU/SqEGag9wKFaD3x3Wt8VhL+3y5fMJmUFgPw==
+  dependencies:
+    "@babel/code-frame" "~7.10.4"
+    json5 "^1.0.1"
+    write-file-atomic "^2.3.0"
+
 "@expo/metro-config@~0.1.84":
   version "0.1.84"
   resolved "https://registry.npmmirror.com/@expo/metro-config/download/@expo/metro-config-0.1.84.tgz"
@@ -1177,6 +1222,15 @@
   version "0.0.15"
   resolved "https://registry.npmmirror.com/@expo/plist/download/@expo/plist-0.0.15.tgz"
   integrity sha1-Qe83t7vmuBxIv0pcNZZhx2a7npA=
+  dependencies:
+    "@xmldom/xmldom" "~0.7.0"
+    base64-js "^1.2.3"
+    xmlbuilder "^14.0.0"
+
+"@expo/plist@0.0.16":
+  version "0.0.16"
+  resolved "https://registry.npmmirror.com/@expo/plist/download/@expo/plist-0.0.16.tgz#c7d294a774196cfa1d8caf89a75ba923f5d1d53c"
+  integrity sha512-yQMt2CTm2VNLiHv2/EqHYrHvfflI2mFJd+DZIQQy569hvpZle0CxMPGH1p2KatbrO8htxJNvwrlR/4TIwhQJ5w==
   dependencies:
     "@xmldom/xmldom" "~0.7.0"
     base64-js "^1.2.3"
@@ -1677,6 +1731,13 @@
   resolved "https://registry.npm.taobao.org/@protobufjs/utf8/download/@protobufjs/utf8-1.1.0.tgz"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
+"@react-native-async-storage/async-storage@^1.15.14":
+  version "1.15.14"
+  resolved "https://registry.npmmirror.com/@react-native-async-storage/async-storage/download/@react-native-async-storage/async-storage-1.15.14.tgz#8165d3f78798b46e693169795b62e40142064273"
+  integrity sha512-eJF2horabXazwszCyyXDe4w7sBSWlB0WPA8akKXuN2n7WXKHYeQJPN41lS9OahrhSZuZwqftNFE9VWgPXA8wyA==
+  dependencies:
+    merge-options "^3.0.4"
+
 "@react-native-community/cameraroll@^4.1.2":
   version "4.1.2"
   resolved "https://registry.npmmirror.com/@react-native-community/cameraroll/download/@react-native-community/cameraroll-4.1.2.tgz"
@@ -1810,6 +1871,20 @@
   version "0.1.11"
   resolved "https://registry.nlark.com/@react-native-community/masked-view/download/@react-native-community/masked-view-0.1.11.tgz"
   integrity sha1-L0xuEL7geGq/9GBOOaN97W85gM4=
+
+"@react-native-firebase/app@^13.0.1":
+  version "13.0.1"
+  resolved "https://registry.npmmirror.com/@react-native-firebase/app/download/@react-native-firebase/app-13.0.1.tgz#2aa69b28db379f965c8df8199620f05a692527d1"
+  integrity sha1-KqabKNs3n5ZcjfgZliDwWmklJ9E=
+  dependencies:
+    "@expo/config-plugins" "^4.0.3"
+    opencollective-postinstall "^2.0.1"
+    superstruct "^0.6.2"
+
+"@react-native-firebase/database@^13.0.1":
+  version "13.0.1"
+  resolved "https://registry.npmmirror.com/@react-native-firebase/database/download/@react-native-firebase/database-13.0.1.tgz#b49531582be41fb8feeaf9ec7bbdf53a7c46af52"
+  integrity sha1-tJUxWCvkH7j+6vnse731OnxGr1I=
 
 "@react-native/assets@1.0.0":
   version "1.0.0"
@@ -2586,6 +2661,16 @@ cliui@^7.0.2:
     strip-ansi "^6.0.0"
     wrap-ansi "^7.0.0"
 
+clone-deep@^2.0.1:
+  version "2.0.2"
+  resolved "https://registry.npm.taobao.org/clone-deep/download/clone-deep-2.0.2.tgz#00db3a1e173656730d1188c3d6aced6d7ea97713"
+  integrity sha1-ANs6Hhc2VnMNEYjD1qztbX6pdxM=
+  dependencies:
+    for-own "^1.0.0"
+    is-plain-object "^2.0.4"
+    kind-of "^6.0.0"
+    shallow-clone "^1.0.0"
+
 clone-deep@^4.0.1:
   version "4.0.1"
   resolved "https://registry.npm.taobao.org/clone-deep/download/clone-deep-4.0.1.tgz"
@@ -2753,6 +2838,11 @@ core-js-compat@^3.18.0, core-js-compat@^3.19.0:
     browserslist "^4.17.6"
     semver "7.0.0"
 
+core-js-pure@^3.15.0:
+  version "3.19.2"
+  resolved "https://registry.npmmirror.com/core-js-pure/download/core-js-pure-3.19.2.tgz#26b5bfb503178cff6e3e115bc2ba6c6419383680"
+  integrity sha512-5LkcgQEy8pFeVnd/zomkUBSwnmIxuF1C8E9KrMAbOc8f34IBT9RGvTYeNDdp1PnvMJrrVhvk1hg/yVV5h/znlg==
+
 core-js@3.6.5:
   version "3.6.5"
   resolved "https://registry.npmmirror.com/core-js/download/core-js-3.6.5.tgz"
@@ -2803,6 +2893,11 @@ cross-spawn@^6.0.0, cross-spawn@^6.0.5:
     semver "^5.5.0"
     shebang-command "^1.2.0"
     which "^1.2.9"
+
+crypto-js@4.1.1:
+  version "4.1.1"
+  resolved "https://registry.nlark.com/crypto-js/download/crypto-js-4.1.1.tgz?cache=0&sync_timestamp=1626955413145&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcrypto-js%2Fdownload%2Fcrypto-js-4.1.1.tgz#9e485bcf03521041bd85844786b83fb7619736cf"
+  integrity sha1-nkhbzwNSEEG9hYRHhrg/t2GXNs8=
 
 css-color-keywords@^1.0.0:
   version "1.0.0"
@@ -3448,10 +3543,22 @@ fontfaceobserver@^2.1.0:
   resolved "https://registry.npm.taobao.org/fontfaceobserver/download/fontfaceobserver-2.1.0.tgz"
   integrity sha1-4nBdKT4sWFplMcKnIpBWVzF6KZE=
 
-for-in@^1.0.2:
+for-in@^0.1.3:
+  version "0.1.8"
+  resolved "https://registry.nlark.com/for-in/download/for-in-0.1.8.tgz#d8773908e31256109952b1fdb9b3fa867d2775e1"
+  integrity sha1-2Hc5COMSVhCZUrH9ubP6hn0ndeE=
+
+for-in@^1.0.1, for-in@^1.0.2:
   version "1.0.2"
-  resolved "https://registry.nlark.com/for-in/download/for-in-1.0.2.tgz"
+  resolved "https://registry.nlark.com/for-in/download/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
   integrity sha1-gQaNKVqBQuwKxybG4iAMMPttXoA=
+
+for-own@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npm.taobao.org/for-own/download/for-own-1.0.0.tgz#c63332f415cedc4b04dbfe70cf836494c53cb44b"
+  integrity sha1-xjMy9BXO3EsE2/5wz4NklMU8tEs=
+  dependencies:
+    for-in "^1.0.1"
 
 fragment-cache@^0.2.1:
   version "0.2.1"
@@ -3712,6 +3819,11 @@ iconv-lite@^0.6.2:
   dependencies:
     safer-buffer ">= 2.1.2 < 3.0.0"
 
+idb-keyval@5.0.6:
+  version "5.0.6"
+  resolved "https://registry.npmmirror.com/idb-keyval/download/idb-keyval-5.0.6.tgz#62fe4a6703fb5ec86661f41330c94fda65e6d0e6"
+  integrity sha1-Yv5KZwP7XshmYfQTMMlP2mXm0OY=
+
 idb@3.0.2:
   version "3.0.2"
   resolved "https://registry.npmmirror.com/idb/download/idb-3.0.2.tgz"
@@ -3907,6 +4019,11 @@ is-number@^7.0.0:
   version "7.0.0"
   resolved "https://registry.nlark.com/is-number/download/is-number-7.0.0.tgz"
   integrity sha1-dTU0W4lnNNX4DE0GxQlVUnoU8Ss=
+
+is-plain-obj@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/is-plain-obj/download/is-plain-obj-2.1.0.tgz#45e42e37fccf1f40da8e5f76ee21515840c09287"
+  integrity sha1-ReQuN/zPH0Dajl927iFRWEDAkoc=
 
 is-plain-object@^2.0.3, is-plain-object@^2.0.4:
   version "2.0.4"
@@ -4187,7 +4304,7 @@ kind-of@^5.0.0:
   resolved "https://registry.npm.taobao.org/kind-of/download/kind-of-5.1.0.tgz"
   integrity sha1-cpyR4thXt6QZofmqZWhcTDP1hF0=
 
-kind-of@^6.0.0, kind-of@^6.0.2:
+kind-of@^6.0.0, kind-of@^6.0.1, kind-of@^6.0.2:
   version "6.0.3"
   resolved "https://registry.npm.taobao.org/kind-of/download/kind-of-6.0.3.tgz"
   integrity sha1-B8BQNKbDSfoG4k+jWqdttFgM5N0=
@@ -4381,6 +4498,13 @@ mdn-data@2.0.14:
   version "2.0.14"
   resolved "https://registry.npmmirror.com/mdn-data/download/mdn-data-2.0.14.tgz#7113fc4281917d63ce29b43446f701e68c25ba50"
   integrity sha1-cRP8QoGRfWPOKbQ0RvcB5owlulA=
+
+merge-options@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.npm.taobao.org/merge-options/download/merge-options-3.0.4.tgz#84709c2aa2a4b24c1981f66c179fe5565cc6dbb7"
+  integrity sha1-hHCcKqKkskwZgfZsF5/lVlzG27c=
+  dependencies:
+    is-plain-obj "^2.1.0"
 
 merge-stream@^2.0.0:
   version "2.0.0"
@@ -4815,6 +4939,14 @@ mixin-deep@^1.2.0:
     for-in "^1.0.2"
     is-extendable "^1.0.1"
 
+mixin-object@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.npm.taobao.org/mixin-object/download/mixin-object-2.0.1.tgz#4fb949441dab182540f1fe035ba60e1947a5e57e"
+  integrity sha1-T7lJRB2rGCVA8f4DW6YOGUel5X4=
+  dependencies:
+    for-in "^0.1.3"
+    is-extendable "^0.1.1"
+
 mkdirp@^0.5.1:
   version "0.5.5"
   resolved "https://registry.npmmirror.com/mkdirp/download/mkdirp-0.5.5.tgz?cache=0&sync_timestamp=1636300883420&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fmkdirp%2Fdownload%2Fmkdirp-0.5.5.tgz"
@@ -5069,9 +5201,9 @@ open@^6.2.0:
   dependencies:
     is-wsl "^1.1.0"
 
-opencollective-postinstall@^2.0.3:
+opencollective-postinstall@^2.0.1, opencollective-postinstall@^2.0.3:
   version "2.0.3"
-  resolved "https://registry.npm.taobao.org/opencollective-postinstall/download/opencollective-postinstall-2.0.3.tgz"
+  resolved "https://registry.npmmirror.com/opencollective-postinstall/download/opencollective-postinstall-2.0.3.tgz#7a0fff978f6dbfa4d006238fbac98ed4198c3259"
   integrity sha1-eg//l49tv6TQBiOPusmO1BmMMlk=
 
 options@>=0.0.5:
@@ -5153,6 +5285,21 @@ parse-json@^4.0.0:
   dependencies:
     error-ex "^1.3.1"
     json-parse-better-errors "^1.0.1"
+
+parse@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.npmmirror.com/parse/download/parse-3.4.0.tgz#de39edd0918ae77baed9c249793d4a09bb734d14"
+  integrity sha1-3jnt0JGK53uu2cJJeT1KCbtzTRQ=
+  dependencies:
+    "@babel/runtime" "7.15.4"
+    "@babel/runtime-corejs3" "7.14.7"
+    idb-keyval "5.0.6"
+    react-native-crypto-js "1.0.0"
+    uuid "3.4.0"
+    ws "7.5.1"
+    xmlhttprequest "1.8.0"
+  optionalDependencies:
+    crypto-js "4.1.1"
 
 parseurl@~1.3.3:
   version "1.3.3"
@@ -5417,6 +5564,11 @@ react-native-codegen@^0.0.6:
     flow-parser "^0.121.0"
     jscodeshift "^0.11.0"
     nullthrows "^1.1.1"
+
+react-native-crypto-js@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npm.taobao.org/react-native-crypto-js/download/react-native-crypto-js-1.0.0.tgz#e677e022e147f41b35614416c92d655f87e2450a"
+  integrity sha1-5nfgIuFH9Bs1YUQWyS1lX4fiRQo=
 
 react-native-elements@^3.4.2:
   version "3.4.2"
@@ -6020,6 +6172,15 @@ setprototypeof@1.1.1:
   resolved "https://registry.npm.taobao.org/setprototypeof/download/setprototypeof-1.1.1.tgz"
   integrity sha1-fpWsskqpL1iF4KvvW6ExMw1K5oM=
 
+shallow-clone@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.nlark.com/shallow-clone/download/shallow-clone-1.0.0.tgz#4480cd06e882ef68b2ad88a3ea54832e2c48b571"
+  integrity sha1-RIDNBuiC72iyrYij6lSDLixItXE=
+  dependencies:
+    is-extendable "^0.1.1"
+    kind-of "^5.0.0"
+    mixin-object "^2.0.1"
+
 shallow-clone@^3.0.0:
   version "3.0.1"
   resolved "https://registry.nlark.com/shallow-clone/download/shallow-clone-3.0.1.tgz"
@@ -6307,6 +6468,14 @@ sudo-prompt@^9.0.0:
   resolved "https://registry.npm.taobao.org/sudo-prompt/download/sudo-prompt-9.2.1.tgz"
   integrity sha1-d++4QwnJykiVJ6TnSfKH5r3VKv0=
 
+superstruct@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.npmmirror.com/superstruct/download/superstruct-0.6.2.tgz#c5eb034806a17ff98d036674169ef85e4c7f6a1c"
+  integrity sha1-xesDSAahf/mNA2Z0Fp74Xkx/ahw=
+  dependencies:
+    clone-deep "^2.0.1"
+    kind-of "^6.0.1"
+
 supports-color@^5.3.0, supports-color@^5.5.0:
   version "5.5.0"
   resolved "https://registry.nlark.com/supports-color/download/supports-color-5.5.0.tgz"
@@ -6551,15 +6720,15 @@ utils-merge@1.0.1:
   resolved "https://registry.npm.taobao.org/utils-merge/download/utils-merge-1.0.1.tgz"
   integrity sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
 
+uuid@3.4.0, uuid@^3.3.2, uuid@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.npmmirror.com/uuid/download/uuid-3.4.0.tgz"
+  integrity sha1-sj5DWK+oogL+ehAK8fX4g/AgB+4=
+
 uuid@7.0.2:
   version "7.0.2"
   resolved "https://registry.npmmirror.com/uuid/download/uuid-7.0.2.tgz"
   integrity sha1-f/XCA0Z+kfXg2Fz8uq99LrvKm+Y=
-
-uuid@^3.3.2, uuid@^3.4.0:
-  version "3.4.0"
-  resolved "https://registry.npmmirror.com/uuid/download/uuid-3.4.0.tgz"
-  integrity sha1-sj5DWK+oogL+ehAK8fX4g/AgB+4=
 
 uuid@^7.0.3:
   version "7.0.3"
@@ -6676,6 +6845,11 @@ write-file-atomic@^2.3.0:
     imurmurhash "^0.1.4"
     signal-exit "^3.0.2"
 
+ws@7.5.1:
+  version "7.5.1"
+  resolved "https://registry.npmmirror.com/ws/download/ws-7.5.1.tgz#44fc000d87edb1d9c53e51fbc69a0ac1f6871d66"
+  integrity sha1-RPwADYftsdnFPlH7xpoKwfaHHWY=
+
 ws@>=7.4.6:
   version "8.2.3"
   resolved "https://registry.npmmirror.com/ws/download/ws-8.2.3.tgz"
@@ -6746,6 +6920,11 @@ xmldoc@^1.1.2:
   integrity sha1-ZmbgKf4lRw1ZnNMOI/8NHtUEZtc=
   dependencies:
     sax "^1.2.1"
+
+xmlhttprequest@1.8.0:
+  version "1.8.0"
+  resolved "https://registry.nlark.com/xmlhttprequest/download/xmlhttprequest-1.8.0.tgz#67fe075c5c24fef39f9d65f5f7b7fe75171968fc"
+  integrity sha1-Z/4HXFwk/vOfnWX197f+dRcZaPw=
 
 xtend@~4.0.1:
   version "4.0.2"

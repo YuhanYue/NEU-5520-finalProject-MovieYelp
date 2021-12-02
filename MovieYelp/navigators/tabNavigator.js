@@ -106,8 +106,10 @@ export default class TabNavigator extends React.Component {
         >
           <Tab.Screen
             name="CardView"
+            
             component={MapForMovieStackScreen}
             options={{
+              tabBarShowLabel:false,
               tabBarIcon: ({ focused }) => (
                 <View
                   style={{
@@ -117,7 +119,7 @@ export default class TabNavigator extends React.Component {
                   }}
                 >
                   <Image
-                    source={require("../assets/dehaze.png")}
+                    source={require("../assets/HomeIcon2.png")}
                     resizeMode="contain"
                     style={{
                       width: 40,
@@ -127,7 +129,7 @@ export default class TabNavigator extends React.Component {
                   <Text
                   // style={{color: focused ?'#e32f45' : '#748c94',}}
                   >
-                    Map
+                    Home
                   </Text>
                 </View>
               ),
@@ -138,6 +140,7 @@ export default class TabNavigator extends React.Component {
             name="Map"
             component={CallOutForMovieStackScreen}
             options={{
+              tabBarShowLabel:false,
               tabBarIcon: ({ focused }) => (
                 <View
                   style={{
@@ -147,11 +150,11 @@ export default class TabNavigator extends React.Component {
                   }}
                 >
                   <Image
-                    source={require("../assets/dehaze.png")}
+                    source={require("../assets/mapIcon1.jpeg")}
                     resizeMode="contain"
                     style={{
-                      width: 40,
-                      height: 40,
+                      width: 38,
+                      height: 38,
                     }}
                   />
                   <Text
@@ -167,6 +170,7 @@ export default class TabNavigator extends React.Component {
             name="Search"
             component={SearchForMovieStackScreen}
             options={{
+              tabBarShowLabel:false,
               tabBarIcon: ({ focused }) => (
                 <View
                   style={{
@@ -176,7 +180,7 @@ export default class TabNavigator extends React.Component {
                   }}
                 >
                   <Image
-                    source={require("../assets/search.png")}
+                    source={require("../assets/searchIcon.png")}
                     resizeMode="contain"
                     style={{
                       marginTop: 3,
@@ -198,6 +202,7 @@ export default class TabNavigator extends React.Component {
             name="Profile"
             children={() => <Profile user={user}></Profile>}
             options={{
+              tabBarShowLabel:false,
               tabBarIcon: ({ focused }) => (
                 <View
                   style={{
