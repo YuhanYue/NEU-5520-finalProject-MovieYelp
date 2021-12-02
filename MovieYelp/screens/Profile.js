@@ -22,7 +22,7 @@ Parse.setAsyncStorage(AsyncStorage);
 Parse.initialize(
   "iX9UmLwWNOSVhSfrvY7YnWOAyZPNujc2cvKSCkFT",
   "NSdhBidUcAsiTET1C4r7ZWGjgTDCLgBdvFkecWr5"
-); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
+); 
 Parse.serverURL = "https://parseapi.back4app.com/";
 
 const width = Dimensions.get("window").width;
@@ -46,9 +46,7 @@ export default class Profile extends React.Component {
     this.onRetrieveProfile();
   }
 
-  // componentDidUpdate(){
-  //   this.onRetrieveProfile();
-  // }
+
 
   onRetrieveProfile = async () => {
     // const User = new Parse.Object.extend("User");

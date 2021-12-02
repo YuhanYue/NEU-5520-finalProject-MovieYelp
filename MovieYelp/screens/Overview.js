@@ -18,9 +18,8 @@ export default class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      locationName: "NEU vancouver",
-      locationIntroduction:
-        "Northeastern, founded in 1898, is a global research university built on a tradition of engagement with the world.",
+      locationName:"",
+      locationIntroduction:"",
     };
   }
 
@@ -46,7 +45,7 @@ export default class Overview extends React.Component {
             {/* <Text style={styles.title}>{this.props.user.get("userName")}</Text> */}
 
             <Text style={styles.title}>{this.props.movieItem.get("name")}</Text>
-            <Text style={styles.textStyle}>
+            <Text style={[styles.textStyle, {marginTop:10}]}>
               🔎 {this.props.movieItem.get("description")}
             </Text>
           </View>
@@ -54,6 +53,12 @@ export default class Overview extends React.Component {
           <View style={{ marginTop: 10 }}>
             <Text style={styles.relatedMovies}>
               🎬 Related Movies: {this.props.movieItem.get("relatedMovies")}
+            </Text>
+          </View>
+
+          <View style={{ marginTop: 10 }}>
+            <Text style={styles.locationInfo}>
+              📌 Shooting locations: {this.props.movieItem.get("location")}
             </Text>
           </View>
 
@@ -71,7 +76,7 @@ export default class Overview extends React.Component {
         >
           {/* button */}
         </View>
-        <View style={{ alignItems: "center" }}>
+        <View style={{ alignItems: "center" , marginTop: -10}}>
           <Image
             source={{ uri: this.props.movieItem.get("photo").url() }}
             style={styles.image}
@@ -125,6 +130,7 @@ const styles = StyleSheet.create({
   relatedMovies: {
     fontSize: 16,
     color: "#278AFB",
+    fontWeight:"500",
   },
   slide1: {
     flex: 1,
@@ -132,21 +138,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#9DD6EB",
   },
-  slide2: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#97CAE5",
-  },
-  slide3: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#92BBD9",
-  },
+
   text: {
     color: "#fff",
     fontSize: 30,
     fontWeight: "bold",
   },
+  locationInfo:{
+    fontWeight:"500",
+    color:"#A9A9A9",
+  }
 });

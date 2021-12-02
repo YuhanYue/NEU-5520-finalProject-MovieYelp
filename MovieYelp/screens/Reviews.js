@@ -28,7 +28,7 @@ Parse.setAsyncStorage(AsyncStorage);
 Parse.initialize(
   "iX9UmLwWNOSVhSfrvY7YnWOAyZPNujc2cvKSCkFT",
   "NSdhBidUcAsiTET1C4r7ZWGjgTDCLgBdvFkecWr5"
-); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
+); 
 Parse.serverURL = "https://parseapi.back4app.com/";
 
 
@@ -45,9 +45,9 @@ export default class Reviews extends React.Component {
       selectImage: "",
       reviewContent: "This is great!!",
       review: [],
-      submitReview : "",
-      submitImage : null,
-      
+      submitReview: "",
+      submitImage: null,
+
     };
     this.retrieveReview();
   }
@@ -83,39 +83,39 @@ export default class Reviews extends React.Component {
     console.log(this.state.selectImage);
   };
 
-  pickImage = async()=> {
-    try{
+  pickImage = async () => {
+    try {
       let response = await ImagePicker.launchImageLibraryAsync(
         {
-          mediaType:  'photo',
-          base64:  true,
+          mediaType: 'photo',
+          base64: true,
         });
-        this.setState({
-          submitImage:response,
-        })
-        alert("Imgae added successfully!");
-        
-    } catch(error){
+      this.setState({
+        submitImage: response,
+      })
+      alert("Imgae added successfully!");
+
+    } catch (error) {
       alert("Fail to upload image!");
     }
-    
+
   }
 
-  onSubmitReview = async() => {
+  onSubmitReview = async () => {
     // This value comes from a state variable
     const base64 = this.state.submitImage.base64;
     // console.log("onSubmitReview");
     const reviewContent = this.state.submitReview;
-    const photo = new  Parse.File("photo.jpg", {base64});
+    const photo = new Parse.File("photo.jpg", { base64 });
     const email = this.props.user.get("email");
     const userName = this.props.user.get("userName");
     const movieName = this.props.movieItem.get("name");
     let Review = new Parse.Object('review');
-    Review.set("reviewContent",reviewContent);
-    Review.set("photo",photo);
-    Review.set("email",email);
-    Review.set("userName",userName);
-    Review.set("movieName",movieName);
+    Review.set("reviewContent", reviewContent);
+    Review.set("photo", photo);
+    Review.set("email", email);
+    Review.set("userName", userName);
+    Review.set("movieName", movieName);
 
     try {
       await Review.save();
@@ -128,18 +128,18 @@ export default class Reviews extends React.Component {
     };
   };
 
-  uploadImage = async() => {
-    
+  uploadImage = async () => {
+
     // const {base64, fileName} = this.state.image;
     const base64 = this.state.image.base64;
 
-    const  parseFile = new  Parse.File("avatar.jpg", {base64});
+    const parseFile = new Parse.File("avatar.jpg", { base64 });
     // this.onSaveNewUser();
     // 2. Save the file
     try {
       const responseFile = await parseFile.save();
       const query = new Parse.Query("Users");
-      query.equalTo("email",this.props.user.get("email"));
+      query.equalTo("email", this.props.user.get("email"));
       const object = await query.find();
       const person = object[0];
       person.set('avatar', responseFile);
@@ -152,9 +152,9 @@ export default class Reviews extends React.Component {
     }
   }
 
-    recommendReview = () =>{
+  recommendReview = () => {
 
-    }
+  }
 
 
   render() {
@@ -206,7 +206,7 @@ export default class Reviews extends React.Component {
                 maxLength={200}
                 multiline
                 numberOfLines={4}
-                onChangeText = { (text) => this.setState({
+                onChangeText={(text) => this.setState({
                   submitReview: text,
                 })}
               />
@@ -226,25 +226,25 @@ export default class Reviews extends React.Component {
                 </TouchableOpacity>
               </View>
 
-              
+
               <TouchableOpacity
-                  style={[
-                    styles.submitContainer,
-                    { backgroundColor: "#0251ce" },
-                  ]}
-                  onPress={() => {
-                    this.onSubmitReview();
-                    this.setState({
-                      modalVisible: this.state.modalVisible == true ? false : true,
-                    })
-                    this.retrieveReview();
-                    }}
-                >
-                  <Text style={styles.submit}>Submit</Text>
-                </TouchableOpacity>
+                style={[
+                  styles.submitContainer,
+                  { backgroundColor: "#0251ce" },
+                ]}
+                onPress={() => {
+                  this.onSubmitReview();
+                  this.setState({
+                    modalVisible: this.state.modalVisible == true ? false : true,
+                  })
+                  this.retrieveReview();
+                }}
+              >
+                <Text style={styles.submit}>Submit</Text>
+              </TouchableOpacity>
 
 
-                <TouchableOpacity
+              <TouchableOpacity
                 style={styles.button}
                 onPress={() =>
                   this.setState({
@@ -254,7 +254,7 @@ export default class Reviews extends React.Component {
                 }
               >
                 <Text
-                style={ { color: "blue", fontSize:16, textAlign:"center"}}>Cancel</Text>
+                  style={{ color: "blue", fontSize: 16, textAlign: "center" }}>Cancel</Text>
               </TouchableOpacity>
 
             </View>
@@ -314,91 +314,91 @@ export default class Reviews extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    reviewContainer: {
-        flex: 1,
-        justifyContent: 'center',
-    },
-    thumbnail: {
-        width: 150,
-        height: 150,
-        marginLeft: 5,
-        marginRight: 5,
-        borderRadius: 5,
-        marginBottom: 10,
-        marginTop: 5,
-    },
-    infoBoxWrapper: {
-        borderBottomColor: '#dddddd',
-        borderBottomWidth: 1,
-        borderTopColor: '#dddddd',
-        borderTopWidth: 1,
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-    },
-    relatedMoviesSection: {
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    infoBox: {
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    userInfo: {
-        fontSize: 20,
-        fontWeight: "bold",
-        flexDirection: 'row',
-    },
-    reviewBody: {
-        fontSize: 15,
-        flexDirection: 'row',
+  reviewContainer: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  thumbnail: {
+    width: 150,
+    height: 150,
+    marginLeft: 5,
+    marginRight: 5,
+    borderRadius: 5,
+    marginBottom: 10,
+    marginTop: 5,
+  },
+  infoBoxWrapper: {
+    borderBottomColor: '#dddddd',
+    borderBottomWidth: 1,
+    borderTopColor: '#dddddd',
+    borderTopWidth: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  relatedMoviesSection: {
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  infoBox: {
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  userInfo: {
+    fontSize: 20,
+    fontWeight: "bold",
+    flexDirection: 'row',
+  },
+  reviewBody: {
+    fontSize: 15,
+    flexDirection: 'row',
 
-    },
-    reviewPart: {
-        flexDirection: 'column',
-    },
-    submitContainer: {
-        shadowOpacity:10,
-        shadowRadius:2,
-        borderRadius: 100,
-        width: '60%',
-        height: 50,
-        borderColor: 'blue',
-        borderRadius: 10,
-        marginVertical: 10,
-        borderWidth: 0,
-        justifyContent: 'center',
-        alignSelf: "center",
-        backgroundColor: "#C3E2DD"
-    },
-    submit: {
-        fontSize: 22,
-        fontWeight: 'bold',
-        color: 'white',
-        alignSelf: 'center',
-        marginVertical: 10,
-    },
-    bottomWrapper: {
-        flexDirection: 'row',
-    },
-    card: {
-        height: 250,
-        backgroundColor: '#FFF',
-        elevation: 10,
-        width: width - 40,
-        marginRight: 20,
-        padding: 15,
-        borderRadius: 20,
-    },
-    cardImage: {
-        width: '100%',
-        height: 140,
-        borderRadius: 15,
-    },
-    facility: { flexDirection: 'row', marginRight: 15 },
-    facilityText: { marginLeft: 5, color: '#97CAE5' },
+  },
+  reviewPart: {
+    flexDirection: 'column',
+  },
+  submitContainer: {
+    shadowOpacity: 10,
+    shadowRadius: 2,
+    borderRadius: 100,
+    width: '60%',
+    height: 50,
+    borderColor: 'blue',
+    borderRadius: 10,
+    marginVertical: 10,
+    borderWidth: 0,
+    justifyContent: 'center',
+    alignSelf: "center",
+    backgroundColor: "#F8E7B4",
+  },
+  submit: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: 'white',
+    alignSelf: 'center',
+    marginVertical: 10,
+  },
+  bottomWrapper: {
+    flexDirection: 'row',
+  },
+  card: {
+    height: 250,
+    backgroundColor: '#FFF',
+    elevation: 10,
+    width: width - 40,
+    marginRight: 20,
+    padding: 15,
+    borderRadius: 20,
+  },
+  cardImage: {
+    width: '100%',
+    height: 140,
+    borderRadius: 15,
+  },
+  facility: { flexDirection: 'row', marginRight: 15 },
+  facilityText: { marginLeft: 5, color: '#97CAE5' },
 
 })
 
