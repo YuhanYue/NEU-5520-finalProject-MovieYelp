@@ -51,7 +51,7 @@ export default class SignUp extends React.Component {
     try {
 
       let result = await User.save();
-      alert("New object created with objectId: " + result.id);
+      alert("New account has successfully created!");
     } catch (error) {
       alert("Failed to create new object, with error code: " + error.message);
     }
