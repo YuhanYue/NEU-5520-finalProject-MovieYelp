@@ -1,19 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Login from './screens/Login';
+import {View } from 'react-native';
 import Navigation from './navigators/navigation';
-import MapViewScreen from './screens/MapViewScreen';
-import Reviews from './screens/Reviews';
+
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs(['Warning: ...']);
+LogBox.ignoreAllLogs();
 
 export default function App() {
+
   return (
-    <View style={{flex:1}}>{/*set flex:1 or it would display children component */}
+    
+    <View style={{flex:1}}>
       <Navigation/>
-      {/* <MapViewScreen/> */}
     </View>
   );
 }
+
+
 
 
 
