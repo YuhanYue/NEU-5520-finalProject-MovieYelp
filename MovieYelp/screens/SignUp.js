@@ -29,32 +29,37 @@ Parse.initialize(
 Parse.serverURL = "https://parseapi.back4app.com/";
 
 export default class SignUp extends React.Component {
+  
   constructor(props) {
+    
     super(props);
     this.state = {
       userEmail: "",
       userPassword: "",
       isFocused: false,
       avatar: null,
-      userName: "",
-      userBio: "",
+      userName : "",
+      userBio : "",
     };
+
   }
 
   onFoucusChange = () => {
     this.setState({ isFocused: true });
   };
 
+
   onSaveNewUser = async () => {
     // const query = new Parse.Query("User");
     let user = new Parse.Object.extend("Users");
     var User = new user();
-    User.set("userName", this.state.userName);
-    User.set("password", this.state.userPassword);
-    User.set("userBio", this.state.userBio);
-    User.set("email", this.state.userEmail);
+    User.set("userName",this.state.userName);
+    User.set("password",this.state.userPassword);
+    User.set("userBio",this.state.userBio);
+    User.set("email",this.state.userEmail.toLowerCase());
 
     try {
+      
       let result = await User.save();
       alert("New object created with objectId: " + result.id);
       // console.log(person.get("avatar").url());
@@ -64,6 +69,7 @@ export default class SignUp extends React.Component {
 
     this.props.navigation.navigate("Login");
   };
+
 
   onChangePassword = (password) => {
     this.setState({
@@ -89,6 +95,7 @@ export default class SignUp extends React.Component {
     });
   };
   render() {
+
     return (
       <ScrollView style={{ backgroundColor: "white" }}>
         <View style={styles.container}>
@@ -96,7 +103,7 @@ export default class SignUp extends React.Component {
             source={require("../assets/registeration.png")}
             style={styles.image}
           />
-
+  
           <Text style={styles.textTitle}>Let's Get Started</Text>
           <Text style={styles.textBody}>
             Create a new account for your dehaze APP
@@ -199,7 +206,9 @@ export default class SignUp extends React.Component {
           {/* <Inputs name='Confirm Password' icon='lock' pass={true} /> */}
           <TouchableOpacity
             style={[styles.submitContainer, { backgroundColor: "blue" }]}
-            onPress={() => this.onSaveNewUser()}
+            onPress={()=>
+            this.onSaveNewUser()
+            }
           >
             <Text style={styles.submitText}>Create</Text>
           </TouchableOpacity>
