@@ -17,7 +17,7 @@ Search nearby film locations by getting user’s current location
 
 ## Development Environment
 
-* Platform: IOS/ANDROID/Web
+* Platform: IOS/Android/Web
 * Frontend: ReactNative
 * Backend: Back4App
 
