@@ -62,20 +62,23 @@ export default class Login extends React.Component {
   };
 
   onEmailChanged = (newUserEmail) => {
-    let email = newUserEmail.toLowerCase()
+    let email = newUserEmail.toLowerCase();
     this.state.userEmail = email;
     //update state usernmae
   };
 
   onPasswordChanged = (newPassword) => {
-    let password = newPassword.toLowerCase()
+    let password = newPassword.toLowerCase();
     this.state.password = password;
   };
 
   checkEmailExist = () => {
     var judge = false;
     this.state.allUsers.forEach((item) => {
-      if (item.get("email") === this.state.userEmail) {
+      if (
+        item.get("email").toLowerCase() ===
+        this.state.userEmail.toLocaleLowerCase()
+      ) {
         judge = true;
       }
     });
@@ -87,7 +90,8 @@ export default class Login extends React.Component {
     var judge = false;
     this.state.allUsers.forEach((item) => {
       if (
-        item.get("email") === this.state.userEmail &&
+        item.get("email").toLocaleLowerCase() ===
+          this.state.userEmail.toLocaleLowerCase() &&
         item.get("password") === this.state.password
       ) {
         judge = true;
@@ -98,6 +102,40 @@ export default class Login extends React.Component {
     return judge;
   };
 
+  // checkPassword = async () => {
+  //   const query = new Parse.Query("Users");
+  //   // query.contains("name", this.props.movieItem.get("objectID"));
+  //   query.equalTo("email", this.state.userEmail);
+
+  //   let queryResult = null;
+  //   try {
+  //     queryResult = await query.find();
+  //   } catch (error) {
+  //     // alert("Failed to create new object, with error code: " + error.message);
+  //   }
+  //   if (queryResult.length == 0) {
+  //     return false;
+  //   }
+  //   if (queryResult[0].get("password") != this.password) {
+  //     return false;
+  //   }
+  //   // console.log(queryResult);
+  //   return true;
+  //   // if(queryResult)
+  //   // if(queryResult.get)
+  // };
+
+  // retrieveUsername = async () => {
+  //     try{
+  //       const username = await AsyncStorage.getItem("username")
+  //       if(username !== null){
+  //         console.log(username);
+  //         this.props.
+  //         this.props.updateUsername(username);
+  //       }
+  //     }catch(error){}
+
+  //   }
 
   login = () => {};
 

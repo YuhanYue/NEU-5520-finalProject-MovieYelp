@@ -35,7 +35,6 @@ Parse.serverURL = "https://parseapi.back4app.com/";
 export default class SearchScreen extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       search: "",
       keyExist: false,
@@ -44,6 +43,7 @@ export default class SearchScreen extends React.Component {
       DATA: this.props.DATA,
       movie: [],
       movieFiltered: [],
+      user: this.props.route.params.user,
     };
     this.retrieveMovie();
   }
@@ -68,11 +68,12 @@ export default class SearchScreen extends React.Component {
   renderItem = ({ item }) => (
     <TouchableOpacity
       style={styles.infoBox}
-      onPress={() =>
+      onPress={() => {
         this.props.navigation.navigate("movie", {
           movieItem: item,
-        })
-      }
+          user: this.state.user,
+        });
+      }}
     >
       <CardUri
         image={item.get("photo").url()}
@@ -93,12 +94,7 @@ export default class SearchScreen extends React.Component {
     }
     this.setState({ movie: queryResult });
     this.setState({ movieFiltered: queryResult });
-    console.log("queryResult");
-    console.log(queryResult);
   };
-  // async componentDidMount() {
-  //   await this.retrieveMovie();
-  // }
 
   searchFilterFunction = (text) => {
     this.setState({ search: text });
@@ -124,10 +120,15 @@ export default class SearchScreen extends React.Component {
 
   render() {
     const { search } = this.state;
+    // console.log("useruseruseruseruseruser111");
+    // console.log(this.props.route.params.user);
+    // console.log("useruseruseruseruseruser222");
+
     // this.retrieveMovie();
 
     return (
       <View>
+        {/* <ScrollView style={styles.container}> */}
         <SearchBar
           style={styles.searchBarStyle}
           placeholder="Type movie name"
@@ -136,12 +137,15 @@ export default class SearchScreen extends React.Component {
           lightTheme={true}
           inputContainerStyle={{ backgroundColor: "white" }}
         />
+
         <FlatList
           style={styles.flatListStyle}
           data={this.state.movieFiltered}
           renderItem={this.renderItem}
           keyExtractor={(item) => item.id}
         />
+
+        {/* </ScrollView> */}
       </View>
     );
   }
@@ -150,9 +154,26 @@ export default class SearchScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "white",
+  },
+  titleBar: {
+    width: "100%",
+    flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
+    marginLeft: 10, //center
+    // backgroundColor: "#6ECEDA",
   },
+  avatar: {
+    width: 100,
+    height: 100,
+    borderRadius: 100,
+  },
+  // container: {
+  //   flex: 1,
+  //   alignItems: "center",
+  //   justifyContent: "center",
+  // },
   searchBarStyle: {},
   flatListStyle: {
     height: "100%",
@@ -161,5 +182,21 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
+  },
+  userTitle: {
+    fontSize: 16,
+    color: "#b8bece",
+    fontWeight: "500",
+    justifyContent: "center",
+  },
+  userInfoSection: {
+    paddingHorizontal: 30,
+    marginBottom: 25,
+  },
+  username: {
+    fontSize: 20,
+    color: "#3c4560",
+    fontWeight: "bold",
+    marginLeft: 0,
   },
 });
