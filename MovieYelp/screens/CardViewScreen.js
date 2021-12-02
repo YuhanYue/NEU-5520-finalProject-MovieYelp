@@ -83,7 +83,17 @@ export default class CardViewScreen extends React.Component {
     // console.log(this.props.user.get("userName"));
 
     return (
+      
+      // <SafeAreaView style={{flex:1}}>
       <ScrollView style={styles.container}>
+        <Circle
+  cx={width / 2}
+  cy={`-${898 - 20 + 2}`}
+  r="898.5"
+  fill="#EFF2F3"
+  stroke="#C5CACD"
+  strokeWidth="2"
+/>
         <View style={styles.titleBar}>
           <Image
             style={styles.avatar}
@@ -138,6 +148,7 @@ export default class CardViewScreen extends React.Component {
           />
         </TouchableOpacity> */}
       </ScrollView>
+      // </SafeAreaView>
     );
   }
 }
@@ -165,11 +176,14 @@ const styles = StyleSheet.create({
   },
   titleBar: {
     width: "100%",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    marginLeft: 10, //center
-    // backgroundColor: "#6ECEDA",
+
+    flexDirection: 'column',
+    height:230,
+    alignItems:'center',
+    justifyContent: "flex-end",
+    // marginLeft: 10//center
+    backgroundColor: "#F8E7B4",
+    borderBottomLeftRadius:100,
   },
   avatar: {
     width: 100,

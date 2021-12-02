@@ -36,6 +36,7 @@ function addReview() {}
 
 const { width } = Dimensions.get("screen");
 
+
 export default class Reviews extends React.Component {
   constructor(props) {
     super(props);
@@ -159,6 +160,10 @@ export default class Reviews extends React.Component {
       );
     }
   }
+
+    recommendReview = () =>{
+
+    }
 
 
   render() {
@@ -306,89 +311,93 @@ export default class Reviews extends React.Component {
       </ScrollView>
     );
   }
+
 }
 
 const styles = StyleSheet.create({
-  reviewContainer: {
-    flex: 1,
-    justifyContent: "center",
-  },
-  thumbnail: {
-    width: 150,
-    height: 150,
-    marginLeft: 5,
-    marginRight: 5,
-    borderRadius: 5,
-    marginBottom: 10,
-    marginTop: 5,
-  },
-  infoBoxWrapper: {
-    borderBottomColor: "#dddddd",
-    borderBottomWidth: 1,
-    borderTopColor: "#dddddd",
-    borderTopWidth: 1,
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
-  },
-  relatedMoviesSection: {
-    width: "100%",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  infoBox: {
-    width: "100%",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  userInfo: {
-    fontSize: 20,
-    fontWeight: "bold",
-    flexDirection: "row",
-  },
-  reviewBody: {
-    fontSize: 15,
-    flexDirection: "row",
-  },
-  reviewPart: {
-    flexDirection: "column",
-  },
-  submitContainer: {
-    borderRadius: 100,
-    width: "60%",
-    height: 50,
-    borderColor: "blue",
-    borderRadius: 10,
-    marginVertical: 10,
-    borderWidth: 0,
-    justifyContent: "center",
-    alignSelf: "center",
-    backgroundColor: "#C3E2DD",
-  },
-  submit: {
-    fontSize: 22,
-    fontWeight: "bold",
-    color: "white",
-    alignSelf: "center",
-    marginVertical: 10,
-  },
-  bottomWrapper: {
-    flexDirection: "row",
-  },
-  card: {
-    height: 250,
-    backgroundColor: "#FFF",
-    elevation: 10,
-    width: width - 40,
-    marginRight: 20,
-    padding: 15,
-    borderRadius: 20,
-  },
-  cardImage: {
-    width: "100%",
-    height: 140,
-    borderRadius: 15,
-  },
-  facility: { flexDirection: "row", marginRight: 15 },
-  facilityText: { marginLeft: 5, color: "#97CAE5" },
-});
+    reviewContainer: {
+        flex: 1,
+        justifyContent: 'center',
+    },
+    thumbnail: {
+        width: 150,
+        height: 150,
+        marginLeft: 5,
+        marginRight: 5,
+        borderRadius: 5,
+        marginBottom: 10,
+        marginTop: 5,
+    },
+    infoBoxWrapper: {
+        borderBottomColor: '#dddddd',
+        borderBottomWidth: 1,
+        borderTopColor: '#dddddd',
+        borderTopWidth: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+    },
+    relatedMoviesSection: {
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    infoBox: {
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    userInfo: {
+        fontSize: 20,
+        fontWeight: "bold",
+        flexDirection: 'row',
+    },
+    reviewBody: {
+        fontSize: 15,
+        flexDirection: 'row',
+
+    },
+    reviewPart: {
+        flexDirection: 'column',
+    },
+    submitContainer: {
+        borderRadius: 100,
+        width: '60%',
+        height: 50,
+        borderColor: 'blue',
+        borderRadius: 10,
+        marginVertical: 10,
+        borderWidth: 0,
+        justifyContent: 'center',
+        alignSelf: "center",
+        backgroundColor: "#C3E2DD"
+    },
+    submit: {
+        fontSize: 22,
+        fontWeight: 'bold',
+        color: 'white',
+        alignSelf: 'center',
+        marginVertical: 10,
+    },
+    bottomWrapper: {
+        flexDirection: 'row',
+    },
+    card: {
+        height: 250,
+        backgroundColor: '#FFF',
+        elevation: 10,
+        width: width - 40,
+        marginRight: 20,
+        padding: 15,
+        borderRadius: 20,
+    },
+    cardImage: {
+        width: '100%',
+        height: 140,
+        borderRadius: 15,
+    },
+    facility: { flexDirection: 'row', marginRight: 15 },
+    facilityText: { marginLeft: 5, color: '#97CAE5' },
+
+})
+

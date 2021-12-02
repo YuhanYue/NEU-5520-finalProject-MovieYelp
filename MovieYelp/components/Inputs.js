@@ -37,6 +37,7 @@ class Inputs extends Component {
   }
 }
 
+
 const styles = StyleSheet.create({
   container: {
     width: "90%",
