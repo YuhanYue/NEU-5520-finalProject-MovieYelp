@@ -6,9 +6,8 @@ import Parse from "parse/react-native";
 import * as ImagePicker from "expo-image-picker";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Icon from "react-native-vector-icons/MaterialIcons";
-//Before using the SDK...
-Parse.setAsyncStorage(AsyncStorage);
 
+Parse.setAsyncStorage(AsyncStorage);
 Parse.initialize(
     "iX9UmLwWNOSVhSfrvY7YnWOAyZPNujc2cvKSCkFT",
     "NSdhBidUcAsiTET1C4r7ZWGjgTDCLgBdvFkecWr5"
@@ -296,11 +295,9 @@ export default class Profile extends React.Component {
         }
 
         return (
-            // user info part
             <View>
         <View >
           { /* <Text> This is a profile page</Text> */ }
-
           <View style={{
                 paddingVertical: 20,
                 alignItems: 'center',

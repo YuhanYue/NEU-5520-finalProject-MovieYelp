@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Input } from "react-native-elements";
 
@@ -10,6 +10,7 @@ class Inputs extends Component {
     this.setState({ isFocused: true });
   };
   render() {
+
     return (
       <View
         style={[
@@ -22,7 +23,7 @@ class Inputs extends Component {
           onFocus={this.onFoucusChange}
           inputContainerStyle={styles.inputContainer}
           inputSyle={styles.inputText}
-          secureTextEnrty={this.props.pass}
+          secureTextEntry={this.props.password}
           leftIcon={
             <Icon
               name={this.props.icon}

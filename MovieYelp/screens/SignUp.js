@@ -11,13 +11,12 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { Input } from "react-native-elements";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Parse from "parse/react-native";
-//Before using the SDK...
-Parse.setAsyncStorage(AsyncStorage);
 
+Parse.setAsyncStorage(AsyncStorage);
 Parse.initialize(
   "iX9UmLwWNOSVhSfrvY7YnWOAyZPNujc2cvKSCkFT",
   "NSdhBidUcAsiTET1C4r7ZWGjgTDCLgBdvFkecWr5"
-); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
+); 
 Parse.serverURL = "https://parseapi.back4app.com/";
 
 export default class SignUp extends React.Component {

@@ -8,11 +8,9 @@ const UploadImage = () => {
   const [image, setImage] = useState(null);
 
   async function upload() {
-    // 1. Create a file
+
     const { base64, fileName } = image;
     const parseFile = new Parse.File(fileName, { base64 });
-
-    // 2. Save the file
     try {
       const responseFile = await parseFile.save();
       const Gallery = Parse.Object.extend("Gallery");
@@ -27,7 +25,7 @@ const UploadImage = () => {
       );
     }
   }
-  // This will open phone image library
+
   function pickImage() {
     launchImageLibrary(
       {
@@ -37,7 +35,6 @@ const UploadImage = () => {
         maxWidth: 200,
       },
       (response) => {
-        // Add selected image to the state
         setImage(response);
       }
     );
