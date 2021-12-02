@@ -3,17 +3,10 @@ import styled from "styled-components";
 import {
   View,
   StyleSheet,
-  Text,
-  ScrollView,
-  Image,
   TouchableOpacity,
-  Dimensions,
   Animated,
 } from "react-native";
-import { StatusBar } from "expo-status-bar";
-import { Avatar, TouchableRipple, Title } from "react-native-paper";
 import { TabView, SceneMap } from "react-native-tab-view";
-import Login from "./Login";
 import Overview from "./Overview";
 import Reviews from "./Reviews";
 

@@ -4,16 +4,8 @@ import {
   View,
   StyleSheet,
   Text,
-  ScrollView,
   Image,
-  TouchableOpacity,
-  Dimensions,
-  Animated,
-  StatusBar,
-  Pressable,
 } from "react-native";
-import Swiper from "react-native-swiper";
-import { SafeAreaView } from "react-native-safe-area-context";
 export default class Overview extends React.Component {
   constructor(props) {
     super(props);
@@ -42,7 +34,6 @@ export default class Overview extends React.Component {
         <View style={{ paddingHorizontal: 20, paddingTop: 20 }}>
           {/* Title container */}
           <View>
-            {/* <Text style={styles.title}>{this.props.user.get("userName")}</Text> */}
 
             <Text style={styles.title}>{this.props.movieItem.get("name")}</Text>
             <Text style={[styles.textStyle, {marginTop:10}]}>

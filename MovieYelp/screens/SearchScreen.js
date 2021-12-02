@@ -1,21 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   View,
   StyleSheet,
-  Text,
-  ScrollView,
-  Image,
   TouchableOpacity,
 } from "react-native";
 import { SearchBar } from "react-native-elements";
-import MoviePage from "./MoviePage";
-import Profile from "./Profile";
 import _ from "lodash";
-
-import CardViewScreen from "./CardViewScreen";
 import CardUri from "../components/CardUri";
-import Inputs from "../components/Inputs";
-import Submit from "../components/Submit";
 import { FlatList } from "react-native-gesture-handler";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -96,9 +87,6 @@ export default class SearchScreen extends React.Component {
     console.log("queryResult");
     console.log(queryResult);
   };
-  // async componentDidMount() {
-  //   await this.retrieveMovie();
-  // }
 
   searchFilterFunction = (text) => {
     this.setState({ search: text });
@@ -124,7 +112,6 @@ export default class SearchScreen extends React.Component {
 
   render() {
     const { search } = this.state;
-    // this.retrieveMovie();
 
     return (
       <View>

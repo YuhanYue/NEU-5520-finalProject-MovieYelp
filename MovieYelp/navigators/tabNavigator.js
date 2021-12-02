@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import Profile from "../screens/Profile";
@@ -61,7 +61,6 @@ function SearchForMovieStackScreen() {
       <SearchForMovieStack.Screen
         name="search"
         component={SearchScreen}
-        // component={() => <SearchScreen></SearchScreen>}
         options={{ headerShown: false }}
         initialParams={{ user: user }}
       />
@@ -107,7 +106,7 @@ export default class TabNavigator extends React.Component {
             component={MapForMovieStackScreen}
             options={{
               tabBarShowLabel: false,
-              tabBarIcon: ({ focused }) => (
+              tabBarIcon: () => (
                 <View
                   style={{
                     alignContent: "center",
@@ -138,7 +137,7 @@ export default class TabNavigator extends React.Component {
             component={CallOutForMovieStackScreen}
             options={{
               tabBarShowLabel: false,
-              tabBarIcon: ({ focused }) => (
+              tabBarIcon: () => (
                 <View
                   style={{
                     alignContent: "center",
@@ -168,7 +167,7 @@ export default class TabNavigator extends React.Component {
             component={SearchForMovieStackScreen}
             options={{
               tabBarShowLabel: false,
-              tabBarIcon: ({ focused }) => (
+              tabBarIcon: () => (
                 <View
                   style={{
                     alignContent: "center",
@@ -200,7 +199,7 @@ export default class TabNavigator extends React.Component {
             children={() => <Profile user={user}></Profile>}
             options={{
               tabBarShowLabel: false,
-              tabBarIcon: ({ focused }) => (
+              tabBarIcon: () => (
                 <View
                   style={{
                     alignContent: "center",
