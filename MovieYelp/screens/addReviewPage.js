@@ -1,4 +1,12 @@
 export default class addReview extends React.PureComponent {
+
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     username: "Yuhan",
+  //   };
+  // }
+
   render() {
     return (
       <Modal

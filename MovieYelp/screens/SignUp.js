@@ -23,8 +23,8 @@ import Parse from "parse/react-native";
 Parse.setAsyncStorage(AsyncStorage);
 
 Parse.initialize(
-  "yyq9HLKMQVgQFbCIVBl7dAaIboyCTbyoRQjUYZc8",
-  "KBig8FUxq4rXuILfdgXQX6L053KYdDM8SclCM2Vs"
+  "iX9UmLwWNOSVhSfrvY7YnWOAyZPNujc2cvKSCkFT",
+  "NSdhBidUcAsiTET1C4r7ZWGjgTDCLgBdvFkecWr5"
 ); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
 Parse.serverURL = "https://parseapi.back4app.com/";
 
@@ -56,7 +56,7 @@ export default class SignUp extends React.Component {
     User.set("userName",this.state.userName);
     User.set("password",this.state.userPassword);
     User.set("userBio",this.state.userBio);
-    User.set("email",this.state.userEmail);
+    User.set("email",this.state.userEmail.toLowerCase());
 
     try {
       

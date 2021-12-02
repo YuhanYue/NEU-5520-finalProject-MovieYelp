@@ -29,8 +29,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 Parse.setAsyncStorage(AsyncStorage);
 
 Parse.initialize(
-  "yyq9HLKMQVgQFbCIVBl7dAaIboyCTbyoRQjUYZc8",
-  "KBig8FUxq4rXuILfdgXQX6L053KYdDM8SclCM2Vs"
+  "iX9UmLwWNOSVhSfrvY7YnWOAyZPNujc2cvKSCkFT",
+  "NSdhBidUcAsiTET1C4r7ZWGjgTDCLgBdvFkecWr5"
 ); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
 Parse.serverURL = "https://parseapi.back4app.com/";
 
