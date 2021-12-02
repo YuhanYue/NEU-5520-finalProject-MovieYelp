@@ -67,6 +67,10 @@ export default class Profile extends React.Component {
     };
     this.onRetrieveProfile();
   }
+  
+  componentDidUpdate(){
+    this.onRetrieveProfile();
+  }
 
 
   onRetrieveProfile = async () => {
