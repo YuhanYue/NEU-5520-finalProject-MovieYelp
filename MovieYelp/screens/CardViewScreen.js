@@ -13,19 +13,8 @@ import { TouchableRipple } from "react-native-paper";
 
 import Card from "../components/Card";
 import styled from "styled-components";
-import CardUri from "../components/CardUri";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import Parse from "parse/react-native";
 import Login from "./Login";
 import { SwitchRouter } from "react-navigation";
-import { FlatList } from "react-native-gesture-handler";
-Parse.setAsyncStorage(AsyncStorage);
-
-Parse.initialize(
-  "iX9UmLwWNOSVhSfrvY7YnWOAyZPNujc2cvKSCkFT",
-  "NSdhBidUcAsiTET1C4r7ZWGjgTDCLgBdvFkecWr5"
-); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
-Parse.serverURL = "https://parseapi.back4app.com/";
 
 const width = Dimensions.get("window").width;
 export default class CardViewScreen extends React.Component {
@@ -33,94 +22,34 @@ export default class CardViewScreen extends React.Component {
     super(props);
     this.state = {
       username: "Yuhan",
-      user: this.props.route.params.user,
-      movie: [],
-      movieFiltered: [],
     };
-    this.retrieveMovie();
   }
 
-  retrieveMovie = async () => {
-    if (this.state.movie.length != 0) return;
-    const query = new Parse.Query("movie");
-    let queryResult = null;
-    try {
-      queryResult = await query.find();
-    } catch (error) {
-      // alert("Failed to create new object, with error code: " + error.message);
-    }
-    this.setState({ movie: queryResult });
-    this.setState({ movieFiltered: queryResult });
-    console.log("CCCCCCardView");
-
-    console.log(queryResult);
-  };
-
-  renderItem = ({ item }) => (
-    <TouchableOpacity
-      style={styles.infoBox}
-      onPress={() => {
-        this.props.navigation.navigate("movie", {
-          movieItem: item,
-          user: this.state.user,
-        });
-      }}
-    >
-      <CardUri
-        image={item.get("photo").url()}
-        caption={item.get("name")}
-        relatedMovies={item.get("relatedMovies")}
-      />
-    </TouchableOpacity>
-  );
   render() {
-    // console.log("----------CardViewHere");
+    console.log("----------CardViewHere");
 
-    // // console.log(this.props.navigation.getState());
-    // // console.log(this.props.navigation);
-    // console.log(this.props);
-    // console.log(this.props.user);
-    // console.log(this.props.user.get("userName"));
+    // console.log(this.props.navigation.getState());
+    // console.log(this.props.navigation);
+    console.log(this.props);
+    console.log(this.props.user);
+    console.log(this.props.user.get("userName"));
 
     return (
       <ScrollView style={styles.container}>
         <View style={styles.titleBar}>
           <Image
             style={styles.avatar}
-            source={{ uri: this.state.user.get("avatar").url() }}
+            source={{ uri: this.props.user.get("avatar").url() }}
           />
           <Text style={styles.userTitle}>Welcome back,</Text>
           {/* this.username */}
-          <Text style={styles.username}>{this.state.user.get("userName")}</Text>
+          <Text style={styles.username}>{this.props.user.get("userName")}</Text>
         </View>
         {/* TODO:flatlist to fetch and display data */}
         <Subtitle style={{ paddingTop: 10 }}>
           Starting your journey from...
         </Subtitle>
-        {/* <FlatList
-          style={styles.flatListStyle}
-          data={this.state.movie}
-          renderItem={this.renderItem}
-          keyExtractor={(item) => item.id}
-        /> */}
-        {this.state.movie.map((item) => (
-          <TouchableOpacity
-            style={styles.infoBox}
-            onPress={() => {
-              this.props.navigation.navigate("movie", {
-                movieItem: item,
-                user: this.state.user,
-              });
-            }}
-          >
-            <CardUri
-              image={item.get("photo").url()}
-              caption={item.get("name")}
-              relatedMovies={item.get("relatedMovies")}
-            />
-          </TouchableOpacity>
-        ))}
-        {/* <TouchableOpacity
+        <TouchableOpacity
           style={styles.infoBox}
           onPress={() => this.props.navigation.navigate("movie")}
         >
@@ -136,7 +65,7 @@ export default class CardViewScreen extends React.Component {
             caption={"NEU Vancouver Campus"}
             onPress
           />
-        </TouchableOpacity> */}
+        </TouchableOpacity>
       </ScrollView>
     );
   }
@@ -200,9 +129,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 14,
     fontWeight: "500",
-  },
-  flatListStyle: {
-    height: "100%",
   },
   row: {
     flexDirection: "row",
