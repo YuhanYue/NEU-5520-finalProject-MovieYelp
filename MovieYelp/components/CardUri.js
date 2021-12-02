@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Image, Text, StyleSheet, View } from "react-native";
 
-const Card = (props) => (
+const CardUri = (props) => (
   <Container style={{ elevation: 100 }}>
     <Cover>
       <Image style={styles.coverImage} source={{ uri: props.image }} />
@@ -12,17 +12,19 @@ const Card = (props) => (
       <Wrapper>
         <Caption>{props.caption}</Caption>
         {/* <Subtitle>{props.subtitle}</Subtitle> */}
-        <View realtedMoviesWrapper>
-        {/* Fetch related movies as a flatList */}
-        <Text style={styles.realtedMovies}>{props.realtedMovies}</Text>
-        {/* <Text style={styles.realtedMovies}>Harry Potter</Text> */}
+        <View relatedMoviesWrapper>
+          {/* Fetch related movies as a flatList */}
+          <Text style={styles.relatedMovies}>
+            Related Movies: {props.relatedMovies}
+          </Text>
+          {/* <Text style={styles.relatedMovies}>Harry Potter</Text> */}
         </View>
       </Wrapper>
     </Content>
   </Container>
 );
 
-export default Card;
+export default CardUri;
 
 const Content = styled.View`
   padding-left: 20px;
@@ -37,8 +39,6 @@ const Caption = styled.Text`
   font-size: 20px;
   font-weight: 400;
   left: 30;
-  margin-left:-30;
-
 `;
 
 const Subtitle = styled.Text`
@@ -87,13 +87,13 @@ const styles = StyleSheet.create({
     height: "100%",
     position: "absolute",
   },
-  realtedMovies: {
+  relatedMovies: {
     marginTop: 10,
     fontSize: 15,
     color: "#b8bece",
     textAlign: "left",
   },
-  realtedMoviesWrapper: {
+  relatedMoviesWrapper: {
     flexDirection: "row",
     flex: 1,
   },

@@ -15,11 +15,22 @@ import MapViewScreen from "../screens/MapViewScreen";
 
 const MapForMovieStack = createNativeStackNavigator();
 
+var user = null;
 function MapForMovieStackScreen() {
   return (
     <MapForMovieStack.Navigator>
-      <MapForMovieStack.Screen name="card" component={CardViewScreen} options={{headerShown:false}} />
-      <MapForMovieStack.Screen name="movie" component={MoviePage} options={{headerShown:true}}/>
+      <MapForMovieStack.Screen
+        name="card"
+        component={CardViewScreen}
+        options={{ headerShown: false }}
+        initialParams={{ user: user }}
+      />
+      <MapForMovieStack.Screen
+        name="movie"
+        component={MoviePage}
+        options={{ headerShown: true }}
+        initialParams={{ user: user }}
+      />
     </MapForMovieStack.Navigator>
   );
 }
@@ -29,168 +40,194 @@ const CallOutForMovieStack = createNativeStackNavigator();
 function CallOutForMovieStackScreen() {
   return (
     <CallOutForMovieStack.Navigator>
-      <CallOutForMovieStack.Screen name="map" component={MapViewScreen} options={{headerShown:false}} />
-      <CallOutForMovieStack.Screen name="movie" component={MoviePage} options={{headerShown:true}} />
+      <CallOutForMovieStack.Screen
+        name="map"
+        component={MapViewScreen}
+        options={{ headerShown: false }}
+        initialParams={{ user: user }}
+      />
+      <CallOutForMovieStack.Screen
+        name="movie"
+        component={MoviePage}
+        options={{ headerShown: true }}
+        initialParams={{ user: user }}
+      />
     </CallOutForMovieStack.Navigator>
   );
 }
 
+const SearchForMovieStack = createNativeStackNavigator();
+
 function SearchForMovieStackScreen() {
   return (
-    <MapForMovieStack.Navigator>
-      <MapForMovieStack.Screen name="search" component={SearchScreen} options={{headerShown:false}} />
-      <MapForMovieStack.Screen name="movie" component={MoviePage} options={{headerShown:true}}/>
-    </MapForMovieStack.Navigator>
+    <SearchForMovieStack.Navigator>
+      <SearchForMovieStack.Screen
+        name="search"
+        component={SearchScreen}
+        // component={() => <SearchScreen></SearchScreen>}
+        options={{ headerShown: false }}
+        initialParams={{ user: user }}
+      />
+      <SearchForMovieStack.Screen
+        name="movie"
+        component={MoviePage}
+        initialParams={{ user: user }}
+        options={{ headerShown: true }}
+      />
+    </SearchForMovieStack.Navigator>
   );
 }
 
 const Tab = createBottomTabNavigator();
-const TabNavigator = () => {
-  return (
-    <NavigationContainer independent={true}>
-      <Tab.Navigator
-        screenOptions={{
-          showLabel: false,
-          style: {
-            position: "absolute",
-            bottom: 25,
-            left: 20,
-            right: 20,
-            elevation: 0,
-            borderRadius: 50,
-            height: 90,
-            ...styles.shadow,
-          },
-        }}
-        initialRouteName="CardView"
-      >
-        <Tab.Screen
-          name="CardView"
-          component={MapForMovieStackScreen}
-
-          options={{
-            headerShown:false,
-            tabBarIcon: ({ focused }) => (
-              <View
-                style={{
-                  alignContent: "center",
-                  justifyContent: "center",
-                  top: 10,
-                }}
-              >
-                <Image
-                  source={require("../assets/homePage.png")}
-                  resizeMode="contain"
-                  style={{
-                    width: 40,
-                    height: 40,
-                  }}
-                />
-                <Text
-                // style={{color: focused ?'#e32f45' : '#748c94',}}
-                >
-                  Map
-                </Text>
-              </View>
-            ),
+export default class TabNavigator extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+    user = this.props.route.params.user;
+  }
+  render() {
+    return (
+      <NavigationContainer independent={true}>
+        <Tab.Navigator
+          scrernOptions={{
+            showLabel: false,
+            style: {
+              position: "absolute",
+              bottom: 25,
+              left: 20,
+              right: 20,
+              elevation: 0,
+              borderRadius: 50,
+              height: 90,
+              ...styles.shadow,
+            },
           }}
-        />
-        <Tab.Screen
-          name="Map"
-          component={CallOutForMovieStackScreen}
-          options={{
-            tabBarIcon: ({ focused }) => (
-              <View
-                style={{
-                  alignContent: "center",
-                  justifyContent: "center",
-                  top: 10,
-                }}
-              >
-                <Image
-                  source={require("../assets/maps.png")}
-                  resizeMode="contain"
+          initialRouteName="Search"
+        >
+          <Tab.Screen
+            name="CardView"
+            component={MapForMovieStackScreen}
+            options={{
+              tabBarIcon: ({ focused }) => (
+                <View
                   style={{
-                    width: 40,
-                    height: 40,
+                    alignContent: "center",
+                    justifyContent: "center",
+                    top: 10,
                   }}
-                />
-                <Text
-                // style={{color: focused ?'#e32f45' : '#748c94',}}
                 >
-                  Map
-                </Text>
-              </View>
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Search"
-          component={SearchForMovieStackScreen}
-          options={{
-            tabBarIcon: ({ focused }) => (
-              <View
-                style={{
-                  alignContent: "center",
-                  justifyContent: "center",
-                  top: 10,
-                }}
-              >
-                <Image
-                  source={require("../assets/searchIcon.png")}
-                  resizeMode="contain"
+                  <Image
+                    source={require("../assets/dehaze.png")}
+                    resizeMode="contain"
+                    style={{
+                      width: 40,
+                      height: 40,
+                    }}
+                  />
+                  <Text
+                  // style={{color: focused ?'#e32f45' : '#748c94',}}
+                  >
+                    Map
+                  </Text>
+                </View>
+              ),
+            }}
+            // user={this.state.user}
+          />
+          <Tab.Screen
+            name="Map"
+            component={CallOutForMovieStackScreen}
+            options={{
+              tabBarIcon: ({ focused }) => (
+                <View
                   style={{
-                    marginTop: 3,
-                    width: 30,
-                    height: 30,
-                    marginBottom: 8,
+                    alignContent: "center",
+                    justifyContent: "center",
+                    top: 10,
                   }}
-                />
-                <Text
-                // style={{color: focused ?'#e32f45' : '#748c94',}}
                 >
-                  Search
-                </Text>
-              </View>
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Profile"
-          component={Profile}
-          options={{
-            headerShown:false,
-            tabBarIcon: ({ focused }) => (
-              <View
-                style={{
-                  alignContent: "center",
-                  justifyContent: "center",
-                  top: 10,
-                }}
-              >
-                <Image
-                  source={require("../assets/Profile.png")}
-                  resizeMode="contain"
+                  <Image
+                    source={require("../assets/dehaze.png")}
+                    resizeMode="contain"
+                    style={{
+                      width: 40,
+                      height: 40,
+                    }}
+                  />
+                  <Text
+                  // style={{color: focused ?'#e32f45' : '#748c94',}}
+                  >
+                    Map
+                  </Text>
+                </View>
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Search"
+            component={SearchForMovieStackScreen}
+            options={{
+              tabBarIcon: ({ focused }) => (
+                <View
                   style={{
-                    width: 40,
-                    height: 40,
+                    alignContent: "center",
+                    justifyContent: "center",
+                    top: 10,
                   }}
-                />
-                <Text
-                // style={{color: focused ?'#e32f45' : '#748c94',}}
                 >
-                  Profile
-                </Text>
-              </View>
-            ),
-          }}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
-  );
-};
-
-export default TabNavigator;
+                  <Image
+                    source={require("../assets/search.png")}
+                    resizeMode="contain"
+                    style={{
+                      marginTop: 3,
+                      width: 30,
+                      height: 30,
+                      marginBottom: 8,
+                    }}
+                  />
+                  <Text
+                  // style={{color: focused ?'#e32f45' : '#748c94',}}
+                  >
+                    Search
+                  </Text>
+                </View>
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Profile"
+            children={() => <Profile user={user}></Profile>}
+            options={{
+              tabBarIcon: ({ focused }) => (
+                <View
+                  style={{
+                    alignContent: "center",
+                    justifyContent: "center",
+                    top: 10,
+                  }}
+                >
+                  <Image
+                    source={require("../assets/Profile.png")}
+                    resizeMode="contain"
+                    style={{
+                      width: 40,
+                      height: 40,
+                    }}
+                  />
+                  <Text
+                  // style={{color: focused ?'#e32f45' : '#748c94',}}
+                  >
+                    Profile
+                  </Text>
+                </View>
+              ),
+            }}
+          />
+        </Tab.Navigator>
+      </NavigationContainer>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   shadow: {

@@ -1,230 +1,318 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 import {
-    View,
-    StyleSheet,
-    Text,
-    ScrollView,
-    Image,
-    TouchableOpacity,
-    Dimensions,
-    Animated,
-    Modal,
-    TextInput,
-    Pressable
-} from 'react-native'
-import CameraButton from '../components/CameraButton';
-import { Button } from 'react-native-paper';
-import * as ImagePicker from 'expo-image-picker';
-import { block } from 'react-native-reanimated';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+  View,
+  StyleSheet,
+  Text,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+  Dimensions,
+  Animated,
+  Modal,
+  TextInput,
+  Pressable,
+  Alert,
+} from "react-native";
+import CameraButton from "../components/CameraButton";
+import { Button } from "react-native-paper";
+import * as ImagePicker from "expo-image-picker";
+import { block } from "react-native-reanimated";
+import Icon from "react-native-vector-icons/MaterialIcons";
 
-function addReview() {
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import Parse from "parse/react-native";
 
-}
+//Before using the SDK...
+Parse.setAsyncStorage(AsyncStorage);
 
-const { width } = Dimensions.get('screen');
+Parse.initialize(
+  "iX9UmLwWNOSVhSfrvY7YnWOAyZPNujc2cvKSCkFT",
+  "NSdhBidUcAsiTET1C4r7ZWGjgTDCLgBdvFkecWr5"
+); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
+Parse.serverURL = "https://parseapi.back4app.com/";
+
+function addReview() {}
+
+const { width } = Dimensions.get("screen");
+
 
 export default class Reviews extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: "Username",
+      modalVisible: false,
+      selectImage: "",
+      reviewContent: "This is great!!",
+      review: [],
+      submitReview : "",
+      submitImage : null,
+    };
+    this.retrieveReview();
+  }
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: "Username",
-            modalVisible: false,
-            selectImage: "",
-            reviewContent: "This is great!!",
+  retrieveReview = async () => {
+    if (this.state.review.length != 0) return;
+    const query = new Parse.Query("review");
+    // query.contains("name", this.props.movieItem.get("objectID"));
+    query.equalTo("movieName", this.props.movieItem.get("name"));
 
-        }
+    let queryResult = null;
+    try {
+      queryResult = await query.find();
+    } catch (error) {
+      // alert("Failed to create new object, with error code: " + error.message);
     }
+    this.setState({ review: queryResult });
 
+  };
 
-    openImagePickerAsync = async () => {
-        let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+  openImagePickerAsync = async () => {
+    let permissionResult =
+      await ImagePicker.requestMediaLibraryPermissionsAsync();
 
-        if (permissionResult.granted === false) {
-            alert("Permission to access camera roll is required!");
-            return;
-        }
-        let pickerResult = await ImagePicker.launchImageLibraryAsync();
-        this.setState({
-            selectImage: pickerResult.uri,
-        })
-        console.log(this.state.selectImage);
-
-
+    if (permissionResult.granted === false) {
+      alert("Permission to access camera roll is required!");
+      return;
     }
+    let pickerResult = await ImagePicker.launchImageLibraryAsync();
+    this.setState({
+      selectImage: pickerResult.uri,
+    });
+    console.log(this.state.selectImage);
+  };
+
+  pickImage = async()=> {
+    let response = await ImagePicker.launchImageLibraryAsync(
+    {
+      mediaType:  'photo',
+      base64:  true,
+    });
+      // Add selected image to the state
+    // let base64 = response.base64;
+    // const  parseFile = new  Parse.File("reviewPhoto.jpg", {base64});
+    this.setState({
+      submitImage:response,
+    })
+    // console.log(response)
+    // console.log(this.state.submiteImage);
+    // this.uploadImage();
+  }
+
+  onSubmitReview = async() => {
+    // This value comes from a state variable
+    const base64 = this.state.submitImage.base64;
+    // console.log("onSubmitReview");
+    const reviewContent = this.state.submitReview;
+    const photo = new  Parse.File("photo.jpg", {base64});
+    const email = this.props.user.get("email");
+    const userName = this.props.user.get("userName");
+    const movieName = this.props.movieItem.get("name");
+    // console.log("review info");
+    // console.log(movieName);
+    // console.log(userName);
+    // console.log(email);
+    // console.log("reviewContent");
+    // console.log(reviewContent);
+    // console.log(photo);
+    // Creates a new Todo parse object instance
+    let Review = new Parse.Object('review');
+    Review.set("reviewContent",reviewContent);
+    Review.set("photo",photo);
+    Review.set("email",email);
+    Review.set("userName",userName);
+    Review.set("movieName",movieName);
+    // Todo.set('title', newTodoTitleValue);
+    // Todo.set('done', false);
+    // After setting the todo values, save it on the server
+    try {
+      await Review.save();
+      // Success
+      Alert.alert('Success!', 'Review uploaded!');
+      // Refresh todos list to show the new one (you will create this function later)
+    } catch (error) {
+      // Error can be caused by lack of Internet connection
+      Alert.alert('Error!', error.message);
+    };
+  };
+
+  uploadImage = async() => {
+    
+    // const {base64, fileName} = this.state.image;
+    const base64 = this.state.image.base64;
+
+    const  parseFile = new  Parse.File("avatar.jpg", {base64});
+    // this.onSaveNewUser();
+    // 2. Save the file
+    try {
+      const responseFile = await parseFile.save();
+      const query = new Parse.Query("Users");
+      query.equalTo("email",this.props.user.get("email"));
+      const object = await query.find();
+      const person = object[0];
+      person.set('avatar', responseFile);
+      await person.save();
+      Alert.alert('The file has been saved to Back4app.');
+    } catch (error) {
+      console.log(
+        'The file either could not be read, or could not be saved to Back4app.', error.message
+      );
+    }
+  }
 
     recommendReview = () =>{
 
     }
 
 
-    render() {
+  render() {
+    return (
+      <ScrollView>
+        <View style={{ alignItems: "flex-end" }}>
+          <TouchableOpacity
+            style={styles.submitContainer}
+            onPress={() => {
+              this.setState({
+                modalVisible: true,
+              });
+            }}
+          >
+            <Text style={styles.submit}>Wirte your own Review</Text>
+          </TouchableOpacity>
 
-        return (
-            <ScrollView>
-                <View style={{ alignItems: 'flex-end' }}>
-                    <TouchableOpacity
-                        style={styles.submitContainer}
-                        onPress={() => {
-                            this.setState({
-                                modalVisible: true
-                            })
-                        }}>
-                        <Text style={styles.submit}>Wirte your own Review</Text>
-                    </TouchableOpacity>
+          {/* Review MODAL */}
+          <Modal
+            animationType="slide"
+            transparent={false}
+            visible={this.state.modalVisible}
+          >
+            <View
+              style={[styles.reviewContainer, { backgroundColor: "F2EEE5" }]}
+            >
+              <Image
+                source={require("../assets/review.jpg")}
+                style={{
+                  width: 200,
+                  height: 200,
+                  alignSelf: "center",
+                }}
+              />
+              <Text
+                style={{
+                  fontSize: 18,
+                  color: "#b8bece",
+                  fontWeight: "bold",
+                  marginTop: 20,
+                }}
+              >
+                Please input your review about this shooting place:
+              </Text>
+              <TextInput
+                style={{ height: 100, borderColor: "gray", borderWidth: 2 }}
+                maxLength={200}
+                multiline
+                numberOfLines={4}
+                onChangeText = { (text) => this.setState({
+                  submitReview: text,
+                })}
+              />
+              <View style={styles.buttomWrapper}>
+                <TouchableOpacity
+                  style={[
+                    styles.submitContainer,
+                    { backgroundColor: "#0251ce" },
+                  ]}
+                  onPress={() => {
+                    this.onSubmitReview();
+                    this.setState({
+                      modalVisible: this.state.modalVisible == true ? false : true,
+                    })
+                    this.retrieveReview();
+                    }}
+                >
+                  <Text style={styles.submit}>Submit</Text>
+                </TouchableOpacity>
 
-                    {/* Review MODAL */}
-                    <Modal
-                        animationType="slide"
-                        transparent={false}
-                        visible={this.state.modalVisible}
+                <TouchableOpacity
+                  style={[
+                    styles.submitContainer,
+                    { backgroundColor: "#0251ce" },
+                  ]}
+                  onPress={() => {
+                    this.pickImage();
+                  }}
+                >
+                  <Text style={styles.submit}>Upload Images</Text>
+                </TouchableOpacity>
+              </View>
 
-                    >
-                        <View style={[styles.reviewContainer, { backgroundColor: 'F2EEE5' }]}>
-                            <Image source={require('../assets/review.jpg')}
-                                style={{
-                                    width: 200,
-                                    height: 200,
-                                    alignSelf: 'center'
-                                }} />
-                            <Text style={
-                                {
-                                    fontSize: 18,
-                                    color: "#b8bece",
-                                    fontWeight: 'bold',
-                                    marginTop: 20,
-                                }
-                            }>Please input your review about this shooting place:</Text>
-                            <TextInput
-                                style={{ height: 100, borderColor: 'gray', borderWidth: 2 }}
-                                maxLength={200}
-                                multiline
-                                numberOfLines={4}
-                            />
-                            <View style={styles.buttomWrapper}>
-                                <TouchableOpacity
-                                    style={[styles.submitContainer, { backgroundColor: '#0251ce' }]}
-                                    onPress={() => {
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() =>
+                  this.setState({
+                    modalVisible:
+                      this.state.modalVisible == true ? false : true,
+                  })
+                }
+              >
+                <Text>Cancel</Text>
+              </TouchableOpacity>
+            </View>
+          </Modal>
 
-                                    }}>
-                                    <Text style={styles.submit}>Submit</Text>
-                                </TouchableOpacity>
-
-                                <TouchableOpacity
-                                    style={[styles.submitContainer, { backgroundColor: '#0251ce' }]}
-                                    onPress={() => {
-                                        this.openImagePickerAsync();
-                                    }}>
-                                    <Text style={styles.submit}>Upload Images</Text>
-
-
-                                </TouchableOpacity></View>
-
-                            <TouchableOpacity style={styles.button}
-                                onPress={() =>
-                                    this.setState({
-                                        modalVisible: this.state.modalVisible == true ? false : true
-                                    })
-                                }
-                            >
-                                <Text>Cancel</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </Modal >
-
-                    <Pressable style={{marginBottom:20}}>
-                        <View style={styles.card}>
-                            {/* House image */}
-                            <Image source={require('../assets/SFU.png')} style={styles.cardImage} />
-                            <View style={{ marginTop: 10 }}>
-                                {/* Title and price container */}
-                                <View
-                                    style={{
-                                        flexDirection: 'row',
-                                        justifyContent: 'space-between',
-                                        marginTop: 10,
-                                    }}>
-                                    <Text style={{ fontSize: 16, fontWeight: 'bold' }}>
-                                        {this.state.reviewContent}
-                                    </Text>
-                                    {/* <Text
+          {this.state.review.map((item) => (
+            <Pressable style={{ marginBottom: 20 }}>
+              <View style={styles.card}>
+                {/* House image */}
+                <Image
+                  source={{ uri: item.get("photo").url() }}
+                  style={styles.cardImage}
+                />
+                <View style={{ marginTop: 10 }}>
+                  {/* Title and price container */}
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      marginTop: 10,
+                    }}
+                  >
+                    <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+                      {item.get("reviewContent")}
+                    </Text>
+                    {/* <Text
                 style={{fontWeight: 'bold', color: '#5f82e6', fontSize: 16}}>
                 $1,500
               </Text> */}
-                                </View>
+                  </View>
 
-                                <Text style={{ color: '#A9A9A9', fontSize: 14, marginTop: 5 }}>
-                                    {this.state.username}
-                                </Text>
+                  <Text
+                    style={{ color: "#A9A9A9", fontSize: 14, marginTop: 5 }}
+                  >
+                    {item.get("userName")}
+                  </Text>
 
-                                <View style={{ marginTop: 10, flexDirection: 'row' }}>
-                                    <View style={styles.facility}>
-                                        <Icon name="visibility" size={18} />
-                                        <Text style={styles.facilityText}>2</Text>
-                                    </View>
-                                    <View style={styles.facility}>
-                                        <TouchableOpacity style={{ flexDirection:'row'}}>
-                                        <Icon name="recommend" size={18} />
-                                        <Text style={styles.facilityText}>4</Text>
-                                        </TouchableOpacity>
-                                    </View>
-                                </View>
-                            </View>
-                        </View>
-                    </Pressable>
-
-                    <Pressable>
-                        <View style={styles.card}>
-                            {/* House image */}
-                            <Image source={require('../assets/NEU.png')} style={styles.cardImage} />
-                            <View style={{ marginTop: 10 }}>
-                                {/* Title and price container */}
-                                <View
-                                    style={{
-                                        flexDirection: 'row',
-                                        justifyContent: 'space-between',
-                                        marginTop: 10,
-                                    }}>
-                                    <Text style={{ fontSize: 16, fontWeight: 'bold' }}>
-                                        {this.state.reviewContent}
-                                    </Text>
-                                    {/* <Text
-                style={{fontWeight: 'bold', color: '#5f82e6', fontSize: 16}}>
-                $1,500
-              </Text> */}
-                                </View>
-
-
-                                <Text style={{ color: '#A9A9A9', fontSize: 14, marginTop: 5 }}>
-                                    {this.state.username}
-                                </Text>
-
-                                <View style={{ marginTop: 10, flexDirection: 'row' }}>
-                                    
-                                    <View style={styles.facility}>
-                                        <Icon name="visibility" size={18} />
-                                        <Text style={styles.facilityText}>2</Text>
-                                    </View>
-                                    <View style={styles.facility}>
-                                        <Icon name="recommend" size={18} />
-                                        <Text style={styles.facilityText}>2</Text>
-                                    </View>
-                                </View>
-                            </View>
-                        </View>
-                    </Pressable>
-
+                  <View style={{ marginTop: 10, flexDirection: "row" }}>
+                    <View style={styles.facility}>
+                      <Icon name="thumb" size={18} />
+                      <Text style={styles.facilityText}>2</Text>
+                    </View>
+                    <View style={styles.facility}>
+                      <Icon name="people" size={18} />
+                      <Text style={styles.facilityText}>2</Text>
+                    </View>
+                  </View>
                 </View>
+              </View>
+            </Pressable>
+          ))}
+        </View>
+      </ScrollView>
+    );
+  }
 
-
-            </ScrollView>
-        );
-    }
 }
-
-
 
 const styles = StyleSheet.create({
     reviewContainer: {
@@ -312,3 +400,4 @@ const styles = StyleSheet.create({
     facilityText: { marginLeft: 5, color: '#97CAE5' },
 
 })
+
