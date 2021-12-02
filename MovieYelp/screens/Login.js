@@ -19,8 +19,8 @@ import Parse from "parse/react-native";
 Parse.setAsyncStorage(AsyncStorage);
 
 Parse.initialize(
-  "yyq9HLKMQVgQFbCIVBl7dAaIboyCTbyoRQjUYZc8",
-  "KBig8FUxq4rXuILfdgXQX6L053KYdDM8SclCM2Vs"
+  "iX9UmLwWNOSVhSfrvY7YnWOAyZPNujc2cvKSCkFT",
+  "NSdhBidUcAsiTET1C4r7ZWGjgTDCLgBdvFkecWr5"
 ); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
 Parse.serverURL = "https://parseapi.back4app.com/";
 
@@ -75,7 +75,10 @@ export default class Login extends React.Component {
   checkEmailExist = () => {
     var judge = false;
     this.state.allUsers.forEach((item) => {
-      if (item.get("email") === this.state.userEmail) {
+      if (
+        item.get("email").toLowerCase() ===
+        this.state.userEmail.toLocaleLowerCase()
+      ) {
         judge = true;
       }
     });
@@ -87,7 +90,8 @@ export default class Login extends React.Component {
     var judge = false;
     this.state.allUsers.forEach((item) => {
       if (
-        item.get("email") === this.state.userEmail &&
+        item.get("email").toLocaleLowerCase() ===
+          this.state.userEmail.toLocaleLowerCase() &&
         item.get("password") === this.state.password
       ) {
         judge = true;
