@@ -75,27 +75,19 @@ export default class CardViewScreen extends React.Component {
   );
   render() {
     return (
-      
-      // <SafeAreaView style={{flex:1}}>
       <ScrollView style={styles.container}>
       <View style={styles.titleBar}>
         <Image
           style={styles.avatar}
           source={{ uri: this.state.user.get("avatar").url() }}
         />
-        <Text style={styles.userTitle}>Welcome back,</Text>
+        <Text style={styles.userTitle}>👏Welcome back,</Text>
         {/* this.username */}
         <Text style={styles.username}>{this.state.user.get("userName")}</Text>
       </View>
       <Subtitle style={{ paddingTop: 10 }}>
         Starting your journey from...
       </Subtitle>
-      {/* <FlatList
-        style={styles.flatListStyle}
-        data={this.state.movie}
-        renderItem={this.renderItem}
-        keyExtractor={(item) => item.id}
-      /> */}
       {this.state.movie.map((item) => (
         <TouchableOpacity
           style={styles.infoBox}
@@ -110,28 +102,12 @@ export default class CardViewScreen extends React.Component {
             image={item.get("photo").url()}
             caption={item.get("name")}
             relatedMovies={item.get("relatedMovies")}
+            location = {item.get("location")}
           />
         </TouchableOpacity>
       ))}
-      {/* <TouchableOpacity
-        style={styles.infoBox}
-        onPress={() => this.props.navigation.navigate("movie")}
-      >
-        <Card
-          image={require("../assets/NEU.png")}
-          caption={"NEU Vancouver Campus"}
-        />
-      </TouchableOpacity>
 
-      <TouchableOpacity style={styles.infoBox}>
-        <Card
-          image={require("../assets/Scene1.jpeg")}
-          caption={"NEU Vancouver Campus"}
-          onPress
-        />
-      </TouchableOpacity> */}
     </ScrollView>
-      // </SafeAreaView>
     );
   }
 }

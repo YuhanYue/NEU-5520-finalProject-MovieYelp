@@ -35,27 +35,9 @@ export default class Overview extends React.Component {
   };
 
   render() {
-    // console.log("!!!!OverView here");
-    // console.log(this.props.movieItem);
-    // console.log(this.props.user);
-
     return (
-        // <StatusBar translucent backgroundColor="rgba(0,0,0,0)" />
-
         <View>
         {/* Onboarding Image */}
-        <Swiper showsButtons={true}
-        style={{height:500}}>
-          {/* //TODO: FlatList */}
-          <View style={styles.slide1}>
-            <Image
-              source={{ uri: this.props.movieItem.get("photo").url() }}
-              style={styles.image}
-            />
-            {/* <Image source={require('../assets/avatar.jpg')}
-                        style={styles.image} /> */}
-          </View>
-        </Swiper>
 
         {/* Title and text container */}
         <View style={{ paddingHorizontal: 20, paddingTop: 20 }}>
@@ -65,13 +47,13 @@ export default class Overview extends React.Component {
 
             <Text style={styles.title}>{this.props.movieItem.get("name")}</Text>
             <Text style={styles.textStyle}>
-              {this.props.movieItem.get("description")}
+            🔎 {this.props.movieItem.get("description")}
             </Text>
           </View>
 
           <View style={{ marginTop: 10 }}>
             <Text style={styles.relatedMovies}>
-              Related Movies: {this.props.movieItem.get("relatedMovies")}
+              🎬 Related Movies: {this.props.movieItem.get("relatedMovies")}
             </Text>
           </View>
 
@@ -97,42 +79,6 @@ export default class Overview extends React.Component {
             </View>
         </View>
     );
-
-    // <ScrollView>
-    //     <Title>{this.state.locationName}</Title>
-    //     <ScrollView
-    //         style={{
-    //             flexDirection: 'row',
-    //             height: '40%',
-    //             marginBottom: 10,
-    //         }}
-    //         horizontal={true}
-    //         showsHorizontalScrollIndicator={false}>
-    //         {/*TODO: use FlatList to display images */}
-    //         <Image source={require('../assets/NEU.png')}
-    //             style={styles.image} />
-    //         <Image source={require('../assets/Scene1.jpeg')}
-    //             style={styles.image} />
-    //         <Image source={require('../assets/avatar.jpg')}
-    //             style={styles.image} />
-    //     </ScrollView>
-    //     <View style = {styles.locationIntroductionSection}>
-    //     <Text style ={styles.movieIntro}>
-    //       {this.state.locationIntroduction}
-    //     </Text>
-    //     </View>
-    //     <Text>Related Movies:</Text>
-    //     {/* FlatList */}
-    //     <View style={styles.relatedMoviesSection}>
-    //         <Text>The Mars</Text>
-    //         <Image></Image>
-    //     </View>
-
-    //     <View style={styles.relatedMoviesSection}>
-    //         <Text>IntelliJ</Text>
-    //         <Image></Image>
-    //     </View>
-    // </ScrollView>
   }
 }
 

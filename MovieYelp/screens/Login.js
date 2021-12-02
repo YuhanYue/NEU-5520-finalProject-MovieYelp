@@ -115,9 +115,9 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <ScrollView style={{ backgroundColor: "whilte" }}>
+      <ScrollView style={{ backgroundColor: "white" }}>
         <View style={styles.container}>
-          <Image source={require("../assets/login.png")} style={styles.image} />
+          <Image source={require("../assets/login.gif")} style={styles.image} />
           <Text style={styles.textTitle}>Welcome Back</Text>
           <Text style={styles.textBody}>Log in to your existant account</Text>
           <View style={{ marginTop: 20 }} />

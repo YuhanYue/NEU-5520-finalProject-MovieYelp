@@ -32,7 +32,8 @@ Parse.initialize(
 ); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
 Parse.serverURL = "https://parseapi.back4app.com/";
 
-function addReview() {}
+import AnimatedLottieView from "lottie-react-native";
+
 
 const { width } = Dimensions.get("screen");
 
@@ -48,6 +49,7 @@ export default class Reviews extends React.Component {
       review: [],
       submitReview : "",
       submitImage : null,
+      
     };
     this.retrieveReview();
   }
@@ -84,20 +86,21 @@ export default class Reviews extends React.Component {
   };
 
   pickImage = async()=> {
-    let response = await ImagePicker.launchImageLibraryAsync(
-    {
-      mediaType:  'photo',
-      base64:  true,
-    });
-      // Add selected image to the state
-    // let base64 = response.base64;
-    // const  parseFile = new  Parse.File("reviewPhoto.jpg", {base64});
-    this.setState({
-      submitImage:response,
-    })
-    // console.log(response)
-    // console.log(this.state.submiteImage);
-    // this.uploadImage();
+    try{
+      let response = await ImagePicker.launchImageLibraryAsync(
+        {
+          mediaType:  'photo',
+          base64:  true,
+        });
+        this.setState({
+          submitImage:response,
+        })
+        alert("Imgae added successfully!");
+        
+    } catch(error){
+      alert("Fail to upload image!");
+    }
+    
   }
 
   onSubmitReview = async() => {
@@ -180,11 +183,13 @@ export default class Reviews extends React.Component {
             <View
               style={[styles.reviewContainer, { backgroundColor: "F2EEE5" }]}
             >
+              {/* <AnimatedLottieView source={require('../assets/84848-polar-bear.json')} autoPlay loop /> */}
               <Image
-                source={require("../assets/review.jpg")}
+                // source={{uri: 'https://media3.giphy.com/media/wWue0rCDOphOE/giphy.gif'}}
+                source={require("../assets/84848-polar-bear.gif")}
                 style={{
-                  width: 200,
-                  height: 200,
+                  width: 430,
+                  height: 430,
                   alignSelf: "center",
                 }}
               />
@@ -199,7 +204,7 @@ export default class Reviews extends React.Component {
                 Please input your review about this shooting place:
               </Text>
               <TextInput
-                style={{ height: 100, borderColor: "gray", borderWidth: 2}}
+                style={{ height: 100, borderColor: "gray", borderWidth: 2 }}
                 maxLength={200}
                 multiline
                 numberOfLines={4}

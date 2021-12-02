@@ -1,15 +1,5 @@
 import React from "react";
 import { View, SafeAreaView, StyleSheet, FlatList, Text } from "react-native";
-// import {
-//   Orange: #F97878
-//   Pink: #ea3372
-//   Caption,
-//   Text,
-//   TouchableRipple,
-// } from 'react-native-paper';
-
-// import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-// import Share from 'react-native-share';
 import {
   ScrollView,
   Alert,
@@ -17,6 +7,7 @@ import {
   Image,
   Button,
   Dimensions,
+  ImageBackground,
 } from "react-native";
 import { TouchableOpacityBase } from "react-native";
 import { Component } from "react";
@@ -197,7 +188,7 @@ export default class Profile extends React.Component {
                   marginTop: 10,
                 }}>
                 <Text style={{ fontSize: 16, fontWeight: 'bold', color :"grey" }}>
-                 Post Date: {this.state.userPostDate[i]}
+                 📅 Post Date: {this.state.userPostDate[i]}
                 </Text>
                 {/* <Text
                 style={{fontWeight: 'bold', color: '#5f82e6', fontSize: 16}}>
@@ -329,7 +320,8 @@ export default class Profile extends React.Component {
 
             borderBottomStartRadius: 180,
             borderBottomEndRadius: 180,
-            backgroundColor: "#F8E7B4"
+            backgroundColor: "#F8E7B4",
+            
           }}>
             <TouchableOpacity
               onPress={() => {
@@ -348,10 +340,10 @@ export default class Profile extends React.Component {
 
           }}>
             <Text style={{ fontWeight: "600", textAlign: "left" }}>
-              ABOUT ME
+              ✨ ABOUT ME
             </Text>
             <Text style={{ color: "grey", fontWeight: "600", marginTop: 5 }}>
-              {this.state.userBio}
+              ✉️ {this.state.userBio}
             </Text>
             <View>
               <Ionicons

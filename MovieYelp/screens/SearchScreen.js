@@ -78,6 +78,7 @@ export default class SearchScreen extends React.Component {
         image={item.get("photo").url()}
         caption={item.get("name")}
         relatedMovies={item.get("relatedMovies")}
+        location = {item.get("location")}
       />
     </TouchableOpacity>
   );

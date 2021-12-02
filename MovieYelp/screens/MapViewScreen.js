@@ -114,7 +114,7 @@ export default class MapViewScreen extends React.Component {
                 }
                 style={[styles.calloutButton]}
               >
-                <Text>{item.get("name")}</Text>
+                <Text>👀{item.get("name")}</Text>
               </CalloutSubview>
             </Callout>
           </Marker>

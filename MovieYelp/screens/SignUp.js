@@ -100,7 +100,7 @@ export default class SignUp extends React.Component {
       <ScrollView style={{ backgroundColor: "white" }}>
         <View style={styles.container}>
           <Image
-            source={require("../assets/registeration.png")}
+            source={require("../assets/register.gif")}
             style={styles.image}
           />
   

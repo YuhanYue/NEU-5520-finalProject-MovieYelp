@@ -6,17 +6,16 @@ const CardUri = (props) => (
   <Container style={{ elevation: 100 }}>
     <Cover>
       <Image style={styles.coverImage} source={{ uri: props.image }} />
-      <Title>{props.title}</Title>
     </Cover>
     <Content>
       <Wrapper>
-        <Caption>{props.caption}</Caption>
-        {/* <Subtitle>{props.subtitle}</Subtitle> */}
+      <Text style={styles.title} > 🎬{props.caption}</Text>
         <View relatedMoviesWrapper>
+        <Subtitle>📍{props.location}</Subtitle>
           {/* Fetch related movies as a flatList */}
-          <Text style={styles.relatedMovies}>
-            Related Movies: {props.relatedMovies}
-          </Text>
+          {/* <Text style={styles.relatedMovies}>
+            🎬Related Movies: {props.relatedMovies}
+          </Text> */}
           {/* <Text style={styles.relatedMovies}>Harry Potter</Text> */}
         </View>
       </Wrapper>
@@ -42,19 +41,19 @@ const Caption = styled.Text`
 `;
 
 const Subtitle = styled.Text`
-  color: #b8bece;
+  color: grey;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 12px;
   text-transform: uppercase;
   margin-top: 4px;
 `;
 
 const Wrapper = styled.View`
   flex-direction: column;
+  width:100%;
 `;
 
 const Container = styled.View`
-  text-align: center
   background: white;
   width: 350px;
   height: 280px;
@@ -96,5 +95,15 @@ const styles = StyleSheet.create({
   relatedMoviesWrapper: {
     flexDirection: "row",
     flex: 1,
+  },
+  title:{
+    color: "#3c4560",
+    textAlign:"left",
+    fontSize:15,
+    width:170,
+    fontWeight:"600",
+
+
+
   },
 });
