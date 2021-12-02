@@ -18,7 +18,7 @@ Parse.setAsyncStorage(AsyncStorage);
 Parse.initialize(
   "iX9UmLwWNOSVhSfrvY7YnWOAyZPNujc2cvKSCkFT",
   "NSdhBidUcAsiTET1C4r7ZWGjgTDCLgBdvFkecWr5"
-); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
+); 
 Parse.serverURL = "https://parseapi.back4app.com/";
 
 
@@ -75,7 +75,6 @@ export default class CardViewScreen extends React.Component {
             source={{ uri: this.state.user.get("avatar").url() }}
           />
           <Text style={styles.userTitle}>👏Welcome back,</Text>
-          {/* this.username */}
           <Text style={styles.username}>{this.state.user.get("userName")}</Text>
         </View>
         <Subtitle style={{ paddingTop: 10 }}>
@@ -136,7 +135,6 @@ const styles = StyleSheet.create({
     height: 230,
     alignItems: 'center',
     justifyContent: "flex-end",
-    // marginLeft: 10//center
     backgroundColor: "#F8E7B4",
     borderBottomLeftRadius: 100,
   },

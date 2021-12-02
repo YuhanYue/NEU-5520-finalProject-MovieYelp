@@ -2,10 +2,7 @@ import React from "react";
 import {
   StyleSheet,
   Text,
-  TouchableOpacityComponent,
-  View,
 } from "react-native";
-import { TouchableHighlight } from "react-native-gesture-handler";
 import MapView, {
   Marker,
   Callout,
@@ -15,13 +12,11 @@ import MapView, {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Parse from "parse/react-native";
 
-//Before using the SDK...
 Parse.setAsyncStorage(AsyncStorage);
-
 Parse.initialize(
   "iX9UmLwWNOSVhSfrvY7YnWOAyZPNujc2cvKSCkFT",
   "NSdhBidUcAsiTET1C4r7ZWGjgTDCLgBdvFkecWr5"
-); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
+);
 Parse.serverURL = "https://parseapi.back4app.com/";
 
 export default class MapViewScreen extends React.Component {

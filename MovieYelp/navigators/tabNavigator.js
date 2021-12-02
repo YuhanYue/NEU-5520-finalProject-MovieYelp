@@ -123,7 +123,6 @@ export default class TabNavigator extends React.Component {
                     }}
                   />
                   <Text
-                  // style={{color: focused ?'#e32f45' : '#748c94',}}
                   >
                     Home
                   </Text>
