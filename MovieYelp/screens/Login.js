@@ -97,8 +97,6 @@ export default class Login extends React.Component {
   setDefaultUser = () => {
     this.state.allUsers.forEach((item) => {
       if (item.get("email") === "jiabin@gmail.com") {
-        console.log("---jiabin is here");
-        console.log(item);
         this.state.user = item;
       }
     });
