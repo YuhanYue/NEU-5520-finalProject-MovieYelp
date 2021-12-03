@@ -9,6 +9,7 @@ import {
 } from "react-native";
 
 import Inputs from "../components/Inputs";
+
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Parse from "parse/react-native";
 
@@ -18,7 +19,7 @@ Parse.setAsyncStorage(AsyncStorage);
 Parse.initialize(
   "iX9UmLwWNOSVhSfrvY7YnWOAyZPNujc2cvKSCkFT",
   "NSdhBidUcAsiTET1C4r7ZWGjgTDCLgBdvFkecWr5"
-); 
+); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
 Parse.serverURL = "https://parseapi.back4app.com/";
 
 export default class Login extends React.Component {
@@ -41,12 +42,10 @@ export default class Login extends React.Component {
     try {
       queryResult = await query.find();
     } catch (error) {
-      alert("Failed to create new object, with error code: " + error.message);
     }
     this.setState({ allUsers: queryResult });
 
   };
-
 
 
   onUsernameChanged = (newUsername) => {
@@ -130,6 +129,7 @@ export default class Login extends React.Component {
               const inDevelop = false;
               if (inDevelop) {
                 this.setDefaultUser();
+
                 this.props.navigation.navigate("HomePageNavigation", {
                   user: this.state.user,
                 });
