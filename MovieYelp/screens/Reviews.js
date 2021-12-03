@@ -34,6 +34,7 @@ export default class Reviews extends React.Component {
     this.retrieveReview();
   }
 
+
   retrieveReview = async () => {
     if (this.state.review.length != 0) return;
     const query = new Parse.Query("review");
@@ -72,7 +73,7 @@ export default class Reviews extends React.Component {
       this.setState({
         submitImage: response,
       })
-      alert("Imgae added successfully!");
+      alert("Image added successfully!");
 
     } catch (error) {
       alert("Fail to upload image!");
